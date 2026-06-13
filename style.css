@@ -1,0 +1,306 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0a0a0a;
+    color:white;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+.logo img{
+    height:55px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00aaff;
+}
+
+.hero{
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070") center/cover;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:4rem;
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+.hero-content span{
+    display:block;
+    color:#00aaff;
+}
+
+.hero-content p{
+    font-size:1.2rem;
+    color:#d0d0d0;
+    margin-bottom:35px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn-primary,
+.btn-secondary{
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:50px;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.btn-primary{
+    background:#00aaff;
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+    border:2px solid white;
+    color:white;
+}
+
+.btn-secondary:hover{
+    background:white;
+    color:black;
+}
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:60px 20px;
+    background:#111;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    text-align:center;
+    min-width:180px;
+}
+
+.stat-box h2{
+    color:#00aaff;
+    font-size:2rem;
+}
+
+.stat-box p{
+    color:#ccc;
+    margin-top:10px;
+}
+
+@media(max-width:768px){
+
+    nav{
+        padding:15px 5%;
+    }
+
+    nav ul{
+        gap:15px;
+        font-size:14px;
+    }
+
+    .logo img{
+        height:40px;
+    }
+
+    .hero-content h1{
+        font-size:2.5rem;
+    }
+
+    .hero-content p{
+        font-size:1rem;
+    }
+
+    .stats{
+        flex-direction:column;
+        align-items:center;
+    }
+}
+.about{
+    padding:100px 10%;
+    display:flex;
+    gap:60px;
+    align-items:center;
+    flex-wrap:wrap;
+    background:#0f0f0f;
+}
+
+.about-image img{
+    width:320px;
+    border-radius:20px;
+}
+
+.about-content{
+    flex:1;
+}
+
+.about-content h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.about-content p{
+    color:#ccc;
+    margin-bottom:15px;
+    line-height:1.8;
+}
+
+.about-stats{
+    display:flex;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.about-stats h3{
+    color:#00aaff;
+}
+
+.services{
+    padding:100px 10%;
+    text-align:center;
+    background:#111;
+}
+
+.services h2{
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.service-card{
+    background:#1a1a1a;
+    padding:30px;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px rgba(0,162,255,0.4);
+}
+
+.service-card h3{
+    color:#00aaff;
+    margin-bottom:15px;
+}
+
+.contact{
+    padding:100px 10%;
+    text-align:center;
+}
+.contact h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.contact-info{
+    margin-top:30px;
+}
+
+.contact-info p{
+    margin:15px 0;
+    font-size:1.1rem;
+}
+.portfolio{
+    padding:90px 10%;
+    background:#000;
+}
+
+.portfolio h2{
+    text-align:left;
+    color:white;
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.portfolio-grid{
+    display:flex;
+    justify-content:left;
+}
+
+.portfolio video{
+    width:350px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,162,255,0.4);
+    transition:0.3s;
+}
+
+.portfolio video:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 40px rgba(0,162,255,0.7);
+}
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+    background:#000;
+}
+html{
+    scroll-behavior:smooth;
+}
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
