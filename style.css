@@ -407,6 +407,10 @@ nav{
     transform:translateY(-5px);
     box-shadow:0 0 25px rgba(0,162,255,0.5);
 }
+.short-section{
+    display:flex;
+    gap:40px;
+}
 @media(max-width:400px){
     .why-work-grid{
         grid-template-columns:1fr;
@@ -492,7 +496,6 @@ nav{
         flex-direction:column;
         gap:20px;
     }
-
     .long-section h2{
         transform:none;
     }
