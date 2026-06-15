@@ -357,9 +357,9 @@ nav{
 }
 
 .tools img{
-    width:70px;
+    width:60px;
     height:auto;
-    border-radius:10px;
+    border-radius:12px;
     transition:0.3s;
 }
 
@@ -367,7 +367,7 @@ nav{
     transform:scale(1.1);
 }
 .tools img{
-    width:80px;
+    width:60px;
     border-radius:12px;
     box-shadow:0 0 15px rgba(0,162,255,0.4);
     transition:0.3s;
