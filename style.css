@@ -275,15 +275,16 @@ nav ul li a:hover{
 }
 
 .portfolio-grid{
-    display:flex;
-    justify-content:left;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
 }
 
 .portfolio video{
-    width:350px;
+    width:100%;
+    max-width:350px;
     border-radius:15px;
     box-shadow:0 0 20px rgba(0,162,255,0.4);
-    transition:0.3s;
 }
 
 .portfolio video:hover{
