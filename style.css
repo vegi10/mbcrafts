@@ -470,9 +470,21 @@ nav{
         grid-template-columns:1fr;
     }
 
+    .portfolio-wrapper{
+        display:block;
+    }
+
+    .short-section h2,
+    .long-section h2{
+        text-align:center;
+        margin:20px 0;
+    }
+
     .portfolio video{
-        width:90%;
-        max-width:350px;
+        width:100%;
+        max-width:320px;
+        display:block;
+        margin:0 auto 20px;
     }
 
     .side-videos{
