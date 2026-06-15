@@ -343,10 +343,37 @@ nav{
         width:40px;
     }
 }
-.about-content div h2{
-    font-size:1.8rem;
+.about-content h3{
+    font-size:1.6rem;
+    margin-top:25px;
+    margin-bottom:15px;
+    color:white;
+}
+.tools{
+    display:flex;
+    gap:20px;
+    margin-top:15px;
+    align-items:center;
 }
 
-.about-content h2:last-of-type{
-    font-size:1.8rem;
+.tools img{
+    width:70px;
+    height:auto;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.tools img:hover{
+    transform:scale(1.1);
+}
+.tools img{
+    width:80px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,162,255,0.4);
+    transition:0.3s;
+}
+
+.tools img:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 25px rgba(0,162,255,0.7);
 }
