@@ -339,3 +339,12 @@ nav{
     box-shadow:
         inset 0 5px 15px rgba(0,0,0,0.6);
 }
+.contact-buttons{
+    border:5px solid red !important;
+}
+
+.contact-box{
+    display:block !important;
+    background:red !important;
+    width:400px !important;
+}
