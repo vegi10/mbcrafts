@@ -433,14 +433,11 @@ nav{
 .portfolio-headings{
     display:grid;
     grid-template-columns:2fr 1fr;
-    align-items:center;
+    gap:30px;
     margin-bottom:20px;
 }
 
-.portfolio-headings h2:first-child{
+.portfolio-headings h2{
     text-align:center;
-}
-
-.portfolio-headings h2:last-child{
-    text-align:center;
+    margin:0;
 }
