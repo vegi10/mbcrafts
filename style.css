@@ -142,10 +142,10 @@ nav ul li a:hover{
     color:#ccc;
     margin-top:10px;
 }
-.portfolio-grid{
+.short-videos{
     display:flex;
-    justify-content:center;
     gap:40px;
+    justify-content:center;
 }
 @media(max-width:768px){
 
@@ -426,7 +426,10 @@ nav{
     flex-direction:column;
     gap:20px;
 }
-
+.short-videos{
+    flex-direction:column;
+    align-items:center;
+}
 .side-videos video{
     width:350px;
     height:315px;
