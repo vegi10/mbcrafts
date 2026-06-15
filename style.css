@@ -431,11 +431,16 @@ nav{
     background:#000;
 }
 .portfolio-headings{
-    display:flex;
-    justify-content:space-between;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    align-items:center;
     margin-bottom:20px;
 }
 
-.portfolio-headings h2{
-    margin:0;
+.portfolio-headings h2:first-child{
+    text-align:center;
+}
+
+.portfolio-headings h2:last-child{
+    text-align:center;
 }
