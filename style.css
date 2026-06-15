@@ -430,14 +430,14 @@ nav{
     object-fit:contain;
     background:#000;
 }
-.portfolio-headings{
+.portfolio-wrapper{
     display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap:30px;
     margin-bottom:20px;
 }
 
-.portfolio-headings h2{
+.short-section h2,
+.long-section h2{
     text-align:center;
-    margin:0;
 }
