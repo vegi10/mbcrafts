@@ -470,19 +470,14 @@ nav{
         grid-template-columns:1fr;
     }
 
-    .portfolio-grid{
-        flex-direction:column;
-        align-items:center;
-    }
-
     .portfolio video{
         width:90%;
         max-width:350px;
     }
 
-    .portfolio-wrapper{
-        grid-template-columns:1fr;
-    }
+   .portfolio-wrapper{
+    grid-template-columns:2fr 1fr;
+}
 
     .side-videos{
         display:flex;
