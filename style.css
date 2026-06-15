@@ -380,7 +380,7 @@ nav{
 .why-work-grid{
     display:grid;
     grid-template-columns:250px 250px;
-    column-gap:100px;
+    column-gap:200px;
     row-gap:25px;
     margin-top:20px;
 }
