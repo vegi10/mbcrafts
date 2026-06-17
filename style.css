@@ -1,18 +1,32 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Poppins', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
     background:#0a0a0a;
-    color:white;
+    color:#ffffff;
+    overflow-x:hidden;
 }
+
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
     position:fixed;
     top:0;
+    left:0;
     width:100%;
     padding:15px 8%;
     display:flex;
@@ -25,6 +39,7 @@ nav{
 
 .logo img{
     height:55px;
+    display:block;
 }
 
 nav ul{
@@ -35,23 +50,28 @@ nav ul{
 
 nav ul li a{
     text-decoration:none;
-    color:white;
+    color:#ffffff;
     font-weight:500;
-    transition:0.3s;
+    transition:color 0.3s ease;
 }
 
 nav ul li a:hover{
     color:#00aaff;
 }
 
+/* =========================
+   HERO SECTION
+========================= */
+
 .hero{
     height:100vh;
-    background:url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070") center/cover;
+    background:url("https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070") center/cover no-repeat;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
+    overflow:hidden;
 }
 
 .overlay{
@@ -71,6 +91,7 @@ nav ul li a:hover{
     font-size:4rem;
     line-height:1.2;
     margin-bottom:20px;
+    font-weight:700;
 }
 
 .hero-content span{
@@ -82,11 +103,17 @@ nav ul li a:hover{
     font-size:1.2rem;
     color:#d0d0d0;
     margin-bottom:35px;
+    line-height:1.8;
 }
+
+/* =========================
+   HERO BUTTONS
+========================= */
 
 .buttons{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:20px;
     flex-wrap:wrap;
 }
@@ -96,36 +123,48 @@ nav ul li a:hover{
     text-decoration:none;
     padding:14px 30px;
     border-radius:50px;
-    transition:0.3s;
     font-weight:600;
+    transition:all 0.3s ease;
+    display:inline-block;
 }
+
+/* Primary Button */
 
 .btn-primary{
     background:#00aaff;
-    color:white;
+    color:#ffffff;
 }
 
 .btn-primary:hover{
     transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(0,170,255,0.5);
 }
 
+/* Secondary Button */
+
 .btn-secondary{
-    border:2px solid white;
-    color:white;
+    border:2px solid #ffffff;
+    color:#ffffff;
 }
 
 .btn-secondary:hover{
-    background:white;
-    color:black;
+    background:#ffffff;
+    color:#000000;
+    transform:translateY(-3px);
 }
+
+/* =========================
+   STATS SECTION
+========================= */
 
 .stats{
     display:flex;
     justify-content:center;
+    align-items:center;
     gap:40px;
-    padding:60px 20px;
-    background:#111;
     flex-wrap:wrap;
+    padding:60px 20px;
+    background:#111111;
 }
 
 .stat-box{
@@ -136,31 +175,67 @@ nav ul li a:hover{
 .stat-box h2{
     color:#00aaff;
     font-size:2rem;
+    margin-bottom:10px;
 }
 
 .stat-box p{
-    color:#ccc;
-    margin-top:10px;
-}
-.short-videos{
-    display:flex;
-    gap:40px;
-    justify-content:center;
-}
-.about-section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease;
+    color:#cccccc;
 }
 
-.about-section.show {
-    opacity: 1;
-    transform: translateY(0);
+/* =========================
+   SHORT VIDEOS
+========================= */
+
+.short-videos{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
 }
-.services-grid{
+
+/* =========================
+   ABOUT ANIMATION
+========================= */
+
+.about-section{
+    opacity:0;
+    transform:translateY(50px);
+    transition:opacity 1s ease, transform 1s ease;
+}
+
+.about-section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   SERVICES GRID
+========================= */
+
+.service-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:20px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .stats{
+        gap:25px;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .short-videos{
+        flex-direction:column;
+        align-items:center;
+    }
 }
 @media(max-width:768px){
 
