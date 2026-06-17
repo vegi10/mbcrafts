@@ -80,13 +80,7 @@ Contact Me
 
         <h2>About Me</h2>
 
-        <p>
-            Hi, I'm Manohar, a video editor specializing
-            in YouTube videos, reels, shorts, and social
-            media content. Using DaVinci Resolve, I
-            focus on storytelling, pacing, and audience retention
-            to help creators and brands produce engaging content.
-        </p>
+        <p id="typing-text"></p>
 
         <h3>Why Work With Me?</h3>
 
@@ -223,5 +217,22 @@ window.addEventListener('scroll', () => {
     }
 });
 </script>
+    <script>
+        const text = `Hi, I'm Manohar, a video editor specializing
+        in YouTube videos, reels, shorts, and social
+        media content. Using DaVinci Resolve, I
+        focus on storytelling, pacing, and audience retention to help creators and brands
+        produce engaging content.`;
+        const typingText = document.getElementById("typing-text");
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                typingText.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 25);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", typeWriter);
+    </script>
 </body>
 </html>
