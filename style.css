@@ -609,9 +609,17 @@ nav{
         font-size:16px;
     }
 }
+/* =========================
+   ABOUT ANIMATION
+========================= */
+
 .about-section{
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1s ease, transform 1s ease;
-    will-change: opacity, transform;
+    opacity:0;
+    transform:translateY(50px);
+    transition:opacity 1s ease, transform 1s ease;
+}
+
+.about-section.show{
+    opacity:1;
+    transform:translateY(0);
 }
