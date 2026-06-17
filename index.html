@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="google-site-verification" content="RF9JSVdiI7zGf36psc7vVEhW7wTR517py1V3N0kjbmE" />
     <title>mbcrafts</title>
-
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ Contact Me
         <img src="images/manohar.png" alt="Manohar">
     </div>
 
-    <div class="about-content">
+    <section id="about" class="about about-section">
         <h2>About Me</h2>
 
         <p>
@@ -212,5 +212,18 @@ Contact Me
     </footer>
     
 <script src="script.js"></script>
+    <script>
+const aboutSection = document.querySelector('.about-section');
+
+window.addEventListener('scroll', () => {
+    if (!aboutSection) return;
+
+    const sectionTop = aboutSection.getBoundingClientRect().top;
+
+    if (sectionTop < window.innerHeight - 100) {
+        aboutSection.classList.add('show');
+    }
+});
+</script>
 </body>
 </html>
