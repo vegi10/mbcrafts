@@ -619,33 +619,21 @@ nav{
     width:100%;
     height:100%;
     z-index:-1;
-    overflow:hidden;
-    background:#050505;
-}
 
-.animated-bg::before,
-.animated-bg::after{
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
     background:
-        radial-gradient(circle,#00aaff55 2px,transparent 2px),
-        radial-gradient(circle,#00ffaa33 1px,transparent 1px);
-    background-size:120px 120px,80px 80px;
-    animation:floatParticles 30s linear infinite;
+        radial-gradient(circle at 20% 20%, rgba(0,170,255,0.15) 0%, transparent 25%),
+        radial-gradient(circle at 80% 40%, rgba(0,170,255,0.12) 0%, transparent 20%),
+        radial-gradient(circle at 50% 80%, rgba(0,170,255,0.15) 0%, transparent 25%);
+
+    animation: floatBg 12s ease-in-out infinite alternate;
 }
 
-.animated-bg::after{
-    animation-duration:45s;
-    opacity:0.5;
-}
-
-@keyframes floatParticles{
-    from{
-        transform:translate(0,0);
+@keyframes floatBg{
+    0%{
+        transform:translateY(0px);
     }
-    to{
-        transform:translate(-200px,-200px);
+
+    100%{
+        transform:translateY(-50px);
     }
 }
