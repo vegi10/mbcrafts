@@ -380,19 +380,18 @@ nav{
     z-index:1000;
 }
 .social-box{
-    width:350px;
-    margin:30px auto;
-    padding:25px;
-
     display:flex;
     justify-content:center;
-    gap:40px;
+    align-items:center;
+    gap:60px;
 
-    background:#111;
-    border:2px solid #00aaff;
-    border-radius:20px;
+    margin:30px auto;
 
-    box-shadow:0 0 20px rgba(0,162,255,0.4);
+    background:none;
+    border:none;
+    box-shadow:none;
+    padding:0;
+    width:auto;
 }
 
 .social-box a img{
@@ -637,7 +636,7 @@ nav{
 
     filter:blur(10px);
 
-    animation:floatBubbles 12s ease-in-out infinite alternate;
+    animation:floatBubbles 5s ease-in-out infinite alternate;
 }
 
 @keyframes floatBubbles{
@@ -646,6 +645,6 @@ nav{
     }
 
     100%{
-        transform:translateY(-60px);
+        transform:translateY(-100px);
     }
 }
