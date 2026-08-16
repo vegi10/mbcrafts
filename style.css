@@ -1141,6 +1141,18 @@ footer {
     color: white;
 }
 
+.work-section {
+    width: calc(100% - 80px);
+    max-width: 1500px;
+    margin: 0 auto;
+    padding-top: 110px;
+    padding-bottom: 120px;
+}
+
+.section-heading {
+    margin-bottom: 100px;
+}
+
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1150,11 +1162,6 @@ footer {
     margin: 0 auto;
     padding: 0 30px;
     box-sizing: border-box;
-}
-.work-section {
-    width: calc(100% - 80px);
-    max-width: 1500px;
-    margin: 0 auto;
 }
 /* =====================================================
    RESPONSIVE
