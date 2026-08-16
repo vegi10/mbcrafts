@@ -1,31 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #050505;
+    color: #ffffff;
+}
+
 .contact-page {
     min-height: 100vh;
     padding: 180px 8% 100px;
-    background: #050505;
 }
 
-.contact-heading {
+.contact-hero {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.contact-intro {
     max-width: 900px;
     margin-bottom: 100px;
 }
 
-.contact-heading p {
-    color: #888;
-    font-size: 14px;
+.eyebrow {
+    font-size: 13px;
     letter-spacing: 3px;
+    color: #888;
     margin-bottom: 30px;
 }
 
-.contact-heading h1 {
-    font-size: 80px;
+.contact-intro h1 {
+    font-size: 90px;
     line-height: 0.95;
-    letter-spacing: -4px;
-    margin-bottom: 35px;
+    letter-spacing: -5px;
+    margin: 0;
 }
 
-.contact-heading span {
+.contact-intro h1 span {
     display: block;
+    color: #777;
+}
+
+.contact-description {
     max-width: 600px;
+    margin-top: 40px;
     color: #888;
     font-size: 20px;
     line-height: 1.7;
@@ -38,37 +56,71 @@
 }
 
 .contact-card {
-    text-decoration: none;
-    color: white;
-    background: #0b0b0b;
-    border: 1px solid #222;
+    min-height: 300px;
+    padding: 30px;
+    background: #0a0a0a;
+    border: 1px solid #252525;
     border-radius: 20px;
-    padding: 35px;
-    min-height: 220px;
-    transition: 0.3s ease;
+
+    color: white;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.35s ease;
 }
 
 .contact-card:hover {
     transform: translateY(-8px);
     border-color: #555;
-    background: #111;
+    background: #101010;
 }
 
-.contact-card small {
+.card-top {
+    display: flex;
+    justify-content: space-between;
+
+    color: #666;
+    font-size: 14px;
+}
+
+.contact-card p {
     color: #777;
+    font-size: 13px;
     letter-spacing: 2px;
+    margin-bottom: 15px;
 }
 
 .contact-card h2 {
-    margin-top: 45px;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
 }
 
-.contact-card span {
-    display: block;
-    margin-top: 15px;
+.card-link {
     color: #888;
+    font-size: 14px;
 }
+
+.contact-card:hover .card-link {
+    color: white;
+}
+
+
+@media (max-width: 900px) {
+
+    .contact-intro h1 {
+        font-size: 65px;
+    }
+
+    .contact-options {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 
 @media (max-width: 768px) {
 
@@ -76,16 +128,17 @@
         padding: 150px 6% 70px;
     }
 
-    .contact-heading h1 {
-        font-size: 52px;
-        letter-spacing: -2px;
+    .contact-intro {
+        margin-bottom: 60px;
     }
 
-    .contact-heading span {
+    .contact-intro h1 {
+        font-size: 52px;
+        letter-spacing: -3px;
+    }
+
+    .contact-description {
         font-size: 17px;
     }
 
-    .contact-options {
-        grid-template-columns: 1fr;
-    }
 }
