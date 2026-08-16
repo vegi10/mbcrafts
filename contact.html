@@ -8,181 +8,134 @@
 
     <link rel="icon" type="image/png" href="images/favicon.png">
 
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="contact.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVBAR
-    ========================== -->
+    <!-- NAVBAR -->
 
-    <header class="navbar-wrap">
+    <nav class="navbar">
 
-        <nav class="navbar">
+        <a href="index.html" class="brand">
+            <img src="images/logo.png" alt="MB Crafts">
+            <span>MB Crafts</span>
+        </a>
 
-            <a href="index.html" class="brand">
-                <img src="images/logo.png" alt="MB Crafts">
-                <span>MB Crafts</span>
-            </a>
+        <div class="nav-links">
+            <a href="index.html">Work</a>
+            <a href="process.html">Process</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
 
-            <div class="nav-links">
-                <a href="index.html">Work</a>
-                <a href="process.html">Process</a>
-                <a href="about.html">About</a>
-                <a href="contact.html" class="active">Contact</a>
-            </div>
+        <a href="contact.html" class="nav-button">
+            Let's Work
+        </a>
 
-            <a href="contact.html" class="nav-button">
-                Let's Work
-            </a>
+        <button class="menu-button" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-            <button class="menu-button" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-        </nav>
-
-    </header>
+    </nav>
 
 
-    <!-- =========================
-         CONTACT HERO
-    ========================== -->
+    <!-- CONTACT PAGE -->
 
-    <main>
+    <main class="contact-page">
 
         <section class="contact-hero">
 
-            <div class="hero-label">
-                LET'S CREATE SOMETHING
-            </div>
+            <div class="contact-intro">
 
-            <h1>
-                Have a project
-                <span>in mind?</span>
-            </h1>
+                <p class="eyebrow">
+                    LET'S WORK TOGETHER
+                </p>
 
-            <div class="hero-bottom">
+                <h1>
+                    Have a project
+                    <span>in mind?</span>
+                </h1>
 
-                <p>
+                <p class="contact-description">
                     Tell me what you're working on and let's create
                     something that stands out.
                 </p>
 
-                <div class="hero-arrow">
-                    ↓
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CONTACT OPTIONS
-        ========================== -->
-
-        <section class="contact-section">
-
-            <div class="section-heading">
-
-                <span>01 — GET IN TOUCH</span>
-
-                <h2>
-                    Let's start a
-                    <span>conversation.</span>
-                </h2>
-
             </div>
 
 
-            <div class="contact-grid">
+            <div class="contact-options">
 
                 <!-- EMAIL -->
 
-                <a href="mailto:manoharbbau@gmail.com" class="contact-card">
+                <a href="mailto:manoharbbau@gmail.com"
+                   class="contact-card">
 
                     <div class="card-top">
                         <span>01</span>
                         <span>↗</span>
                     </div>
 
-                    <div class="card-content">
-
-                        <span class="card-label">
-                            EMAIL
-                        </span>
-
-                        <h3>
-                            manoharbbau@gmail.com
-                        </h3>
-
-                        <p>
-                            Send an email
-                        </p>
-
+                    <div>
+                        <p>EMAIL</p>
+                        <h2>manoharbbau@gmail.com</h2>
                     </div>
+
+                    <span class="card-link">
+                        Send an email
+                    </span>
 
                 </a>
 
 
                 <!-- WHATSAPP -->
 
-                <a href="#" class="contact-card">
+                <a href="https://wa.me/919059176032"
+                   target="_blank"
+                   class="contact-card">
 
                     <div class="card-top">
                         <span>02</span>
                         <span>↗</span>
                     </div>
 
-                    <div class="card-content">
-
-                        <span class="card-label">
-                            WHATSAPP
-                        </span>
-
-                        <h3>
-                            Let's Chat
-                        </h3>
-
-                        <p>
-                            Message me on WhatsApp
-                        </p>
-
+                    <div>
+                        <p>WHATSAPP</p>
+                        <h2>Let's Chat</h2>
                     </div>
+
+                    <span class="card-link">
+                        Message me on WhatsApp
+                    </span>
 
                 </a>
 
 
                 <!-- INSTAGRAM -->
 
-                <a href="#" class="contact-card">
+                <a href="https://instagram.com/manohar_vegi"
+                   target="_blank"
+                   class="contact-card">
 
                     <div class="card-top">
                         <span>03</span>
                         <span>↗</span>
                     </div>
 
-                    <div class="card-content">
-
-                        <span class="card-label">
-                            INSTAGRAM
-                        </span>
-
-                        <h3>
-                            @manohar_vegi
-                        </h3>
-
-                        <p>
-                            Connect on Instagram
-                        </p>
-
+                    <div>
+                        <p>INSTAGRAM</p>
+                        <h2>@manohar_vegi</h2>
                     </div>
+
+                    <span class="card-link">
+                        Connect on Instagram
+                    </span>
 
                 </a>
 
@@ -190,49 +143,10 @@
 
         </section>
 
-
-        <!-- =========================
-             FINAL CTA
-        ========================== -->
-
-        <section class="contact-cta">
-
-            <span>HAVE AN IDEA?</span>
-
-            <h2>
-                Let's make it
-                <span>happen.</span>
-            </h2>
-
-            <a href="mailto:manoharbbau@gmail.com">
-                Start a conversation ↗
-            </a>
-
-        </section>
-
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        <div>
-            MB Crafts
-        </div>
-
-        <div>
-            Video Editing · Storytelling · Motion
-        </div>
-
-        <div>
-            © 2026
-        </div>
-
-    </footer>
-
+    <script src="script.js"></script>
 
 </body>
 </html>
