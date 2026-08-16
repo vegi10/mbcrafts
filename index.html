@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="google-site-verification" content="RF9JSVdiI7zGf36psc7vVEhW7wTR517py1V3N0kjbmE">
+    <meta name="google-site-verification"
+          content="RF9JSVdiI7zGf36psc7vVEhW7wTR517py1V3N0kjbmE" />
 
-    <meta name="description" content="Manohar — Professional Video Editor specializing in YouTube, Reels, Shorts and commercial content.">
-
-    <title>MBCRAFTS — Video Editor</title>
+    <title>MB Crafts — Video Editor</title>
 
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -23,124 +23,92 @@
 <body>
 
 <!-- =========================
-     BACKGROUND
-========================= -->
-
-<div class="noise"></div>
-
-
-<!-- =========================
      NAVBAR
 ========================= -->
 
-<header class="navbar" id="navbar">
+<header class="navbar-wrap">
 
-    <a href="#home" class="brand">
+    <nav class="navbar">
 
-        <img src="images/logo.png" alt="MBCRAFTS Logo">
-
-        <span class="brand-name">MBCRAFTS</span>
-
-    </a>
-
-
-    <nav class="nav-links">
-
-        <a href="#work" class="nav-link active">
-            Work
+        <a href="#" class="brand">
+            <img src="images/logo.png" alt="MB Crafts">
+            <span>MB Crafts</span>
         </a>
 
-        <a href="#process" class="nav-link">
-            Process
+        <div class="nav-links">
+            <a href="#work" class="active">Work</a>
+            <a href="#process">Process</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <a href="#contact" class="nav-button">
+            Let's Work
         </a>
 
-        <a href="#about" class="nav-link">
-            About
-        </a>
-
-        <a href="#services" class="nav-link">
-            Services
-        </a>
+        <button class="menu-button" aria-label="Open menu">
+            <span></span>
+            <span></span>
+        </button>
 
     </nav>
-
-
-    <a href="#contact" class="nav-button">
-        Let's talk
-    </a>
 
 </header>
 
 
+<main>
 
 <!-- =========================
      HERO
 ========================= -->
 
-<main id="home">
-
 <section class="hero">
 
-    <div class="hero-glow"></div>
+    <div class="hero-inner">
 
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            VIDEO EDITOR · MBCRAFTS
+        <div class="hero-label">
+            <span class="dot"></span>
+            VIDEO EDITOR
         </div>
 
         <h1>
-            Stories that
-            <span>deserve attention.</span>
+            I turn raw footage<br>
+            <span>into stories.</span>
         </h1>
 
-        <p>
-            I turn raw footage into engaging videos,
-            reels and visual stories that keep people watching.
-        </p>
+        <div class="hero-bottom">
 
-        <div class="hero-buttons">
+            <p>
+                Video editing for creators, brands and businesses —
+                built around storytelling, pacing and attention.
+            </p>
 
-            <a href="#work" class="button button-light">
-                View my work
-                <span>↗</span>
-            </a>
-
-            <a href="#contact" class="button button-outline">
-                Let's work together
+            <a href="#work" class="hero-link">
+                Explore my work
+                <span>↘</span>
             </a>
 
         </div>
-
-    </div>
-
-
-    <div class="scroll-indicator">
-
-        <span>SCROLL TO EXPLORE</span>
-
-        <div class="scroll-line"></div>
 
     </div>
 
 </section>
 
 
-
 <!-- =========================
      SELECTED WORK
 ========================= -->
 
-<section class="work-section" id="work">
+<section id="work" class="work-section">
 
     <div class="section-heading">
 
         <div>
-            <span class="section-label">01 · SELECTED WORK</span>
+            <span class="eyebrow">01 — SELECTED WORK</span>
 
             <h2>
-                Work that<br>
-                speaks for itself.
+                Work that speaks<br>
+                <span>for itself.</span>
             </h2>
         </div>
 
@@ -152,522 +120,212 @@
     </div>
 
 
-    <div class="work-grid">
+    <div class="portfolio-layout">
 
+        <!-- LEFT SIDE -->
 
-        <!-- WORK 1 -->
+        <aside class="portfolio-sidebar">
 
-        <article class="work-card work-large">
+            <div class="sidebar-intro active-sidebar">
 
-            <div class="video-wrapper">
+                <span>Portfolio</span>
 
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata">
-
-                    <source src="videos/podcast-promotion.mp4" type="video/mp4">
-
-                </video>
-
-                <div class="play-label">
-                    <span>▶</span>
-                    SHOWREEL
-                </div>
+                <p>
+                    A collection of video projects,
+                    from short-form content to
+                    long-form storytelling.
+                </p>
 
             </div>
 
-            <div class="work-info">
+            <a href="#shorts" class="sidebar-item">
+                <strong>Short Form</strong>
+                <span>Reels & Shorts</span>
+            </a>
 
-                <div>
-                    <h3>Podcast Promotion</h3>
-                    <p>Short-form · Social Media</p>
-                </div>
+            <a href="#longform" class="sidebar-item">
+                <strong>Long Form</strong>
+                <span>YouTube & Podcasts</span>
+            </a>
 
-                <span class="work-arrow">↗</span>
+            <a href="#creative" class="sidebar-item">
+                <strong>Creative</strong>
+                <span>Motion & Visuals</span>
+            </a>
 
-            </div>
+        </aside>
 
-        </article>
 
+        <!-- RIGHT SIDE -->
 
+        <div class="portfolio-grid">
 
-        <!-- WORK 2 -->
+            <!-- PROJECT 01 -->
 
-        <article class="work-card">
+            <article class="project-card large-project" id="shorts">
 
-            <div class="video-wrapper">
+                <div class="project-media vertical-media">
 
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata">
+                    <video controls preload="metadata">
+                        <source src="videos/podcast-promotion.mp4"
+                                type="video/mp4">
+                    </video>
 
-                    <source src="videos/reel1.mp4" type="video/mp4">
-
-                </video>
-
-                <div class="play-label">
-                    <span>▶</span>
-                    REEL
-                </div>
-
-            </div>
-
-            <div class="work-info">
-
-                <div>
-                    <h3>Short Form Edit</h3>
-                    <p>Reels · Shorts</p>
-                </div>
-
-                <span class="work-arrow">↗</span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- WORK 3 -->
-
-        <article class="work-card">
-
-            <div class="video-wrapper">
-
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata">
-
-                    <source src="videos/reel2.mp4" type="video/mp4">
-
-                </video>
-
-                <div class="play-label">
-                    <span>▶</span>
-                    VIDEO
-                </div>
-
-            </div>
-
-            <div class="work-info">
-
-                <div>
-                    <h3>Story Driven Edit</h3>
-                    <p>YouTube · Long Form</p>
-                </div>
-
-                <span class="work-arrow">↗</span>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- WORK 4 -->
-
-        <article class="work-card work-wide">
-
-            <div class="video-wrapper">
-
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata">
-
-                    <source src="videos/reel3.mp4" type="video/mp4">
-
-                </video>
-
-                <div class="play-label">
-                    <span>▶</span>
-                    PROJECT
-                </div>
-
-            </div>
-
-            <div class="work-info">
-
-                <div>
-                    <h3>Visual Storytelling</h3>
-                    <p>Editing · Motion · Color</p>
-                </div>
-
-                <span class="work-arrow">↗</span>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     PROCESS
-========================= -->
-
-<section class="process-section" id="process">
-
-    <div class="process-intro">
-
-        <span class="section-label">
-            02 · HOW I WORK
-        </span>
-
-        <h2>
-            A simple process.
-            <br>
-            <span>Better videos.</span>
-        </h2>
-
-        <p>
-            Good editing isn't just about cutting clips.
-            It's about understanding the story, the audience
-            and what keeps them watching.
-        </p>
-
-    </div>
-
-
-    <div class="timeline">
-
-
-        <!-- STEP 1 -->
-
-        <div class="timeline-item">
-
-            <div class="timeline-number">
-                01
-            </div>
-
-            <div class="timeline-line"></div>
-
-            <div class="process-card">
-
-                <div class="process-content">
-
-                    <span class="process-tag">
-                        FOUNDATIONAL
-                    </span>
-
-                    <h3>
-                        Understand
-                    </h3>
-
-                    <p>
-                        First I understand the footage,
-                        your audience, the message and
-                        the purpose of the content.
-                    </p>
-
-                </div>
-
-                <div class="process-visual">
-
-                    <div class="visual-header">
-                        <span>PROJECT BRIEF</span>
-                        <span>01 / 04</span>
-                    </div>
-
-                    <div class="visual-lines">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <div class="visual-status">
-                        READY TO EDIT
+                    <div class="project-overlay">
+                        <span>Watch project ↗</span>
                     </div>
 
                 </div>
 
-            </div>
+                <div class="project-info">
 
-        </div>
+                    <div>
+                        <h3>Podcast Promotion</h3>
+                        <p>Short Form · Social Media</p>
+                    </div>
 
-
-
-        <!-- STEP 2 -->
-
-        <div class="timeline-item">
-
-            <div class="timeline-number">
-                02
-            </div>
-
-            <div class="timeline-line"></div>
-
-            <div class="process-card">
-
-                <div class="process-content">
-
-                    <span class="process-tag">
-                        STORY
-                    </span>
-
-                    <h3>
-                        Edit
-                    </h3>
-
-                    <p>
-                        I build the structure, pacing and
-                        rhythm so every cut has a reason
-                        and the story keeps moving.
-                    </p>
+                    <span class="project-number">01</span>
 
                 </div>
 
-                <div class="process-visual">
+            </article>
 
-                    <div class="visual-header">
-                        <span>TIMELINE</span>
-                        <span>02 / 04</span>
-                    </div>
 
-                    <div class="editing-timeline">
+            <!-- PROJECT 02 -->
 
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
+            <article class="project-card" id="longform">
 
-                    </div>
+                <div class="project-media">
 
-                    <div class="visual-status">
-                        STORY IN PROGRESS
+                    <video controls preload="metadata">
+                        <source src="videos/reel1.mp4"
+                                type="video/mp4">
+                    </video>
+
+                    <div class="project-overlay">
+                        <span>Watch project ↗</span>
                     </div>
 
                 </div>
 
-            </div>
+                <div class="project-info">
 
-        </div>
+                    <div>
+                        <h3>Social Storytelling</h3>
+                        <p>Reels · Short Form</p>
+                    </div>
 
-
-
-        <!-- STEP 3 -->
-
-        <div class="timeline-item">
-
-            <div class="timeline-number">
-                03
-            </div>
-
-            <div class="timeline-line"></div>
-
-            <div class="process-card">
-
-                <div class="process-content">
-
-                    <span class="process-tag">
-                        POLISH
-                    </span>
-
-                    <h3>
-                        Refine
-                    </h3>
-
-                    <p>
-                        Motion graphics, sound design,
-                        color correction and visual details
-                        bring the final edit together.
-                    </p>
+                    <span class="project-number">02</span>
 
                 </div>
 
-                <div class="process-visual">
+            </article>
 
-                    <div class="visual-header">
-                        <span>FINISHING</span>
-                        <span>03 / 04</span>
-                    </div>
 
-                    <div class="finish-bars">
+            <!-- PROJECT 03 -->
 
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <article class="project-card">
 
-                    </div>
+                <div class="project-media">
 
-                    <div class="visual-status">
-                        FINAL POLISH
+                    <video controls preload="metadata">
+                        <source src="videos/reel2.mp4"
+                                type="video/mp4">
+                    </video>
+
+                    <div class="project-overlay">
+                        <span>Watch project ↗</span>
                     </div>
 
                 </div>
 
-            </div>
+                <div class="project-info">
 
-        </div>
+                    <div>
+                        <h3>Long Form Edit</h3>
+                        <p>YouTube · Storytelling</p>
+                    </div>
 
-
-
-        <!-- STEP 4 -->
-
-        <div class="timeline-item">
-
-            <div class="timeline-number">
-                04
-            </div>
-
-            <div class="timeline-line"></div>
-
-            <div class="process-card">
-
-                <div class="process-content">
-
-                    <span class="process-tag">
-                        DELIVERY
-                    </span>
-
-                    <h3>
-                        Deliver
-                    </h3>
-
-                    <p>
-                        Once everything is approved,
-                        the final video is exported,
-                        optimized and ready to publish.
-                    </p>
+                    <span class="project-number">03</span>
 
                 </div>
 
-                <div class="process-visual">
+            </article>
 
-                    <div class="visual-header">
-                        <span>FINAL EXPORT</span>
-                        <span>04 / 04</span>
-                    </div>
 
-                    <div class="export-box">
-                        100%
-                    </div>
+            <!-- PROJECT 04 -->
 
-                    <div class="visual-status">
-                        PROJECT COMPLETE
+            <article class="project-card" id="creative">
+
+                <div class="project-media">
+
+                    <video controls preload="metadata">
+                        <source src="videos/reel3.mp4"
+                                type="video/mp4">
+                    </video>
+
+                    <div class="project-overlay">
+                        <span>Watch project ↗</span>
                     </div>
 
                 </div>
 
-            </div>
+                <div class="project-info">
+
+                    <div>
+                        <h3>Creative Edit</h3>
+                        <p>Motion · Visual Editing</p>
+                    </div>
+
+                    <span class="project-number">04</span>
+
+                </div>
+
+            </article>
 
         </div>
 
     </div>
 
 </section>
-
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section class="about-section" id="about">
-
-    <div class="about-image">
-
-        <img src="images/manohar.png" alt="Manohar">
-
-    </div>
-
-
-    <div class="about-content">
-
-        <span class="section-label">
-            03 · ABOUT ME
-        </span>
-
-        <h2>
-            The person behind
-            <span>the edit.</span>
-        </h2>
-
-        <p>
-            I'm Manohar, a video editor focused on creating
-            engaging YouTube videos, reels, shorts and
-            social media content.
-        </p>
-
-        <p>
-            I care about storytelling, pacing, audience
-            retention and the small visual details that make
-            an edit feel professional.
-        </p>
-
-
-        <div class="tools-row">
-
-            <div class="tool">
-
-                <img src="images/davinci.png" alt="DaVinci Resolve">
-
-                <span>DaVinci Resolve</span>
-
-            </div>
-
-            <div class="tool">
-
-                <img src="images/capcut.png" alt="CapCut">
-
-                <span>CapCut</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
 
 
 <!-- =========================
      SERVICES
 ========================= -->
 
-<section class="services-section" id="services">
+<section class="services-section">
 
-    <div class="services-heading">
+    <div class="section-heading">
 
-        <span class="section-label">
-            04 · SERVICES
-        </span>
+        <div>
+            <span class="eyebrow">02 — SERVICES</span>
 
-        <h2>
-            What I can<br>
-            <span>help you create.</span>
-        </h2>
+            <h2>
+                What I<br>
+                <span>do.</span>
+            </h2>
+        </div>
+
+        <p>
+            From the first cut to the final export,
+            every edit is designed with the viewer in mind.
+        </p>
 
     </div>
 
 
     <div class="services-list">
 
-        <div class="service">
+        <div class="service-row">
 
             <span class="service-number">01</span>
 
             <div>
                 <h3>YouTube Editing</h3>
                 <p>
-                    Long-form videos with strong pacing,
-                    storytelling and retention-focused editing.
+                    Engaging long-form edits with strong pacing,
+                    clean cuts and audience-focused storytelling.
                 </p>
             </div>
 
@@ -676,15 +334,15 @@
         </div>
 
 
-        <div class="service">
+        <div class="service-row">
 
             <span class="service-number">02</span>
 
             <div>
                 <h3>Reels & Shorts</h3>
                 <p>
-                    Fast, engaging short-form content
-                    designed for social platforms.
+                    Fast-paced short-form content designed
+                    to capture attention from the first second.
                 </p>
             </div>
 
@@ -693,15 +351,15 @@
         </div>
 
 
-        <div class="service">
+        <div class="service-row">
 
             <span class="service-number">03</span>
 
             <div>
                 <h3>Motion Graphics</h3>
                 <p>
-                    Text animation, transitions and visual
-                    elements that strengthen the story.
+                    Dynamic typography, animations and visual
+                    elements that make content more engaging.
                 </p>
             </div>
 
@@ -710,15 +368,15 @@
         </div>
 
 
-        <div class="service">
+        <div class="service-row">
 
             <span class="service-number">04</span>
 
             <div>
-                <h3>Color & Finishing</h3>
+                <h3>Color Grading</h3>
                 <p>
-                    Color correction and grading for a
-                    polished, consistent visual style.
+                    Polished colors and cinematic visuals
+                    that give every project its own identity.
                 </p>
             </div>
 
@@ -730,52 +388,270 @@
 
 </section>
 
+
+<!-- =========================
+     PROCESS
+========================= -->
+
+<section id="process" class="process-section">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="eyebrow">03 — PROCESS</span>
+
+            <h2>
+                Simple process.<br>
+                <span>Better videos.</span>
+            </h2>
+        </div>
+
+        <p>
+            A straightforward workflow that keeps
+            communication clear from start to finish.
+        </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+        <div class="process-card">
+
+            <span>01</span>
+
+            <h3>Brief</h3>
+
+            <p>
+                We discuss your content, audience,
+                style and goals.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <span>02</span>
+
+            <h3>Edit</h3>
+
+            <p>
+                Raw footage is transformed into
+                a structured and engaging story.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <span>03</span>
+
+            <h3>Review</h3>
+
+            <p>
+                You review the edit and share
+                feedback for refinements.
+            </p>
+
+        </div>
+
+
+        <div class="process-card">
+
+            <span>04</span>
+
+            <h3>Deliver</h3>
+
+            <p>
+                Final video is exported and
+                delivered ready to publish.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about" class="about-section">
+
+    <div class="about-image">
+
+        <img src="images/manohar.png"
+             alt="Manohar - Video Editor">
+
+    </div>
+
+
+    <div class="about-content">
+
+        <span class="eyebrow">04 — ABOUT</span>
+
+        <h2>
+            Hi, I'm<br>
+            <span>Manohar.</span>
+        </h2>
+
+        <p>
+            I'm a video editor specializing in YouTube videos,
+            reels, shorts and social media content.
+        </p>
+
+        <p>
+            I focus on storytelling, pacing, visual rhythm
+            and audience retention to turn raw footage into
+            content people actually want to watch.
+        </p>
+
+
+        <div class="about-details">
+
+            <div>
+                <span>Experience</span>
+                <strong>1+ Year</strong>
+            </div>
+
+            <div>
+                <span>Editing</span>
+                <strong>Video & Social</strong>
+            </div>
+
+            <div>
+                <span>Workflow</span>
+                <strong>Client Focused</strong>
+            </div>
+
+        </div>
+
+
+        <div class="tools-section">
+
+            <span>TOOLS I USE</span>
+
+            <div class="tools">
+
+                <img src="images/davinci.png"
+                     alt="DaVinci Resolve">
+
+                <img src="images/capcut.png"
+                     alt="CapCut">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHY WORK WITH ME
+========================= -->
+
+<section class="values-section">
+
+    <div class="values-title">
+
+        <span class="eyebrow">05 — WHY MB CRAFTS</span>
+
+        <h2>
+            Built around<br>
+            <span>your vision.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="values-list">
+
+        <div>
+            <span>01</span>
+            <strong>Fast Communication</strong>
+        </div>
+
+        <div>
+            <span>02</span>
+            <strong>Consistent Delivery</strong>
+        </div>
+
+        <div>
+            <span>03</span>
+            <strong>Revision-Friendly Workflow</strong>
+        </div>
+
+        <div>
+            <span>04</span>
+            <strong>Audience-Focused Editing</strong>
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- =========================
      CONTACT
 ========================= -->
 
-<section class="contact-section" id="contact">
+<section id="contact" class="contact-section">
 
-    <span class="section-label">
-        05 · LET'S WORK
-    </span>
+    <div class="contact-inner">
 
-    <h2>
-        Have a project<br>
-        <span>in mind?</span>
-    </h2>
+        <span class="eyebrow">06 — CONTACT</span>
 
-    <p>
-        Let's turn your footage into something
-        people actually want to watch.
-    </p>
+        <h2>
+            Have footage?<br>
+            <span>Let's make it move.</span>
+        </h2>
 
-    <a href="mailto:manoharbbau@gmail.com" class="contact-button">
-        Start a conversation
-        <span>↗</span>
-    </a>
+        <p>
+            Have a project in mind?
+            Let's talk about how we can turn your footage
+            into something worth watching.
+        </p>
 
 
-    <div class="social-links">
+        <a href="https://wa.me/919059176032"
+           target="_blank"
+           class="contact-button">
 
-        <a href="https://wa.me/919059176032" target="_blank">
-            WhatsApp
+            Start a project
+            <span>↗</span>
+
         </a>
 
-        <a href="mailto:manoharbbau@gmail.com">
-            Email
-        </a>
 
-        <a href="https://instagram.com/manohar_vegi" target="_blank">
-            Instagram
-        </a>
+        <div class="social-links">
+
+            <a href="https://wa.me/919059176032"
+               target="_blank">
+                WhatsApp
+            </a>
+
+            <a href="mailto:manoharbbau@gmail.com">
+                Email
+            </a>
+
+            <a href="https://instagram.com/manohar_vegi"
+               target="_blank">
+                Instagram
+            </a>
+
+        </div>
 
     </div>
 
 </section>
 
+</main>
 
 
 <!-- =========================
@@ -787,130 +663,105 @@
     <div class="footer-top">
 
         <div class="footer-brand">
-            MBCRAFTS
+            MB CRAFTS
         </div>
 
-        <div>
-            Video Editor · India
-        </div>
+        <span>
+            Video Editor · 2026
+        </span>
 
     </div>
 
     <div class="footer-bottom">
 
         <span>
-            © 2026 MBCRAFTS
+            © 2026 MB Crafts. All Rights Reserved.
         </span>
 
-        <span>
-            Designed & edited by Manohar
-        </span>
+        <a href="#">
+            Back to top ↑
+        </a>
 
     </div>
 
 </footer>
 
-</main>
-
 
 <script>
 
-const navbar = document.getElementById("navbar");
+const menuButton = document.querySelector(".menu-button");
+const navLinks = document.querySelector(".nav-links");
+
+menuButton.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuButton.classList.toggle("open");
+});
+
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.classList.remove("open");
+    });
+
+});
+
+
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 80) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 200;
+
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+
+    });
+
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        if (item.getAttribute("href") === "#" + current) {
+            item.classList.add("active");
+        }
+
+    });
 
 });
 
 
-/* =========================
-   ACTIVE NAVIGATION
-========================= */
-
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
-
-const observer = new IntersectionObserver(
-
-    entries => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                navLinks.forEach(link => {
-                    link.classList.remove("active");
-                });
-
-                const activeLink =
-                    document.querySelector(
-                        `.nav-link[href="#${entry.target.id}"]`
-                    );
-
-                if (activeLink) {
-                    activeLink.classList.add("active");
-                }
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold: 0.35
-    }
-
+const revealElements = document.querySelectorAll(
+    ".project-card, .service-row, .process-card, .about-content, .about-image, .values-list > div"
 );
 
-sections.forEach(section => {
-    observer.observe(section);
-});
-
-
-
-/* =========================
-   REVEAL ANIMATION
-========================= */
-
-const revealElements =
-    document.querySelectorAll(
-        ".work-card, .timeline-item, .about-content, .about-image, .service, .contact-section"
-    );
-
-
-const revealObserver = new IntersectionObserver(
-
+const observer = new IntersectionObserver(
     entries => {
 
         entries.forEach(entry => {
 
             if (entry.isIntersecting) {
-
                 entry.target.classList.add("visible");
-
-                revealObserver.unobserve(entry.target);
-
             }
 
         });
 
     },
-
     {
         threshold: 0.12
     }
-
 );
 
 
 revealElements.forEach(element => {
-    revealObserver.observe(element);
+    observer.observe(element);
 });
 
 </script>
