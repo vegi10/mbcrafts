@@ -1,38 +1,152 @@
-<section class="contact-page">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="contact-heading">
-        <p>LET'S WORK TOGETHER</p>
-        <h1>Have a project<br>in mind?</h1>
-        <span>
-            Tell me what you're working on and let's create something
-            that stands out.
-        </span>
-    </div>
+    <title>Contact | MB Crafts</title>
 
-    <div class="contact-options">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
-        <a href="mailto:manoharbbau@gmail.com" class="contact-card">
-            <small>EMAIL</small>
-            <h2>manoharbbau@gmail.com</h2>
-            <span>Send an email ↗</span>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+            <img src="images/logo.png" alt="MB Crafts">
+            <span>MB Crafts</span>
         </a>
 
-        <a href="https://wa.me/919059176032"
-           target="_blank"
-           class="contact-card">
-            <small>WHATSAPP</small>
-            <h2>Let's Chat</h2>
-            <span>Message me on WhatsApp ↗</span>
+        <div class="nav-links">
+            <a href="index.html">Work</a>
+            <a href="process.html">Process</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+
+        <a href="contact.html" class="nav-button">
+            Let's Work
         </a>
 
-        <a href="https://instagram.com/manohar_vegi"
-           target="_blank"
-           class="contact-card">
-            <small>INSTAGRAM</small>
-            <h2>@manohar_vegi</h2>
-            <span>Connect on Instagram ↗</span>
-        </a>
+        <button class="menu-button" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    </div>
+    </nav>
 
-</section>
+
+    <!-- CONTACT PAGE -->
+
+    <main class="contact-page">
+
+        <section class="contact-hero">
+
+            <div class="contact-intro">
+
+                <p class="eyebrow">
+                    LET'S WORK TOGETHER
+                </p>
+
+                <h1>
+                    Have a project
+                    <span>in mind?</span>
+                </h1>
+
+                <p class="contact-description">
+                    Tell me what you're working on and let's create
+                    something that stands out.
+                </p>
+
+            </div>
+
+
+            <div class="contact-options">
+
+                <!-- EMAIL -->
+
+                <a href="mailto:manoharbbau@gmail.com"
+                   class="contact-card">
+
+                    <div class="card-top">
+                        <span>01</span>
+                        <span>↗</span>
+                    </div>
+
+                    <div>
+                        <p>EMAIL</p>
+                        <h2>manoharbbau@gmail.com</h2>
+                    </div>
+
+                    <span class="card-link">
+                        Send an email
+                    </span>
+
+                </a>
+
+
+                <!-- WHATSAPP -->
+
+                <a href="https://wa.me/919059176032"
+                   target="_blank"
+                   class="contact-card">
+
+                    <div class="card-top">
+                        <span>02</span>
+                        <span>↗</span>
+                    </div>
+
+                    <div>
+                        <p>WHATSAPP</p>
+                        <h2>Let's Chat</h2>
+                    </div>
+
+                    <span class="card-link">
+                        Message me on WhatsApp
+                    </span>
+
+                </a>
+
+
+                <!-- INSTAGRAM -->
+
+                <a href="https://instagram.com/manohar_vegi"
+                   target="_blank"
+                   class="contact-card">
+
+                    <div class="card-top">
+                        <span>03</span>
+                        <span>↗</span>
+                    </div>
+
+                    <div>
+                        <p>INSTAGRAM</p>
+                        <h2>@manohar_vegi</h2>
+                    </div>
+
+                    <span class="card-link">
+                        Connect on Instagram
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
