@@ -1,97 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
-       VIDEO PLAY / PAUSE
+       VIDEO HOVER PLAY
     ========================= */
 
     const videos = document.querySelectorAll(".project-card video");
 
     videos.forEach(video => {
 
-        const media = video.closest(".project-media");
-
-        // Create play button
-        const playButton = document.createElement("button");
-        playButton.classList.add("video-play-button");
-        playButton.innerHTML = "▶";
-        playButton.setAttribute("aria-label", "Play video");
-
-        media.appendChild(playButton);
-
-
-        /* =========================
-           CLICK PLAY / PAUSE
-        ========================= */
-
-        playButton.addEventListener("click", (event) => {
-
-            event.stopPropagation();
-
-            if (video.paused) {
-
-                // Pause all other videos
-                videos.forEach(otherVideo => {
-                    if (otherVideo !== video) {
-                        otherVideo.pause();
-
-                        const otherButton =
-                            otherVideo.closest(".project-media")
-                            .querySelector(".video-play-button");
-
-                        if (otherButton) {
-                            otherButton.innerHTML = "▶";
-                            otherButton.classList.remove("playing");
-                        }
-                    }
-                });
-
-                video.play();
-
-                playButton.innerHTML = "Ⅱ";
-                playButton.classList.add("playing");
-
-            } else {
-
-                video.pause();
-
-                playButton.innerHTML = "▶";
-                playButton.classList.remove("playing");
-
-            }
-
+        video.addEventListener("mouseenter", () => {
+            video.play().catch(error => {
+                console.log("Video could not play:", error);
+            });
         });
 
-
-        /* =========================
-           CLICK VIDEO ITSELF
-        ========================= */
-
-        video.addEventListener("click", () => {
-
-            if (video.paused) {
-                video.play();
-                playButton.innerHTML = "Ⅱ";
-                playButton.classList.add("playing");
-            } else {
-                video.pause();
-                playButton.innerHTML = "▶";
-                playButton.classList.remove("playing");
-            }
-
-        });
-
-
-        /* =========================
-           VIDEO FINISHED
-        ========================= */
-
-        video.addEventListener("ended", () => {
-
+        video.addEventListener("mouseleave", () => {
+            video.pause();
             video.currentTime = 0;
-
-            playButton.innerHTML = "▶";
-            playButton.classList.remove("playing");
-
         });
 
     });
@@ -107,11 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectCards =
         document.querySelectorAll(".project-card");
 
+    const piecesCount =
+        document.querySelector(".pieces-count span");
+
+
     orientationButtons.forEach(button => {
 
         button.addEventListener("click", () => {
 
             const filter = button.dataset.filter;
+
+
+            /* -------------------------
+               CHANGE ACTIVE BUTTON
+            ------------------------- */
 
             orientationButtons.forEach(btn => {
                 btn.classList.remove("active");
@@ -119,18 +53,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
             button.classList.add("active");
 
+
+            /* -------------------------
+               SHOW / HIDE VIDEOS
+            ------------------------- */
+
+            let visibleCount = 0;
+
             projectCards.forEach(card => {
 
                 if (card.classList.contains(filter)) {
+
                     card.style.display = "";
+
+                    visibleCount++;
+
                 } else {
+
                     card.style.display = "none";
+
                 }
 
             });
 
+
+            /* -------------------------
+               UPDATE PIECES COUNT
+            ------------------------- */
+
+            if (piecesCount) {
+                piecesCount.textContent =
+                    visibleCount + " pieces";
+            }
+
         });
 
     });
+
+
+    /* =========================
+       START WITH LANDSCAPE
+    ========================= */
+
+    projectCards.forEach(card => {
+
+        if (card.classList.contains("landscape")) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+
+    if (piecesCount) {
+        piecesCount.textContent = "7 pieces";
+    }
 
 });
