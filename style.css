@@ -383,7 +383,13 @@ body::before {
 
     transform: translate(5px,5px);
 }
+.project-card.vertical .project-media {
+    aspect-ratio: 9 / 16;
+}
 
+.project-card.landscape .project-media {
+    aspect-ratio: 16 / 9;
+}
 
 /* =====================================================
    GENERAL SECTION
@@ -625,13 +631,21 @@ body::before {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
-
+.project-media {
+    aspect-ratio: 16 / 9;
+}
+.project-card.vertical .project-media {
+    aspect-ratio: 9 / 16;
+}
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
     width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
 .project-card {
