@@ -1,97 +1,163 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
-       VIDEO HOVER PLAY
+       ELEMENTS
     ===================================================== */
 
-    const videos = document.querySelectorAll(".project-card video");
+    const cards = document.querySelectorAll(
+        ".portfolio-grid .project-card"
+    );
 
-    videos.forEach(video => {
+    const piecesText = document.querySelector(
+        ".pieces-count span"
+    );
 
-        video.addEventListener("mouseenter", () => {
 
-            video.play().catch(error => {
-                console.log("Video could not play:", error);
+    /* =====================================================
+       UPDATE PIECES COUNT
+    ===================================================== */
+
+    function updateCount() {
+
+        let visibleCount = 0;
+
+        cards.forEach(function (card) {
+
+            if (!card.hidden) {
+                visibleCount++;
+            }
+
+        });
+
+        if (piecesText) {
+            piecesText.textContent =
+                visibleCount + " pieces";
+        }
+    }
+
+
+    /* =====================================================
+       SHOW LANDSCAPE / VERTICAL
+    ===================================================== */
+
+    function showOrientation(type) {
+
+        cards.forEach(function (card) {
+
+            if (card.classList.contains(type)) {
+
+                card.hidden = false;
+
+            } else {
+
+                card.hidden = true;
+
+                /* Stop hidden videos */
+                const video = card.querySelector("video");
+
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+
+            }
+
+        });
+
+
+        /* Update active button */
+
+        document
+            .querySelectorAll(".orientation-btn")
+            .forEach(function (button) {
+
+                button.classList.remove("active");
+
             });
 
-        });
 
-        video.addEventListener("mouseleave", () => {
+        const activeButton = document.querySelector(
+            '.orientation-btn[data-filter="' + type + '"]'
+        );
 
-            video.pause();
-            video.currentTime = 0;
+        if (activeButton) {
+            activeButton.classList.add("active");
+        }
 
-        });
+
+        updateCount();
+    }
+
+
+    /* =====================================================
+       ORIENTATION BUTTON CLICK
+       EVENT DELEGATION
+    ===================================================== */
+
+    document.addEventListener("click", function (event) {
+
+        const button =
+            event.target.closest(".orientation-btn");
+
+
+        if (!button) {
+            return;
+        }
+
+
+        const filter =
+            button.getAttribute("data-filter");
+
+
+        if (filter === "landscape") {
+
+            showOrientation("landscape");
+
+        }
+
+
+        if (filter === "vertical") {
+
+            showOrientation("vertical");
+
+        }
 
     });
 
 
     /* =====================================================
-       LANDSCAPE / VERTICAL FILTER
+       VIDEO HOVER PLAY
     ===================================================== */
 
-    const orientationButtons =
-        document.querySelectorAll(".orientation-btn");
+    cards.forEach(function (card) {
 
-    const projectCards =
-        document.querySelectorAll(".portfolio-grid .project-card");
-
-
-    orientationButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const filter = button.dataset.filter;
+        const video =
+            card.querySelector("video");
 
 
-            /* -------------------------
-               CHANGE ACTIVE BUTTON
-            ------------------------- */
-
-            orientationButtons.forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            button.classList.add("active");
+        if (!video) {
+            return;
+        }
 
 
-            /* -------------------------
-               FILTER VIDEOS
-            ------------------------- */
+        video.addEventListener("mouseenter", function () {
 
-            projectCards.forEach(card => {
+            video.play().catch(function (error) {
 
-                if (card.classList.contains(filter)) {
-
-                    card.classList.remove("hidden");
-
-                } else {
-
-                    card.classList.add("hidden");
-
-                }
-
-            });
-
-
-            /* -------------------------
-               UPDATE PIECES COUNT
-            ------------------------- */
-
-            const visibleCards =
-                document.querySelectorAll(
-                    ".portfolio-grid .project-card:not(.hidden)"
+                console.log(
+                    "Video could not play:",
+                    error
                 );
 
-            const piecesCount =
-                document.querySelector(".pieces-count span");
+            });
 
-            if (piecesCount) {
+        });
 
-                piecesCount.textContent =
-                    visibleCards.length + " pieces";
 
-            }
+        video.addEventListener("mouseleave", function () {
+
+            video.pause();
+            video.currentTime = 0;
 
         });
 
@@ -103,14 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
        LANDSCAPE = 7
     ===================================================== */
 
-    projectCards.forEach(card => {
-
-        if (card.classList.contains("landscape")) {
-            card.classList.remove("hidden");
-        } else {
-            card.classList.add("hidden");
-        }
-
-    });
+    showOrientation("landscape");
 
 });
