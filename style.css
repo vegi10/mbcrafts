@@ -1885,3 +1885,51 @@ footer {
     height: 100%;
     object-fit: cover;
 }
+/* =====================================================
+   FINAL PORTFOLIO FILTER FIX
+===================================================== */
+
+/* Make sure filter buttons are clickable */
+.portfolio-library {
+    position: relative;
+    z-index: 20;
+}
+
+.orientation-buttons {
+    position: relative;
+    z-index: 30;
+}
+
+.orientation-btn {
+    position: relative;
+    z-index: 31;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+
+/* Hidden cards */
+.portfolio-grid .project-card[hidden] {
+    display: none !important;
+}
+
+
+/* Landscape videos */
+.portfolio-grid .project-card.landscape .project-media {
+    aspect-ratio: 16 / 9;
+}
+
+
+/* Vertical videos */
+.portfolio-grid .project-card.vertical .project-media {
+    aspect-ratio: 9 / 16;
+}
+
+
+/* Video fills media */
+.portfolio-grid .project-card .project-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
