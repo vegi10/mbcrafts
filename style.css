@@ -1731,3 +1731,44 @@ footer {
 .project-number {
     flex-shrink: 0;
 }
+/* =========================
+   PORTFOLIO HERO
+========================= */
+
+.portfolio-hero {
+    width: 100%;
+    text-align: center;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    box-sizing: border-box;
+}
+
+.portfolio-eyebrow {
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.portfolio-title {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(90px, 10vw, 170px);
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -6px;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #d7d9dc 45%,
+        #85878a 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
