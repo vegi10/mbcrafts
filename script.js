@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
        VIDEO HOVER PLAY
     ========================================= */
 
-    const videos = document.querySelectorAll(".project-card video");
+    const videos =
+        document.querySelectorAll(".project-card video");
+
 
     videos.forEach(video => {
 
@@ -38,55 +40,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       CURRENT FILTER
+       CURRENT ORIENTATION
     ========================================= */
 
     let currentOrientation = "landscape";
 
 
     /* =========================================
-       FILTER PROJECTS
+       MAIN FILTER FUNCTION
     ========================================= */
 
-    function filterProjects() {
+    function updateProjects() {
 
-        const searchText =
-            searchInput ? searchInput.value.toLowerCase().trim() : "";
+        /* Get what user typed */
+        const search =
+            searchInput.value.toLowerCase().trim();
 
-        let visibleCount = 0;
+
+        let count = 0;
 
 
         projectCards.forEach(card => {
 
-            /* Check orientation */
-            const matchesOrientation =
+            /* -----------------------------
+               ORIENTATION CHECK
+            ----------------------------- */
+
+            const correctOrientation =
                 card.classList.contains(currentOrientation);
 
 
-            /* Get project text */
-            const cardText =
-                card.textContent.toLowerCase();
+            /* -----------------------------
+               SEARCH CHECK
+            ----------------------------- */
 
+            const text =
+                card.innerText.toLowerCase();
 
-            /* Check search */
             const matchesSearch =
-                searchText === "" ||
-                cardText.includes(searchText);
+                search === "" || text.includes(search);
 
 
-            /* Show only if BOTH match */
-            if (matchesOrientation && matchesSearch) {
+            /* -----------------------------
+               SHOW / HIDE
+            ----------------------------- */
+
+            if (correctOrientation && matchesSearch) {
 
                 card.classList.remove("is-hidden");
 
-                visibleCount++;
+                count++;
 
             } else {
 
                 card.classList.add("is-hidden");
 
-                /* Stop hidden video */
-                const video = card.querySelector("video");
+                const video =
+                    card.querySelector("video");
 
                 if (video) {
                     video.pause();
@@ -98,14 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        /* =====================================
-           UPDATE PIECES COUNT
-        ===================================== */
+        /* -----------------------------
+           PIECES COUNT
+        ----------------------------- */
 
         if (piecesCount) {
 
             piecesCount.textContent =
-                visibleCount + " pieces";
+                count + (count === 1 ? " piece" : " pieces");
 
         }
 
@@ -113,29 +123,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       LANDSCAPE / VERTICAL BUTTONS
+       LANDSCAPE / VERTICAL
     ========================================= */
 
     orientationButtons.forEach(button => {
 
-        button.addEventListener("click", function () {
+        button.addEventListener("click", () => {
 
             currentOrientation =
-                this.dataset.filter;
+                button.dataset.filter;
 
 
-            /* Change active button */
+            /* Active button */
 
             orientationButtons.forEach(btn => {
                 btn.classList.remove("active");
             });
 
-            this.classList.add("active");
+            button.classList.add("active");
 
 
-            /* Apply filter */
+            /* Update videos */
 
-            filterProjects();
+            updateProjects();
 
         });
 
@@ -143,14 +153,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       SEARCH
+       LIVE SEARCH
     ========================================= */
 
     if (searchInput) {
 
         searchInput.addEventListener("input", () => {
 
-            filterProjects();
+            updateProjects();
 
         });
 
@@ -158,12 +168,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       DEFAULT VIEW
-       LANDSCAPE
+       DEFAULT = LANDSCAPE
     ========================================= */
 
     const landscapeButton =
-        document.querySelector('[data-filter="landscape"]');
+        document.querySelector(
+            '[data-filter="landscape"]'
+        );
+
 
     if (landscapeButton) {
 
@@ -179,9 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       INITIAL FILTER
+       INITIAL DISPLAY
     ========================================= */
 
-    filterProjects();
+    updateProjects();
 
 });
