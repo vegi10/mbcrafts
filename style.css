@@ -75,7 +75,91 @@ body::before {
     z-index: -2;
 }
 
+/* =========================
+   VIDEO PLAY BUTTON
+========================= */
 
+.project-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* Play button */
+
+.video-play-button {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+
+    background: rgba(0,0,0,0.65);
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* Show button when cursor is over video */
+
+.project-media:hover .video-play-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Hover effect */
+
+.video-play-button:hover {
+    background: rgba(0,0,0,0.85);
+
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+
+/* When video is playing */
+
+.video-play-button.playing {
+    opacity: 0;
+}
+
+
+/* Show pause button while hovering over playing video */
+
+.project-media:hover .video-play-button.playing {
+    opacity: 1;
+    visibility: visible;
+}
 /* =====================================================
    NAVBAR
 ===================================================== */
