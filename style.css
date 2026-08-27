@@ -402,7 +402,136 @@ body::before {
 
     padding: 150px 0;
 }
+.portfolio-library {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 20px;
+    background: rgba(5,5,5,0.65);
+    overflow: hidden;
+    margin-bottom: 45px;
+}
 
+.library-top {
+    min-height: 72px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.orientation-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 30px;
+}
+
+.orientation-btn,
+.client-btn,
+.category-btn {
+    border: none;
+    background: transparent;
+    color: #999;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.orientation-btn {
+    padding: 11px 20px;
+    border-radius: 25px;
+}
+
+.orientation-btn span,
+.category-btn span {
+    margin-left: 5px;
+    color: #777;
+}
+
+.orientation-btn.active {
+    background: #fff;
+    color: #111;
+}
+
+.orientation-btn.active span {
+    color: #555;
+}
+
+.library-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.client-btn {
+    padding: 12px 20px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 25px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    width: 210px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 25px;
+}
+
+.search-box span {
+    font-size: 20px;
+    color: #777;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.search-box input::placeholder {
+    color: #888;
+}
+
+.category-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    overflow-x: auto;
+}
+
+.category-btn {
+    white-space: nowrap;
+    padding: 10px 17px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 25px;
+}
+
+.category-btn:hover {
+    color: white;
+    border-color: rgba(255,255,255,0.25);
+}
+
+.category-btn.active {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+.pieces-count {
+    margin-bottom: 25px;
+    color: #888;
+    font-size: 15px;
+}
 
 /* =====================================================
    SECTION HEADING
