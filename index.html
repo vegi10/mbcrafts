@@ -641,6 +641,68 @@ revealElements.forEach(element => {
 });
 
 </script>
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll(".orientation-btn");
+    const cards = document.querySelectorAll(".project-card");
+    const count = document.querySelector(".pieces-count span");
+
+    buttons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            const filter = button.getAttribute("data-filter");
+
+            /* Change active button */
+            buttons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+
+            /* Show only selected orientation */
+            let visible = 0;
+
+            cards.forEach(function (card) {
+
+                if (card.classList.contains(filter)) {
+
+                    card.style.setProperty("display", "block", "important");
+                    visible++;
+
+                } else {
+
+                    card.style.setProperty("display", "none", "important");
+
+                    const video = card.querySelector("video");
+
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                }
+
+            });
+
+
+            /* Update pieces count */
+            if (count) {
+                count.textContent = visible + " pieces";
+            }
+
+        }, true);
+
+    });
+
+});
+</script>
 
 </body>
 </html>
