@@ -1902,3 +1902,10 @@ footer {
     }
 
 }
+/* =========================================
+   ORIENTATION FILTER
+========================================= */
+
+.project-card.is-hidden {
+    display: none !important;
+}
