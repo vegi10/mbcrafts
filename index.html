@@ -649,6 +649,41 @@ document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".project-card");
     const count = document.querySelector(".pieces-count span");
 
+    function showOrientation(filter) {
+
+        let visible = 0;
+
+        cards.forEach(function (card) {
+
+            if (card.classList.contains(filter)) {
+
+                card.style.setProperty("display", "block", "important");
+                visible++;
+
+            } else {
+
+                card.style.setProperty("display", "none", "important");
+
+                const video = card.querySelector("video");
+
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+
+        });
+
+        if (count) {
+            count.textContent = visible + " pieces";
+        }
+    }
+
+
+    /* =====================================
+       BUTTON CLICK
+    ===================================== */
+
     buttons.forEach(function (button) {
 
         button.addEventListener("click", function (event) {
@@ -658,47 +693,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const filter = button.getAttribute("data-filter");
 
-            /* Change active button */
             buttons.forEach(function (btn) {
                 btn.classList.remove("active");
             });
 
             button.classList.add("active");
 
-
-            /* Show only selected orientation */
-            let visible = 0;
-
-            cards.forEach(function (card) {
-
-                if (card.classList.contains(filter)) {
-
-                    card.style.setProperty("display", "block", "important");
-                    visible++;
-
-                } else {
-
-                    card.style.setProperty("display", "none", "important");
-
-                    const video = card.querySelector("video");
-
-                    if (video) {
-                        video.pause();
-                        video.currentTime = 0;
-                    }
-                }
-
-            });
-
-
-            /* Update pieces count */
-            if (count) {
-                count.textContent = visible + " pieces";
-            }
+            showOrientation(filter);
 
         }, true);
 
     });
+
+
+    /* =====================================
+       DEFAULT VIEW = LANDSCAPE
+    ===================================== */
+
+    const landscapeButton =
+        document.querySelector('[data-filter="landscape"]');
+
+    if (landscapeButton) {
+
+        buttons.forEach(function (btn) {
+            btn.classList.remove("active");
+        });
+
+        landscapeButton.classList.add("active");
+
+        showOrientation("landscape");
+    }
 
 });
 </script>
