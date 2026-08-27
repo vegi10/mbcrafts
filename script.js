@@ -1,25 +1,96 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================
-       VIDEO HOVER PLAY
+       VIDEO PLAY / PAUSE
     ========================= */
 
     const videos = document.querySelectorAll(".project-card video");
 
     videos.forEach(video => {
 
-        video.addEventListener("mouseenter", () => {
+        const media = video.closest(".project-media");
 
-            video.play().catch(error => {
-                console.log("Video could not play:", error);
-            });
+        // Create play button
+        const playButton = document.createElement("button");
+        playButton.classList.add("video-play-button");
+        playButton.innerHTML = "▶";
+        playButton.setAttribute("aria-label", "Play video");
+
+        media.appendChild(playButton);
+
+
+        /* =========================
+           CLICK PLAY / PAUSE
+        ========================= */
+
+        playButton.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            if (video.paused) {
+
+                // Pause all other videos
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+
+                        const otherButton =
+                            otherVideo.closest(".project-media")
+                            .querySelector(".video-play-button");
+
+                        if (otherButton) {
+                            otherButton.innerHTML = "▶";
+                            otherButton.classList.remove("playing");
+                        }
+                    }
+                });
+
+                video.play();
+
+                playButton.innerHTML = "Ⅱ";
+                playButton.classList.add("playing");
+
+            } else {
+
+                video.pause();
+
+                playButton.innerHTML = "▶";
+                playButton.classList.remove("playing");
+
+            }
 
         });
 
-        video.addEventListener("mouseleave", () => {
 
-            video.pause();
+        /* =========================
+           CLICK VIDEO ITSELF
+        ========================= */
+
+        video.addEventListener("click", () => {
+
+            if (video.paused) {
+                video.play();
+                playButton.innerHTML = "Ⅱ";
+                playButton.classList.add("playing");
+            } else {
+                video.pause();
+                playButton.innerHTML = "▶";
+                playButton.classList.remove("playing");
+            }
+
+        });
+
+
+        /* =========================
+           VIDEO FINISHED
+        ========================= */
+
+        video.addEventListener("ended", () => {
+
             video.currentTime = 0;
+
+            playButton.innerHTML = "▶";
+            playButton.classList.remove("playing");
 
         });
 
@@ -36,58 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectCards =
         document.querySelectorAll(".project-card");
 
-    const piecesCount =
-        document.querySelector(".pieces-count span");
-
-
-    function filterVideos(filter) {
-
-        let count = 0;
-
-        projectCards.forEach(card => {
-
-            if (card.classList.contains(filter)) {
-
-                card.style.display = "";
-
-                count++;
-
-            } else {
-
-                card.style.display = "none";
-
-                const video = card.querySelector("video");
-
-                if (video) {
-                    video.pause();
-                    video.currentTime = 0;
-                }
-
-            }
-
-        });
-
-
-        /* Update count */
-
-        if (piecesCount) {
-            piecesCount.textContent = count + " pieces";
-        }
-
-    }
-
-
-    /* =========================
-       BUTTON CLICK
-    ========================= */
-
     orientationButtons.forEach(button => {
 
         button.addEventListener("click", () => {
 
-            const filter = button.getAttribute("data-filter");
-
-            /* Active button */
+            const filter = button.dataset.filter;
 
             orientationButtons.forEach(btn => {
                 btn.classList.remove("active");
@@ -95,20 +119,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             button.classList.add("active");
 
-            /* Filter */
+            projectCards.forEach(card => {
 
-            filterVideos(filter);
+                if (card.classList.contains(filter)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
 
         });
 
     });
-
-
-    /* =========================
-       DEFAULT
-       LANDSCAPE
-    ========================= */
-
-    filterVideos("landscape");
 
 });
