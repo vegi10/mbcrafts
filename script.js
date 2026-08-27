@@ -9,14 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
     videos.forEach(video => {
 
         video.addEventListener("mouseenter", () => {
+
             video.play().catch(error => {
                 console.log("Video could not play:", error);
             });
+
         });
 
         video.addEventListener("mouseleave", () => {
+
             video.pause();
             video.currentTime = 0;
+
         });
 
     });
@@ -36,13 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".pieces-count span");
 
 
-    /* =========================
-       FILTER FUNCTION
-    ========================= */
-
     function filterVideos(filter) {
 
-        let visibleCount = 0;
+        let count = 0;
 
         projectCards.forEach(card => {
 
@@ -50,13 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 card.style.display = "";
 
-                visibleCount++;
+                count++;
 
             } else {
 
                 card.style.display = "none";
 
-                // Stop video if it is hidden
                 const video = card.querySelector("video");
 
                 if (video) {
@@ -69,27 +68,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        /* Update pieces count */
+        /* Update count */
 
         if (piecesCount) {
-            piecesCount.textContent = visibleCount + " pieces";
+            piecesCount.textContent = count + " pieces";
         }
 
     }
 
 
     /* =========================
-       ORIENTATION BUTTON CLICK
+       BUTTON CLICK
     ========================= */
 
     orientationButtons.forEach(button => {
 
         button.addEventListener("click", () => {
 
-            const filter = button.dataset.filter;
+            const filter = button.getAttribute("data-filter");
 
-
-            /* Change active button */
+            /* Active button */
 
             orientationButtons.forEach(btn => {
                 btn.classList.remove("active");
@@ -97,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             button.classList.add("active");
 
-
-            /* Filter videos */
+            /* Filter */
 
             filterVideos(filter);
 
