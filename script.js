@@ -1,39 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================
+    /* =====================================================
        VIDEO HOVER PLAY
-    ========================= */
+    ===================================================== */
 
     const videos = document.querySelectorAll(".project-card video");
 
     videos.forEach(video => {
 
         video.addEventListener("mouseenter", () => {
+
             video.play().catch(error => {
                 console.log("Video could not play:", error);
             });
+
         });
 
         video.addEventListener("mouseleave", () => {
+
             video.pause();
             video.currentTime = 0;
+
         });
 
     });
 
 
-    /* =========================
+    /* =====================================================
        LANDSCAPE / VERTICAL FILTER
-    ========================= */
+    ===================================================== */
 
     const orientationButtons =
         document.querySelectorAll(".orientation-btn");
 
     const projectCards =
-        document.querySelectorAll(".project-card");
-
-    const piecesCount =
-        document.querySelector(".pieces-count span");
+        document.querySelectorAll(".portfolio-grid .project-card");
 
 
     orientationButtons.forEach(button => {
@@ -55,22 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /* -------------------------
-               SHOW / HIDE VIDEOS
+               FILTER VIDEOS
             ------------------------- */
-
-            let visibleCount = 0;
 
             projectCards.forEach(card => {
 
                 if (card.classList.contains(filter)) {
 
-                    card.style.display = "";
-
-                    visibleCount++;
+                    card.classList.remove("hidden");
 
                 } else {
 
-                    card.style.display = "none";
+                    card.classList.add("hidden");
 
                 }
 
@@ -81,9 +78,19 @@ document.addEventListener("DOMContentLoaded", () => {
                UPDATE PIECES COUNT
             ------------------------- */
 
+            const visibleCards =
+                document.querySelectorAll(
+                    ".portfolio-grid .project-card:not(.hidden)"
+                );
+
+            const piecesCount =
+                document.querySelector(".pieces-count span");
+
             if (piecesCount) {
+
                 piecesCount.textContent =
-                    visibleCount + " pieces";
+                    visibleCards.length + " pieces";
+
             }
 
         });
@@ -91,23 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =========================
-       START WITH LANDSCAPE
-    ========================= */
+    /* =====================================================
+       INITIAL STATE
+       LANDSCAPE = 7
+    ===================================================== */
 
     projectCards.forEach(card => {
 
         if (card.classList.contains("landscape")) {
-            card.style.display = "";
+            card.classList.remove("hidden");
         } else {
-            card.style.display = "none";
+            card.classList.add("hidden");
         }
 
     });
-
-
-    if (piecesCount) {
-        piecesCount.textContent = "7 pieces";
-    }
 
 });
