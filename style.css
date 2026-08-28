@@ -610,17 +610,19 @@ body::before {
 
 /* VERTICAL */
 
-/* VERTICAL VIDEOS */
-
-.project-card.vertical {
-    width: 70%;
-    margin: 0 auto;
-}
-
 .project-card.vertical .project-media {
+    width: 250px;
+    max-width: 100%;
     aspect-ratio: 9 / 16;
 }
 
+
+/* VERTICAL REEL SIZE */
+
+.project-card.vertical {
+    width: 250px;
+    max-width: 100%;
+}
 
 /* VIDEO */
 
