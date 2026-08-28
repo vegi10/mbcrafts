@@ -535,33 +535,42 @@ body::before {
    PORTFOLIO GRID
 ===================================================== */
 
+/* =====================================================
+   PORTFOLIO GRID — VERTICAL REELS
+===================================================== */
+
 .portfolio-grid {
     display: grid;
 
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 
-    gap: 18px;
+    gap: 26px;
 
     width: 100%;
 
-    max-width: 1500px;
+    max-width: 1260px;
 
     margin: 0 auto;
 
-    padding: 0 30px;
+    padding: 0 20px;
 
     box-sizing: border-box;
+
+    align-items: start;
 }
 
 
 /* =====================================================
-   VERTICAL REELS
+   VERTICAL VIDEO CARDS
 ===================================================== */
 
 .project-card.vertical {
-    grid-column: span 1;
-}
+    width: 100%;
 
+    max-width: 250px;
+
+    margin: 0 auto;
+}
 
 /* =====================================================
    LANDSCAPE VIDEOS
