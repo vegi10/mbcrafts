@@ -104,10 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =========================================
        CURRENT FILTER
 
-       DEFAULT = LANDSCAPE
+       DEFAULT = ALL
+       BUT ALL SHOWS LANDSCAPE VIDEOS
     ========================================= */
 
-    let currentFilter = "landscape";
+    let currentFilter = "all";
 
 
     /* =========================================
@@ -135,10 +136,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* -------------------------------------
+               ALL
+               
+               IMPORTANT:
+               ALL = LANDSCAPE ONLY
+            ------------------------------------- */
+
+            if (currentFilter === "all") {
+
+                correctFilter =
+                    card.classList.contains("landscape");
+
+            }
+
+
+            /* -------------------------------------
                COLOUR GRADING
             ------------------------------------- */
 
-            if (currentFilter === "colour") {
+            else if (currentFilter === "colour") {
 
                 correctFilter =
                     card.classList.contains("colour");
@@ -283,16 +299,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT = LANDSCAPE
+       DEFAULT = ALL
+       
+       BUT ALL SHOWS LANDSCAPE ONLY
     ========================================= */
 
-    const landscapeButton =
+    const allButton =
         document.querySelector(
-            '[data-filter="landscape"]'
+            '[data-filter="all"]'
         );
 
 
-    if (landscapeButton) {
+    if (allButton) {
 
         orientationButtons.forEach(function (btn) {
 
@@ -300,9 +318,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        landscapeButton.classList.add("active");
+        allButton.classList.add("active");
 
-        currentFilter = "landscape";
+        currentFilter = "all";
 
     }
 
