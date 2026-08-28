@@ -539,10 +539,18 @@ body::before {
    PORTFOLIO GRID — VERTICAL REELS
 ===================================================== */
 
+/* =====================================================
+   PORTFOLIO GRID
+===================================================== */
+
 .portfolio-grid {
     display: grid;
 
-    grid-template-columns: repeat(5, 1fr);
+    /* 15 columns:
+       Vertical = 3 columns each → 5 per row
+       Landscape = 5 columns each → 3 per row
+    */
+    grid-template-columns: repeat(15, 1fr);
 
     gap: 26px;
 
@@ -562,24 +570,32 @@ body::before {
 
 /* =====================================================
    VERTICAL VIDEO CARDS
+   3 columns each → 5 vertical videos per row
 ===================================================== */
 
 .project-card.vertical {
     width: 100%;
+
+    grid-column: span 3;
 
     max-width: 250px;
 
     margin: 0 auto;
 }
 
+
 /* =====================================================
-   LANDSCAPE VIDEOS
+   LANDSCAPE VIDEO CARDS
+   5 columns each → 3 landscape videos per row
 ===================================================== */
 
 .project-card.landscape {
-    grid-column: span 2;
-}
+    width: 100%;
 
+    grid-column: span 5;
+
+    margin: 0;
+}
 
 /* =====================================================
    PROJECT CARD
