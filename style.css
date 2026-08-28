@@ -474,7 +474,16 @@ body::before {
 .project-card.landscape .project-media {
     aspect-ratio: 16 / 9;
 }
-
+.project-card.landscape {
+    width: 306px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.project-card.vertical {
+    width: 380px;
+    max-width: 100%;
+    margin: 0 auto;
+}
 /* =====================================================
    GENERAL SECTION
 ===================================================== */
