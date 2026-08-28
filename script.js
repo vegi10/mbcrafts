@@ -50,55 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       VIDEO HOVER PLAY
-    ========================================= */
-
-    projectCards.forEach(function (card) {
-
-        const video = card.querySelector("video");
-
-        if (!video) {
-            return;
-        }
-
-
-        /* -----------------------------------------
-           MOUSE ENTER
-        ----------------------------------------- */
-
-        video.addEventListener("mouseenter", function () {
-
-            videos.forEach(function (otherVideo) {
-
-                if (otherVideo !== video) {
-
-                    otherVideo.pause();
-                    otherVideo.currentTime = 0;
-
-                }
-
-            });
-
-            video.play().catch(function () {});
-
-        });
-
-
-        /* -----------------------------------------
-           MOUSE LEAVE
-        ----------------------------------------- */
-
-        video.addEventListener("mouseleave", function () {
-
-            video.pause();
-            video.currentTime = 0;
-
-        });
-
-    });
-
-
-    /* =========================================
        CURRENT FILTERS
     ========================================= */
 
@@ -132,10 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let visibleCount = 0;
 
-
-        /* =====================================
-           CHECK EVERY PROJECT
-        ===================================== */
 
         projectCards.forEach(function (card) {
 
@@ -180,12 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
             /*
                CATEGORY = ALL
 
-               "ALL" means all videos
-               within the selected orientation.
+               ALL means all videos
+               inside the selected orientation.
 
-               Since the default orientation is
-               LANDSCAPE, opening the website
-               shows only landscape videos.
+               Default orientation = LANDSCAPE.
             */
 
             if (currentCategory === "all") {
@@ -284,13 +229,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
-            /* Get selected orientation */
-
             currentOrientation =
                 this.dataset.filter;
 
-
-            /* Change active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -301,8 +242,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
-
-            /* Update projects */
 
             updateProjects();
 
@@ -319,13 +258,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
-            /* Get selected category */
-
             currentCategory =
                 this.dataset.category;
 
-
-            /* Change active category */
 
             categoryButtons.forEach(function (btn) {
 
@@ -336,8 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
-
-            /* Update projects */
 
             updateProjects();
 
@@ -362,8 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       SET DEFAULT CATEGORY
-       = ALL
+       DEFAULT CATEGORY = ALL
     ========================================= */
 
     categoryButtons.forEach(function (btn) {
@@ -390,8 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       SET DEFAULT ORIENTATION
-       = LANDSCAPE
+       DEFAULT ORIENTATION = LANDSCAPE
     ========================================= */
 
     orientationButtons.forEach(function (btn) {
@@ -418,9 +349,259 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
+       CUSTOM VIDEO CONTROLS
+    ========================================= */
+
+    const projectMedia =
+        document.querySelectorAll(".project-media");
+
+
+    projectMedia.forEach(function (media) {
+
+        const video =
+            media.querySelector("video");
+
+        const button =
+            media.querySelector(".video-play-button");
+
+
+        if (!video || !button) {
+            return;
+        }
+
+
+        /* =====================================
+           CREATE TIMELINE
+        ===================================== */
+
+        const timeline =
+            document.createElement("div");
+
+        timeline.className =
+            "video-timeline";
+
+
+        const progress =
+            document.createElement("div");
+
+        progress.className =
+            "video-progress";
+
+
+        timeline.appendChild(progress);
+
+        media.appendChild(timeline);
+
+
+        /* =====================================
+           BUTTON CLICK
+        ===================================== */
+
+        button.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+
+            if (video.paused) {
+
+                video.play().catch(function () {});
+
+            }
+
+            else {
+
+                video.pause();
+
+            }
+
+        });
+
+
+        /* =====================================
+           CLICK ANYWHERE ON VIDEO
+        ===================================== */
+
+        video.addEventListener("click", function () {
+
+            if (video.paused) {
+
+                video.play().catch(function () {});
+
+            }
+
+            else {
+
+                video.pause();
+
+            }
+
+        });
+
+
+        /* =====================================
+           PLAY STATE
+        ===================================== */
+
+        video.addEventListener("play", function () {
+
+            button.textContent = "Ⅱ";
+
+            button.classList.add("playing");
+
+            button.setAttribute(
+                "aria-label",
+                "Pause video"
+            );
+
+        });
+
+
+        /* =====================================
+           PAUSE STATE
+        ===================================== */
+
+        video.addEventListener("pause", function () {
+
+            button.textContent = "▶";
+
+            button.classList.remove("playing");
+
+            button.setAttribute(
+                "aria-label",
+                "Play video"
+            );
+
+        });
+
+
+        /* =====================================
+           VIDEO ENDED
+        ===================================== */
+
+        video.addEventListener("ended", function () {
+
+            progress.style.width = "0%";
+
+        });
+
+
+        /* =====================================
+           UPDATE TIMELINE
+        ===================================== */
+
+        video.addEventListener("timeupdate", function () {
+
+            if (!video.duration) {
+                return;
+            }
+
+
+            const percentage =
+                (video.currentTime / video.duration) * 100;
+
+
+            progress.style.width =
+                percentage + "%";
+
+        });
+
+
+        /* =====================================
+           CLICK TIMELINE TO SEEK
+        ===================================== */
+
+        timeline.addEventListener("click", function (event) {
+
+            event.stopPropagation();
+
+
+            if (!video.duration) {
+                return;
+            }
+
+
+            const rect =
+                timeline.getBoundingClientRect();
+
+
+            const clickPosition =
+                event.clientX - rect.left;
+
+
+            const percentage =
+                clickPosition / rect.width;
+
+
+            video.currentTime =
+                percentage * video.duration;
+
+        });
+
+
+        /* =====================================
+           HOVER PLAY
+        ===================================== */
+
+        media.addEventListener("mouseenter", function () {
+
+            video.play().catch(function () {});
+
+        });
+
+
+        /* =====================================
+           HOVER PAUSE
+        ===================================== */
+
+        media.addEventListener("mouseleave", function () {
+
+            video.pause();
+
+        });
+
+    });
+
+
+    /* =========================================
        INITIAL DISPLAY
     ========================================= */
 
     updateProjects();
+
+
+    /* =========================================
+       REVEAL ANIMATION
+    ========================================= */
+
+    const revealElements =
+        document.querySelectorAll(".project-card");
+
+
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+
+    revealElements.forEach(function (element) {
+
+        observer.observe(element);
+
+    });
 
 });
