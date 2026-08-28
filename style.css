@@ -610,6 +610,13 @@ body::before {
 
 /* VERTICAL */
 
+/* VERTICAL VIDEOS */
+
+.project-card.vertical {
+    width: 70%;
+    margin: 0 auto;
+}
+
 .project-card.vertical .project-media {
     aspect-ratio: 9 / 16;
 }
