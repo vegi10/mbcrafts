@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        ELEMENTS
@@ -21,35 +21,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       CURRENT ORIENTATION
+       ONE VIDEO AT A TIME
+       This catches ANY video that starts playing
     ========================================= */
 
-    let currentOrientation = "landscape";
+    document.addEventListener("play", function (event) {
 
+        const currentVideo = event.target;
 
-    /* =========================================
-       VIDEO PLAY
-       ONLY ONE VIDEO AT A TIME
-    ========================================= */
+        if (!currentVideo.matches(".project-card video")) {
+            return;
+        }
 
-    videos.forEach(function (video) {
+        videos.forEach(function (video) {
 
-        video.addEventListener("play", function () {
+            if (video !== currentVideo) {
 
-            videos.forEach(function (otherVideo) {
+                video.pause();
 
-                if (otherVideo !== video) {
-                    otherVideo.pause();
-                }
-
-            });
+            }
 
         });
 
+    }, true);
 
-        /* -----------------------------
-           HOVER PLAY
-        ----------------------------- */
+
+    /* =========================================
+       VIDEO HOVER PLAY
+    ========================================= */
+
+    videos.forEach(function (video) {
 
         video.addEventListener("mouseenter", function () {
 
@@ -57,10 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-
-        /* -----------------------------
-           HOVER LEAVE
-        ----------------------------- */
 
         video.addEventListener("mouseleave", function () {
 
@@ -73,26 +70,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       CURRENT ORIENTATION
+    ========================================= */
+
+    let currentOrientation = "landscape";
+
+
+    /* =========================================
        MAIN FILTER FUNCTION
     ========================================= */
 
     function updateProjects() {
-
-        /* Get search text */
 
         const search =
             searchInput
                 ? searchInput.value.toLowerCase().trim()
                 : "";
 
-
-        let count = 0;
+        let visibleCount = 0;
 
 
         projectCards.forEach(function (card) {
 
             /* -----------------------------
-               ORIENTATION CHECK
+               ORIENTATION
             ----------------------------- */
 
             const correctOrientation =
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /* -----------------------------
-               SEARCH CHECK
+               SEARCH
             ----------------------------- */
 
             const text =
@@ -118,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 card.classList.remove("is-hidden");
 
-                count++;
+                visibleCount++;
 
             } else {
 
@@ -143,14 +144,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /* =====================================
-           UPDATE PIECES COUNT
+           PIECES COUNT
         ===================================== */
 
         if (piecesCount) {
 
             piecesCount.textContent =
-                count +
-                (count === 1 ? " piece" : " pieces");
+                visibleCount +
+                (visibleCount === 1
+                    ? " piece"
+                    : " pieces");
 
         }
 
@@ -165,15 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         button.addEventListener("click", function () {
 
-            /* Get selected orientation */
-
             currentOrientation =
-                button.dataset.filter;
+                this.dataset.filter;
 
 
-            /* -----------------------------
-               ACTIVE BUTTON
-            ----------------------------- */
+            /* Active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -181,12 +180,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             });
 
-            button.classList.add("active");
+            this.classList.add("active");
 
 
-            /* -----------------------------
-               UPDATE PROJECTS
-            ----------------------------- */
+            /* Update projects */
 
             updateProjects();
 
