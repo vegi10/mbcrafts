@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="google-site-verification"
-          content="RF9JSVdiI7zGf36psc7vVEhW7wTR517py1V3N0kjbmE" />
+          content="RF9JSVdiI7zGf36psc7vVEhW7wTR517py1V3N0kjbmE">
 
     <title>MB Crafts — Video Editor</title>
-    
+
     <link rel="icon" type="image/png" href="images/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +23,9 @@
 
 <body>
 
-<!-- =========================
+<!-- =====================================================
      NAVBAR
-========================= -->
+===================================================== -->
 
 <header class="navbar-wrap">
 
@@ -36,10 +37,23 @@
         </a>
 
         <div class="nav-links">
-            <a href="index.html" class="active">Work</a>
-            <a href="process.html">Process</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+
+            <a href="index.html" class="active">
+                Work
+            </a>
+
+            <a href="process.html">
+                Process
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </div>
 
         <a href="contact.html" class="nav-button">
@@ -54,443 +68,665 @@
     </nav>
 
 </header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main>
 
-<!-- =========================
-     PORTFOLIO
-========================= -->
+    <!-- =================================================
+         PORTFOLIO HERO
+    ================================================== -->
 
-<main>
-
-    <!-- PORTFOLIO HERO -->
     <section class="portfolio-hero">
 
-        <p class="portfolio-eyebrow">THE COMPLETE LIBRARY</p>
+        <p class="portfolio-eyebrow">
+            THE COMPLETE LIBRARY
+        </p>
 
-        <h1 class="portfolio-title">Portfolio</h1>
+        <h1 class="portfolio-title">
+            Portfolio
+        </h1>
 
     </section>
 
 
-    <!-- =========================
-         VIDEO LIBRARY FILTER BOX
-    ========================= -->
+    <!-- =================================================
+         VIDEO LIBRARY
+    ================================================== -->
 
-    <div class="portfolio-library">
+    <section class="work-section">
 
-        <div class="library-top">
+        <div class="portfolio-library">
 
-            <!-- LANDSCAPE / VERTICAL -->
+            <!-- TOP FILTER BAR -->
 
-            <div class="orientation-buttons">
-                 <button
-                     type="button"
-                     class="orientation-btn active"
-                     data-filter="colour">
-                     Colour-Grading <span>2</span>
-                 </button>
+            <div class="library-top">
 
-                <button
-                    type="button"
-                    class="orientation-btn active"
-                    data-filter="landscape">
-                    Landscape <span>7</span>
-                </button>
+                <!-- ORIENTATION FILTER -->
 
-                <button
-                    type="button"
-                    class="orientation-btn"
-                    data-filter="vertical">
-                    Vertical <span>1</span>
-                </button>
+                <div class="orientation-buttons">
+
+                    <button
+                        type="button"
+                        class="orientation-btn active"
+                        data-filter="all">
+
+                        All
+                        <span>8</span>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="orientation-btn"
+                        data-filter="landscape">
+
+                        Landscape
+                        <span>7</span>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="orientation-btn"
+                        data-filter="vertical">
+
+                        Vertical
+                        <span>1</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="library-tools">
+
+                    <button
+                        type="button"
+                        class="client-btn">
+
+                        Client
+                        <span></span>
+
+                    </button>
+
+                    <div class="search-box">
+
+                        <span>⌕</span>
+
+                        <input
+                            id="searchInput"
+                            type="text"
+                            placeholder="Search"
+                            autocomplete="off">
+
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <!-- CLIENT / SEARCH -->
+            <!-- CATEGORY FILTERS -->
 
-            <div class="library-tools">
+            <div class="category-buttons">
 
                 <button
                     type="button"
-                    class="client-btn">
-                    Client <span></span>
+                    class="category-btn active"
+                    data-category="all">
+
+                    All
+
                 </button>
 
-                <div class="search-box">
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="colour-grading">
 
-                    <span>⌕</span>
+                    Colour-Grading
 
-                    <input
-                        type="text"
-                        placeholder="Search">
+                </button>
 
-                </div>
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="long-form">
+
+                    Long-form podcast
+
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="event">
+
+                    Event coverage / Sizzle reel
+
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="talking-head">
+
+                    Talking head
+
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="saas">
+
+                    SaaS Edit
+
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="commercial">
+
+                    Commercial
+
+                </button>
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="logo-animation">
+
+                    Logo animation
+
+                </button>
 
             </div>
 
         </div>
 
 
-        <!-- =========================
-             CATEGORY BUTTONS
-        ========================= -->
+        <!-- =================================================
+             PIECES COUNT
+        ================================================== -->
 
-        <div class="category-buttons">
+        <div class="pieces-count">
 
-            <button
-                type="button"
-                class="category-btn active">
-                All
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Colour-Grading
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Long-form podcast
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Event coverage / Sizzle reel
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Talking head
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                SaaS Edit
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Commercial
-            </button>
-
-            <button
-                type="button"
-                class="category-btn">
-                Logo animation
-            </button>
+            <span id="piecesCount">
+                8 pieces
+            </span>
 
         </div>
 
-    </div>
+
+        <!-- =================================================
+             VIDEO GRID
+        ================================================== -->
+
+        <div class="portfolio-grid">
 
 
-    <!-- =========================
-         PIECES COUNT
-    ========================= -->
+            <!-- =============================================
+                 VIDEO 01 — VERTICAL
+            ============================================== -->
 
-    <div class="pieces-count">
-        <span id="piecesCount">6 pieces</span>
-    </div>
+            <article
+                class="project-card vertical"
+                data-category="short-form"
+                data-title="Social Storytelling Reels Short Form">
 
+                <div class="project-media">
 
-    <!-- =========================
-         ALL VIDEOS
-    ========================= -->
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
 
-    <div class="portfolio-grid">
+                        <source
+                            src="videos/reel1.mp4"
+                            type="video/mp4">
 
-        <!-- =====================
-             VIDEO 02 - VERTICAL
-        ====================== -->
+                    </video>
 
-        <article class="project-card vertical">
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
 
-            <div class="project-media">
+                        ▶
 
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
+                    </button>
 
-                    <source
-                        src="videos/reel1.mp4"
-                        type="video/mp4">
-
-                </video>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-                    <h3>Social Storytelling</h3>
-                    <p>Reels · Short Form</p>
                 </div>
 
-                <span class="project-number">01</span>
+                <div class="project-info">
 
-            </div>
+                    <div>
 
-        </article>
+                        <h3>
+                            Social Storytelling
+                        </h3>
 
+                        <p>
+                            Reels · Short Form
+                        </p>
 
-        <!-- =====================
-             VIDEO 03 - LANDSCAPE
-        ====================== -->
+                    </div>
 
-        <article class="project-card landscape">
+                    <span class="project-number">
+                        01
+                    </span>
 
-            <div class="project-media">
-
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
-
-                    <source
-                        src="videos/reel2.mp4"
-                        type="video/mp4">
-
-                </video>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-                    <h3>Long Form Edit</h3>
-                    <p>YouTube · Storytelling</p>
                 </div>
 
-                <span class="project-number">03</span>
-
-            </div>
-
-        </article>
+            </article>
 
 
-        <!-- =====================
-             VIDEO 04 - LANDSCAPE
-        ====================== -->
+            <!-- =============================================
+                 VIDEO 02 — LANDSCAPE
+            ============================================== -->
 
-        <article class="project-card landscape">
+            <article
+                class="project-card landscape"
+                data-category="long-form"
+                data-title="Long Form Edit YouTube Storytelling">
 
-            <div class="project-media">
+                <div class="project-media">
 
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
 
-                    <source
-                        src="videos/reel3.mp4"
-                        type="video/mp4">
+                        <source
+                            src="videos/reel2.mp4"
+                            type="video/mp4">
 
-                </video>
+                    </video>
 
-            </div>
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
 
-            <div class="project-info">
+                        ▶
 
-                <div>
-                    <h3>Creative Edit</h3>
-                    <p>Motion · Visual Editing</p>
+                    </button>
+
                 </div>
 
-                <span class="project-number">04</span>
+                <div class="project-info">
 
-            </div>
+                    <div>
 
-        </article>
-        <!-- =====================
-             VIDEO 05 - LANDSCAPE
-        ====================== -->
+                        <h3>
+                            Long Form Edit
+                        </h3>
 
-        <article class="project-card landscape">
+                        <p>
+                            YouTube · Storytelling
+                        </p>
 
-            <div class="project-media">
+                    </div>
 
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
+                    <span class="project-number">
+                        03
+                    </span>
 
-                    <source
-                        src="videos/reel4.mp4"
-                        type="video/mp4">
-
-                </video>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-                    <h3>colour Grading</h3>
                 </div>
 
-                <span class="project-number">05</span>
-
-            </div>
-
-        </article>
+            </article>
 
 
-        <!-- =====================
-             VIDEO 06 - LANDSCAPE
-        ====================== -->
+            <!-- =============================================
+                 VIDEO 03 — LANDSCAPE
+            ============================================== -->
 
-        <article class="project-card landscape">
+            <article
+                class="project-card landscape"
+                data-category="commercial"
+                data-title="Creative Edit Motion Visual Editing">
 
-            <div class="project-media">
+                <div class="project-media">
 
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
 
-                    <source
-                        src="videos/reel5.mp4"
-                        type="video/mp4">
+                        <source
+                            src="videos/reel3.mp4"
+                            type="video/mp4">
 
-                </video>
+                    </video>
 
-            </div>
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
 
-            <div class="project-info">
+                        ▶
 
-                <div>
-                    <h3>Storytelling Edit</h3>
-                    <p>Storytelling · Video</p>
+                    </button>
+
                 </div>
 
-                <span class="project-number">06</span>
+                <div class="project-info">
 
-            </div>
+                    <div>
 
-        </article>
+                        <h3>
+                            Creative Edit
+                        </h3>
 
+                        <p>
+                            Motion · Visual Editing
+                        </p>
 
-        <!-- =====================
-             VIDEO 07 - LANDSCAPE
-        ====================== -->
+                    </div>
 
-        <article class="project-card landscape">
+                    <span class="project-number">
+                        04
+                    </span>
 
-            <div class="project-media">
-
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
-
-                    <source
-                        src="videos/reel6.mp4"
-                        type="video/mp4">
-
-                </video>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-                    <h3>Visual Edit</h3>
-                    <p>Creative · Visuals</p>
                 </div>
 
-                <span class="project-number">07</span>
-
-            </div>
-
-        </article>
+            </article>
 
 
-        <!-- =====================
-             VIDEO 08 - LANDSCAPE
-        ====================== -->
+            <!-- =============================================
+                 VIDEO 04 — LANDSCAPE
+            ============================================== -->
 
-        <article class="project-card landscape">
+            <article
+                class="project-card landscape"
+                data-category="colour-grading"
+                data-title="Colour Grading">
 
-            <div class="project-media">
+                <div class="project-media">
 
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
 
-                    <source
-                        src="videos/reel7.mp4"
-                        type="video/mp4">
+                        <source
+                            src="videos/reel4.mp4"
+                            type="video/mp4">
 
-                </video>
+                    </video>
 
-            </div>
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
 
-            <div class="project-info">
+                        ▶
 
-                <div>
-                    <h3>Short Form Edit</h3>
-                    <p>Reels · Social Media</p>
+                    </button>
+
                 </div>
 
-                <span class="project-number">08</span>
+                <div class="project-info">
 
-            </div>
+                    <div>
 
-        </article>
+                        <h3>
+                            Colour Grading
+                        </h3>
 
+                    </div>
 
-        <!-- =====================
-             VIDEO 09 - LANDSCAPE
-        ====================== -->
+                    <span class="project-number">
+                        05
+                    </span>
 
-        <article class="project-card landscape">
-
-            <div class="project-media">
-
-                <video
-                    muted
-                    playsinline
-                    preload="metadata">
-
-                    <source
-                        src="videos/reel8.mp4"
-                        type="video/mp4">
-
-                </video>
-
-            </div>
-
-            <div class="project-info">
-
-                <div>
-                    <h3>Final Cut</h3>
-                    <p>Video · Storytelling</p>
                 </div>
 
-                <span class="project-number">09</span>
-
-            </div>
-
-        </article>
+            </article>
 
 
-    </div>
+            <!-- =============================================
+                 VIDEO 05 — LANDSCAPE
+            ============================================== -->
+
+            <article
+                class="project-card landscape"
+                data-category="event"
+                data-title="Storytelling Edit Storytelling Video">
+
+                <div class="project-media">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
+
+                        <source
+                            src="videos/reel5.mp4"
+                            type="video/mp4">
+
+                    </video>
+
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
+
+                        ▶
+
+                    </button>
+
+                </div>
+
+                <div class="project-info">
+
+                    <div>
+
+                        <h3>
+                            Storytelling Edit
+                        </h3>
+
+                        <p>
+                            Storytelling · Video
+                        </p>
+
+                    </div>
+
+                    <span class="project-number">
+                        06
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================================
+                 VIDEO 06 — LANDSCAPE
+            ============================================== -->
+
+            <article
+                class="project-card landscape"
+                data-category="talking-head"
+                data-title="Visual Edit Creative Visuals">
+
+                <div class="project-media">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
+
+                        <source
+                            src="videos/reel6.mp4"
+                            type="video/mp4">
+
+                    </video>
+
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
+
+                        ▶
+
+                    </button>
+
+                </div>
+
+                <div class="project-info">
+
+                    <div>
+
+                        <h3>
+                            Visual Edit
+                        </h3>
+
+                        <p>
+                            Creative · Visuals
+                        </p>
+
+                    </div>
+
+                    <span class="project-number">
+                        07
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================================
+                 VIDEO 07 — LANDSCAPE
+            ============================================== -->
+
+            <article
+                class="project-card landscape"
+                data-category="saas"
+                data-title="Short Form Edit Reels Social Media">
+
+                <div class="project-media">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
+
+                        <source
+                            src="videos/reel7.mp4"
+                            type="video/mp4">
+
+                    </video>
+
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
+
+                        ▶
+
+                    </button>
+
+                </div>
+
+                <div class="project-info">
+
+                    <div>
+
+                        <h3>
+                            Short Form Edit
+                        </h3>
+
+                        <p>
+                            Reels · Social Media
+                        </p>
+
+                    </div>
+
+                    <span class="project-number">
+                        08
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- =============================================
+                 VIDEO 08 — LANDSCAPE
+            ============================================== -->
+
+            <article
+                class="project-card landscape"
+                data-category="commercial"
+                data-title="Final Cut Video Storytelling">
+
+                <div class="project-media">
+
+                    <video
+                        muted
+                        playsinline
+                        preload="metadata">
+
+                        <source
+                            src="videos/reel8.mp4"
+                            type="video/mp4">
+
+                    </video>
+
+                    <button
+                        class="video-play-button"
+                        type="button"
+                        aria-label="Play video">
+
+                        ▶
+
+                    </button>
+
+                </div>
+
+                <div class="project-info">
+
+                    <div>
+
+                        <h3>
+                            Final Cut
+                        </h3>
+
+                        <p>
+                            Video · Storytelling
+                        </p>
+
+                    </div>
+
+                    <span class="project-number">
+                        09
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
 
 </main>
 
 
-<!-- =========================
+<!-- =====================================================
      FOOTER
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -521,77 +757,339 @@
 </footer>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
 const menuButton = document.querySelector(".menu-button");
 const navLinks = document.querySelector(".nav-links");
 
-menuButton.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-    menuButton.classList.toggle("open");
-});
+if (menuButton && navLinks) {
+
+    menuButton.addEventListener("click", () => {
+
+        navLinks.classList.toggle("open");
+        menuButton.classList.toggle("open");
+
+    });
+
+}
 
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
     link.addEventListener("click", () => {
+
         navLinks.classList.remove("open");
         menuButton.classList.remove("open");
-    });
-
-});
-
-
-const sections = document.querySelectorAll("section[id]");
-const navItems = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 200;
-
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-
-    });
-
-    navItems.forEach(item => {
-
-        item.classList.remove("active");
-
-        if (item.getAttribute("href") === "#" + current) {
-            item.classList.add("active");
-        }
 
     });
 
 });
 
 
-const revealElements = document.querySelectorAll(
-    ".project-card, .service-row, .process-card, .about-content, .about-image, .values-list > div"
-);
+/* =====================================================
+   PORTFOLIO FILTER
+===================================================== */
 
-const observer = new IntersectionObserver(
-    entries => {
+const orientationButtons =
+    document.querySelectorAll(".orientation-btn");
 
-        entries.forEach(entry => {
+const categoryButtons =
+    document.querySelectorAll(".category-btn");
 
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+const projectCards =
+    document.querySelectorAll(".project-card");
+
+const piecesCount =
+    document.getElementById("piecesCount");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+
+let currentOrientation = "all";
+let currentCategory = "all";
+let currentSearch = "";
+
+
+/* UPDATE COUNT */
+
+function updatePiecesCount(count) {
+
+    if (!piecesCount) return;
+
+    piecesCount.textContent =
+        `${count} ${count === 1 ? "piece" : "pieces"}`;
+
+}
+
+
+/* FILTER FUNCTION */
+
+function filterProjects() {
+
+    let visibleCount = 0;
+
+    projectCards.forEach(card => {
+
+        const orientationMatch =
+            currentOrientation === "all" ||
+            card.classList.contains(currentOrientation);
+
+        const category =
+            card.dataset.category || "";
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            category === currentCategory;
+
+        const title =
+            (card.dataset.title || "")
+            .toLowerCase();
+
+        const searchMatch =
+            currentSearch === "" ||
+            title.includes(currentSearch);
+
+        const shouldShow =
+            orientationMatch &&
+            categoryMatch &&
+            searchMatch;
+
+
+        if (shouldShow) {
+
+            card.classList.remove("is-hidden");
+            visibleCount++;
+
+        } else {
+
+            card.classList.add("is-hidden");
+
+            const video =
+                card.querySelector("video");
+
+            if (video) {
+
+                video.pause();
+                video.currentTime = 0;
+
             }
 
+        }
+
+    });
+
+    updatePiecesCount(visibleCount);
+
+}
+
+
+/* =====================================================
+   ORIENTATION BUTTONS
+===================================================== */
+
+orientationButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        orientationButtons.forEach(btn => {
+            btn.classList.remove("active");
         });
 
-    },
-    {
-        threshold: 0.12
-    }
-);
+        button.classList.add("active");
+
+        currentOrientation =
+            button.dataset.filter;
+
+        filterProjects();
+
+    });
+
+});
+
+
+/* =====================================================
+   CATEGORY BUTTONS
+===================================================== */
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        categoryButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        currentCategory =
+            button.dataset.category;
+
+        filterProjects();
+
+    });
+
+});
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", () => {
+
+        currentSearch =
+            searchInput.value
+            .trim()
+            .toLowerCase();
+
+        filterProjects();
+
+    });
+
+}
+
+
+/* =====================================================
+   VIDEO PLAY / PAUSE
+===================================================== */
+
+const projectMedia =
+    document.querySelectorAll(".project-media");
+
+
+projectMedia.forEach(media => {
+
+    const video =
+        media.querySelector("video");
+
+    const button =
+        media.querySelector(".video-play-button");
+
+    if (!video || !button) return;
+
+
+    /* BUTTON CLICK */
+
+    button.addEventListener("click", event => {
+
+        event.stopPropagation();
+
+        if (video.paused) {
+
+            video.play().catch(() => {});
+
+        } else {
+
+            video.pause();
+
+        }
+
+    });
+
+
+    /* VIDEO CLICK */
+
+    video.addEventListener("click", () => {
+
+        if (video.paused) {
+
+            video.play().catch(() => {});
+
+        } else {
+
+            video.pause();
+
+        }
+
+    });
+
+
+    /* PLAY STATE */
+
+    video.addEventListener("play", () => {
+
+        button.textContent = "Ⅱ";
+        button.classList.add("playing");
+        button.setAttribute("aria-label", "Pause video");
+
+    });
+
+
+    /* PAUSE STATE */
+
+    video.addEventListener("pause", () => {
+
+        button.textContent = "▶";
+        button.classList.remove("playing");
+        button.setAttribute("aria-label", "Play video");
+
+    });
+
+
+    /* HOVER PLAY */
+
+    media.addEventListener("mouseenter", () => {
+
+        video.play().catch(() => {});
+
+    });
+
+
+    /* HOVER PAUSE */
+
+    media.addEventListener("mouseleave", () => {
+
+        video.pause();
+
+    });
+
+});
+
+
+/* =====================================================
+   INITIAL FILTER
+===================================================== */
+
+filterProjects();
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(".project-card");
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.08
+        }
+    );
 
 
 revealElements.forEach(element => {
@@ -599,8 +1097,6 @@ revealElements.forEach(element => {
 });
 
 </script>
-
-<script src="script.js"></script>
 
 </body>
 </html>
