@@ -716,7 +716,57 @@ body::before {
 
     visibility: visible;
 }
+/* =====================================================
+   VIDEO TIMELINE
+===================================================== */
 
+.video-timeline {
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+
+    height: 4px;
+
+    background: rgba(255,255,255,0.35);
+
+    border-radius: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    cursor: pointer;
+
+    z-index: 6;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* SHOW TIMELINE WHILE HOVERING */
+
+.project-media:hover .video-timeline {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* VIDEO PROGRESS */
+
+.video-progress {
+    width: 0%;
+
+    height: 100%;
+
+    background: white;
+
+    border-radius: 10px;
+
+    pointer-events: none;
+}
 
 /* =====================================================
    PROJECT INFO
