@@ -103,11 +103,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        CURRENT FILTER
-       
-       DEFAULT = COLOUR GRADING
+
+       DEFAULT = LANDSCAPE
     ========================================= */
 
-    let currentFilter = "colour";
+    let currentFilter = "landscape";
 
 
     /* =========================================
@@ -115,8 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================= */
 
     function updateProjects() {
-
-        /* Get search text */
 
         const search =
             searchInput
@@ -127,7 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let visibleCount = 0;
 
 
-        /* Check every project */
+        /* =====================================
+           CHECK EVERY PROJECT
+        ===================================== */
 
         projectCards.forEach(function (card) {
 
@@ -283,16 +283,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT = COLOUR GRADING
+       DEFAULT = LANDSCAPE
     ========================================= */
 
-    const colourButton =
+    const landscapeButton =
         document.querySelector(
-            '[data-filter="colour"]'
+            '[data-filter="landscape"]'
         );
 
 
-    if (colourButton) {
+    if (landscapeButton) {
 
         orientationButtons.forEach(function (btn) {
 
@@ -300,9 +300,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        colourButton.classList.add("active");
+        landscapeButton.classList.add("active");
 
-        currentFilter = "colour";
+        currentFilter = "landscape";
 
     }
 
