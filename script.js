@@ -8,18 +8,49 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".project-card video");
 
 
-    videos.forEach(video => {
+    /* =========================================
+   VIDEO PLAY
+   ONLY ONE VIDEO AT A TIME
+========================================= */
 
-        video.addEventListener("mouseenter", () => {
-            video.play().catch(() => {});
-        });
+videos.forEach(function (video) {
 
-        video.addEventListener("mouseleave", () => {
-            video.pause();
-            video.currentTime = 0;
+    video.addEventListener("play", function () {
+
+        /* Stop every other video */
+
+        videos.forEach(function (otherVideo) {
+
+            if (otherVideo !== video) {
+
+                otherVideo.pause();
+
+            }
+
         });
 
     });
+
+
+    /* Hover play */
+
+    video.addEventListener("mouseenter", function () {
+
+        video.play().catch(function () {});
+
+    });
+
+
+    /* Hover leave */
+
+    video.addEventListener("mouseleave", function () {
+
+        video.pause();
+        video.currentTime = 0;
+
+    });
+
+});
 
 
     /* =========================================
