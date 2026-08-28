@@ -62,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* -----------------------------------------
+           MOUSE ENTER
+        ----------------------------------------- */
+
         video.addEventListener("mouseenter", function () {
 
             videos.forEach(function (otherVideo) {
@@ -80,6 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
+        /* -----------------------------------------
+           MOUSE LEAVE
+        ----------------------------------------- */
+
         video.addEventListener("mouseleave", function () {
 
             video.pause();
@@ -96,14 +104,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*
        DEFAULT:
+
        Category = ALL
        Orientation = LANDSCAPE
 
-       IMPORTANT:
-       "ALL" category does NOT mean
-       all videos.
+       Therefore, when the website opens:
 
-       It means all LANDSCAPE videos.
+       ALL + LANDSCAPE
+       = ALL LANDSCAPE VIDEOS ONLY
     */
 
     let currentCategory = "all";
@@ -124,6 +132,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let visibleCount = 0;
 
+
+        /* =====================================
+           CHECK EVERY PROJECT
+        ===================================== */
 
         projectCards.forEach(function (card) {
 
@@ -153,12 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-            else {
-
-                matchesOrientation = true;
-
-            }
-
 
             /* =====================================
                CATEGORY CHECK
@@ -174,7 +180,12 @@ document.addEventListener("DOMContentLoaded", function () {
             /*
                CATEGORY = ALL
 
-               Show only LANDSCAPE videos.
+               "ALL" means all videos
+               within the selected orientation.
+
+               Since the default orientation is
+               LANDSCAPE, opening the website
+               shows only landscape videos.
             */
 
             if (currentCategory === "all") {
@@ -229,6 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.classList.add("is-hidden");
 
 
+                /* Stop hidden video */
+
                 const video =
                     card.querySelector("video");
 
@@ -271,9 +284,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
+            /* Get selected orientation */
+
             currentOrientation =
                 this.dataset.filter;
 
+
+            /* Change active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -284,6 +301,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
+
+            /* Update projects */
 
             updateProjects();
 
@@ -300,9 +319,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
+            /* Get selected category */
+
             currentCategory =
                 this.dataset.category;
 
+
+            /* Change active category */
 
             categoryButtons.forEach(function (btn) {
 
@@ -313,6 +336,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
+
+            /* Update projects */
 
             updateProjects();
 
@@ -337,8 +362,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT CATEGORY = ALL
+       SET DEFAULT CATEGORY
+       = ALL
     ========================================= */
+
+    categoryButtons.forEach(function (btn) {
+
+        btn.classList.remove("active");
+
+    });
+
 
     const allCategoryButton =
         document.querySelector(
@@ -348,23 +381,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (allCategoryButton) {
 
-        categoryButtons.forEach(function (btn) {
-
-            btn.classList.remove("active");
-
-        });
-
-
         allCategoryButton.classList.add("active");
-
-        currentCategory = "all";
 
     }
 
 
+    currentCategory = "all";
+
+
     /* =========================================
-       DEFAULT ORIENTATION = LANDSCAPE
+       SET DEFAULT ORIENTATION
+       = LANDSCAPE
     ========================================= */
+
+    orientationButtons.forEach(function (btn) {
+
+        btn.classList.remove("active");
+
+    });
+
 
     const landscapeButton =
         document.querySelector(
@@ -374,18 +409,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (landscapeButton) {
 
-        orientationButtons.forEach(function (btn) {
-
-            btn.classList.remove("active");
-
-        });
-
-
         landscapeButton.classList.add("active");
 
-        currentOrientation = "landscape";
-
     }
+
+
+    currentOrientation = "landscape";
 
 
     /* =========================================
