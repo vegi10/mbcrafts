@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const orientationButtons =
         document.querySelectorAll(".orientation-btn");
 
+    const categoryButtons =
+        document.querySelectorAll(".category-btn");
+
     const projectCards =
         document.querySelectorAll(".project-card");
 
@@ -48,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        VIDEO HOVER PLAY
-       WORKS FOR LANDSCAPE + VERTICAL
     ========================================= */
 
     projectCards.forEach(function (card) {
@@ -60,13 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* -----------------------------------------
-           MOUSE ENTER
-        ----------------------------------------- */
+        /* MOUSE ENTER */
 
         video.addEventListener("mouseenter", function () {
-
-            /* Stop every other video */
 
             videos.forEach(function (otherVideo) {
 
@@ -79,17 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
-
-            /* Play current video */
-
             video.play().catch(function () {});
 
         });
 
 
-        /* -----------------------------------------
-           MOUSE LEAVE
-        ----------------------------------------- */
+        /* MOUSE LEAVE */
 
         video.addEventListener("mouseleave", function () {
 
@@ -102,13 +95,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       CURRENT FILTER
+       CURRENT FILTERS
 
-       DEFAULT = ALL
-       BUT ALL SHOWS LANDSCAPE VIDEOS
+       DEFAULT:
+       CATEGORY = ALL
+       ORIENTATION = LANDSCAPE
     ========================================= */
 
-    let currentFilter = "all";
+    let currentCategory = "all";
+    let currentOrientation = "landscape";
 
 
     /* =========================================
@@ -122,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? searchInput.value.toLowerCase().trim()
                 : "";
 
-
         let visibleCount = 0;
 
 
@@ -132,63 +126,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
         projectCards.forEach(function (card) {
 
-            let correctFilter = false;
+            /* ---------------------------------
+               ORIENTATION CHECK
+            --------------------------------- */
+
+            const correctOrientation =
+                card.classList.contains(currentOrientation);
 
 
-            /* -------------------------------------
-               ALL
-               
-               IMPORTANT:
-               ALL = LANDSCAPE ONLY
-            ------------------------------------- */
+            /* ---------------------------------
+               CATEGORY CHECK
+            --------------------------------- */
 
-            if (currentFilter === "all") {
+            const cardCategory =
+                card.dataset.category;
 
-                correctFilter =
-                    card.classList.contains("landscape");
+
+            let correctCategory = false;
+
+
+            /* ALL = LANDSCAPE VIDEOS ONLY */
+
+            if (currentCategory === "all") {
+
+                correctCategory = true;
+
+            }
+
+            /* SPECIFIC CATEGORY */
+
+            else {
+
+                correctCategory =
+                    cardCategory === currentCategory;
 
             }
 
 
-            /* -------------------------------------
-               COLOUR GRADING
-            ------------------------------------- */
-
-            else if (currentFilter === "colour") {
-
-                correctFilter =
-                    card.classList.contains("colour");
-
-            }
-
-
-            /* -------------------------------------
-               LANDSCAPE
-            ------------------------------------- */
-
-            else if (currentFilter === "landscape") {
-
-                correctFilter =
-                    card.classList.contains("landscape");
-
-            }
-
-
-            /* -------------------------------------
-               VERTICAL
-            ------------------------------------- */
-
-            else if (currentFilter === "vertical") {
-
-                correctFilter =
-                    card.classList.contains("vertical");
-
-            }
-
-
-            /* -------------------------------------
+            /* ---------------------------------
                SEARCH CHECK
-            ------------------------------------- */
+            --------------------------------- */
 
             const text =
                 card.innerText.toLowerCase();
@@ -198,11 +175,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 text.includes(search);
 
 
-            /* -------------------------------------
-               SHOW / HIDE
-            ------------------------------------- */
+            /* ---------------------------------
+               FINAL SHOW / HIDE
+            --------------------------------- */
 
-            if (correctFilter && matchesSearch) {
+            if (
+                correctOrientation &&
+                correctCategory &&
+                matchesSearch
+            ) {
 
                 card.classList.remove("is-hidden");
 
@@ -250,20 +231,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       FILTER BUTTONS
+       ORIENTATION BUTTONS
     ========================================= */
 
     orientationButtons.forEach(function (button) {
 
         button.addEventListener("click", function () {
 
-            /* Get selected filter */
-
-            currentFilter =
+            currentOrientation =
                 this.dataset.filter;
 
-
-            /* Change active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -274,7 +251,33 @@ document.addEventListener("DOMContentLoaded", function () {
             this.classList.add("active");
 
 
-            /* Update projects */
+            updateProjects();
+
+        });
+
+    });
+
+
+    /* =========================================
+       CATEGORY BUTTONS
+    ========================================= */
+
+    categoryButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            currentCategory =
+                this.dataset.category;
+
+
+            categoryButtons.forEach(function (btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+            this.classList.add("active");
+
 
             updateProjects();
 
@@ -299,18 +302,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT = ALL
-       
-       BUT ALL SHOWS LANDSCAPE ONLY
+       DEFAULT CATEGORY = ALL
     ========================================= */
 
-    const allButton =
+    const allCategoryButton =
         document.querySelector(
-            '[data-filter="all"]'
+            '[data-category="all"]'
         );
 
 
-    if (allButton) {
+    if (allCategoryButton) {
+
+        categoryButtons.forEach(function (btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+        allCategoryButton.classList.add("active");
+
+        currentCategory = "all";
+
+    }
+
+
+    /* =========================================
+       DEFAULT ORIENTATION = LANDSCAPE
+    ========================================= */
+
+    const landscapeButton =
+        document.querySelector(
+            '[data-filter="landscape"]'
+        );
+
+
+    if (landscapeButton) {
 
         orientationButtons.forEach(function (btn) {
 
@@ -318,9 +344,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        allButton.classList.add("active");
+        landscapeButton.classList.add("active");
 
-        currentFilter = "all";
+        currentOrientation = "landscape";
 
     }
 
