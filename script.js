@@ -1,3 +1,4 @@
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
@@ -22,22 +23,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        ONE VIDEO AT A TIME
-       This catches ANY video that starts playing
     ========================================= */
 
     document.addEventListener("play", function (event) {
 
         const currentVideo = event.target;
 
+        /* Ignore anything that is not a project video */
         if (!currentVideo.matches(".project-card video")) {
             return;
         }
 
+        /* Stop every other video */
         videos.forEach(function (video) {
 
             if (video !== currentVideo) {
 
                 video.pause();
+                video.currentTime = 0;
 
             }
 
@@ -48,16 +51,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        VIDEO HOVER PLAY
+       WORKS FOR LANDSCAPE + VERTICAL
     ========================================= */
 
-    videos.forEach(function (video) {
+    projectCards.forEach(function (card) {
+
+        const video = card.querySelector("video");
+
+        if (!video) {
+            return;
+        }
+
+
+        /* -----------------------------------------
+           MOUSE ENTER VIDEO / MEDIA AREA
+        ----------------------------------------- */
 
         video.addEventListener("mouseenter", function () {
+
+            /* Stop all other videos first */
+
+            videos.forEach(function (otherVideo) {
+
+                if (otherVideo !== video) {
+
+                    otherVideo.pause();
+                    otherVideo.currentTime = 0;
+
+                }
+
+            });
+
+
+            /* Play current video */
 
             video.play().catch(function () {});
 
         });
 
+
+        /* -----------------------------------------
+           MOUSE LEAVE VIDEO
+        ----------------------------------------- */
 
         video.addEventListener("mouseleave", function () {
 
@@ -82,38 +117,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateProjects() {
 
+        /* Get search text */
+
         const search =
             searchInput
                 ? searchInput.value.toLowerCase().trim()
                 : "";
 
+
         let visibleCount = 0;
 
 
+        /* Check every project card */
+
         projectCards.forEach(function (card) {
 
-            /* -----------------------------
-               ORIENTATION
-            ----------------------------- */
+
+            /* -------------------------------------
+               ORIENTATION CHECK
+            ------------------------------------- */
 
             const correctOrientation =
                 card.classList.contains(currentOrientation);
 
 
-            /* -----------------------------
-               SEARCH
-            ----------------------------- */
+            /* -------------------------------------
+               SEARCH CHECK
+            ------------------------------------- */
 
             const text =
                 card.innerText.toLowerCase();
 
             const matchesSearch =
-                search === "" || text.includes(search);
+                search === "" ||
+                text.includes(search);
 
 
-            /* -----------------------------
+            /* -------------------------------------
                SHOW / HIDE
-            ----------------------------- */
+            ------------------------------------- */
 
             if (correctOrientation && matchesSearch) {
 
@@ -121,7 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 visibleCount++;
 
-            } else {
+            }
+
+            else {
 
                 card.classList.add("is-hidden");
 
@@ -144,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
-           PIECES COUNT
+           UPDATE PIECES COUNT
         ===================================== */
 
         if (piecesCount) {
@@ -168,11 +212,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
+
+            /* Get selected orientation */
+
             currentOrientation =
                 this.dataset.filter;
 
 
-            /* Active button */
+            /* Change active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -239,3 +286,4 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProjects();
 
 });
+</script>
