@@ -1,43 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const videos =
-        document.querySelectorAll(".project-card video");
-
-    videos.forEach(function (video) {
-
-        video.addEventListener("play", function () {
-
-            videos.forEach(function (otherVideo) {
-
-                if (otherVideo !== video) {
-                    otherVideo.pause();
-                }
-
-            });
-
-        });
-
-        video.addEventListener("mouseenter", function () {
-
-            video.play().catch(function () {});
-
-        });
-
-        video.addEventListener("mouseleave", function () {
-
-            video.pause();
-            video.currentTime = 0;
-
-        });
-
-    });
-
-});
-
-
     /* =========================================
        ELEMENTS
     ========================================= */
+
+    const videos =
+        document.querySelectorAll(".project-card video");
 
     const orientationButtons =
         document.querySelectorAll(".orientation-btn");
@@ -60,20 +28,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       VIDEO PLAY
+       ONLY ONE VIDEO AT A TIME
+    ========================================= */
+
+    videos.forEach(function (video) {
+
+        video.addEventListener("play", function () {
+
+            videos.forEach(function (otherVideo) {
+
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
+
+            });
+
+        });
+
+
+        /* -----------------------------
+           HOVER PLAY
+        ----------------------------- */
+
+        video.addEventListener("mouseenter", function () {
+
+            video.play().catch(function () {});
+
+        });
+
+
+        /* -----------------------------
+           HOVER LEAVE
+        ----------------------------- */
+
+        video.addEventListener("mouseleave", function () {
+
+            video.pause();
+            video.currentTime = 0;
+
+        });
+
+    });
+
+
+    /* =========================================
        MAIN FILTER FUNCTION
     ========================================= */
 
     function updateProjects() {
 
-        /* Get what user typed */
+        /* Get search text */
+
         const search =
-            searchInput.value.toLowerCase().trim();
+            searchInput
+                ? searchInput.value.toLowerCase().trim()
+                : "";
 
 
         let count = 0;
 
 
-        projectCards.forEach(card => {
+        projectCards.forEach(function (card) {
 
             /* -----------------------------
                ORIENTATION CHECK
@@ -108,12 +124,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 card.classList.add("is-hidden");
 
+
+                /* Stop hidden video */
+
                 const video =
                     card.querySelector("video");
 
                 if (video) {
+
                     video.pause();
                     video.currentTime = 0;
+
                 }
 
             }
@@ -121,14 +142,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        /* -----------------------------
-           PIECES COUNT
-        ----------------------------- */
+        /* =====================================
+           UPDATE PIECES COUNT
+        ===================================== */
 
         if (piecesCount) {
 
             piecesCount.textContent =
-                count + (count === 1 ? " piece" : " pieces");
+                count +
+                (count === 1 ? " piece" : " pieces");
 
         }
 
@@ -136,27 +158,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       LANDSCAPE / VERTICAL
+       LANDSCAPE / VERTICAL BUTTONS
     ========================================= */
 
-    orientationButtons.forEach(button => {
+    orientationButtons.forEach(function (button) {
 
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
+
+            /* Get selected orientation */
 
             currentOrientation =
                 button.dataset.filter;
 
 
-            /* Active button */
+            /* -----------------------------
+               ACTIVE BUTTON
+            ----------------------------- */
 
-            orientationButtons.forEach(btn => {
+            orientationButtons.forEach(function (btn) {
+
                 btn.classList.remove("active");
+
             });
 
             button.classList.add("active");
 
 
-            /* Update videos */
+            /* -----------------------------
+               UPDATE PROJECTS
+            ----------------------------- */
 
             updateProjects();
 
@@ -171,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (searchInput) {
 
-        searchInput.addEventListener("input", () => {
+        searchInput.addEventListener("input", function () {
 
             updateProjects();
 
@@ -192,8 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (landscapeButton) {
 
-        orientationButtons.forEach(btn => {
+        orientationButtons.forEach(function (btn) {
+
             btn.classList.remove("active");
+
         });
 
         landscapeButton.classList.add("active");
