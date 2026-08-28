@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
@@ -29,12 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const currentVideo = event.target;
 
-        /* Ignore anything that is not a project video */
         if (!currentVideo.matches(".project-card video")) {
             return;
         }
 
-        /* Stop every other video */
         videos.forEach(function (video) {
 
             if (video !== currentVideo) {
@@ -64,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* -----------------------------------------
-           MOUSE ENTER VIDEO / MEDIA AREA
+           MOUSE ENTER
         ----------------------------------------- */
 
         video.addEventListener("mouseenter", function () {
 
-            /* Stop all other videos first */
+            /* Stop every other video */
 
             videos.forEach(function (otherVideo) {
 
@@ -91,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* -----------------------------------------
-           MOUSE LEAVE VIDEO
+           MOUSE LEAVE
         ----------------------------------------- */
 
         video.addEventListener("mouseleave", function () {
@@ -105,10 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       CURRENT ORIENTATION
+       CURRENT FILTER
+       
+       DEFAULT = COLOUR GRADING
     ========================================= */
 
-    let currentOrientation = "landscape";
+    let currentFilter = "colour";
 
 
     /* =========================================
@@ -128,17 +127,47 @@ document.addEventListener("DOMContentLoaded", function () {
         let visibleCount = 0;
 
 
-        /* Check every project card */
+        /* Check every project */
 
         projectCards.forEach(function (card) {
 
+            let correctFilter = false;
+
 
             /* -------------------------------------
-               ORIENTATION CHECK
+               COLOUR GRADING
             ------------------------------------- */
 
-            const correctOrientation =
-                card.classList.contains(currentOrientation);
+            if (currentFilter === "colour") {
+
+                correctFilter =
+                    card.classList.contains("colour");
+
+            }
+
+
+            /* -------------------------------------
+               LANDSCAPE
+            ------------------------------------- */
+
+            else if (currentFilter === "landscape") {
+
+                correctFilter =
+                    card.classList.contains("landscape");
+
+            }
+
+
+            /* -------------------------------------
+               VERTICAL
+            ------------------------------------- */
+
+            else if (currentFilter === "vertical") {
+
+                correctFilter =
+                    card.classList.contains("vertical");
+
+            }
 
 
             /* -------------------------------------
@@ -157,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
                SHOW / HIDE
             ------------------------------------- */
 
-            if (correctOrientation && matchesSearch) {
+            if (correctFilter && matchesSearch) {
 
                 card.classList.remove("is-hidden");
 
@@ -205,17 +234,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       LANDSCAPE / VERTICAL BUTTONS
+       FILTER BUTTONS
     ========================================= */
 
     orientationButtons.forEach(function (button) {
 
         button.addEventListener("click", function () {
 
+            /* Get selected filter */
 
-            /* Get selected orientation */
-
-            currentOrientation =
+            currentFilter =
                 this.dataset.filter;
 
 
@@ -255,16 +283,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT = LANDSCAPE
+       DEFAULT = COLOUR GRADING
     ========================================= */
 
-    const landscapeButton =
+    const colourButton =
         document.querySelector(
-            '[data-filter="landscape"]'
+            '[data-filter="colour"]'
         );
 
 
-    if (landscapeButton) {
+    if (colourButton) {
 
         orientationButtons.forEach(function (btn) {
 
@@ -272,9 +300,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
-        landscapeButton.classList.add("active");
+        colourButton.classList.add("active");
 
-        currentOrientation = "landscape";
+        currentFilter = "colour";
 
     }
 
@@ -286,4 +314,3 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProjects();
 
 });
-</script>
