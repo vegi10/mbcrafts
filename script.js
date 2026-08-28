@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
        Category = ALL
        Orientation = LANDSCAPE
 
-       Therefore, when the website opens:
+       Therefore:
 
        ALL + LANDSCAPE
        = ALL LANDSCAPE VIDEOS ONLY
@@ -124,15 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let matchesCategory = false;
 
 
-            /*
-               CATEGORY = ALL
-
-               ALL means all videos
-               inside the selected orientation.
-
-               Default orientation = LANDSCAPE.
-            */
-
             if (currentCategory === "all") {
 
                 matchesCategory = true;
@@ -184,8 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 card.classList.add("is-hidden");
 
-
-                /* Stop hidden video */
 
                 const video =
                     card.querySelector("video");
@@ -295,7 +284,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT CATEGORY = ALL
+       DEFAULT CATEGORY
+       = ALL
     ========================================= */
 
     categoryButtons.forEach(function (btn) {
@@ -322,7 +312,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       DEFAULT ORIENTATION = LANDSCAPE
+       DEFAULT ORIENTATION
+       = LANDSCAPE
     ========================================= */
 
     orientationButtons.forEach(function (btn) {
@@ -480,7 +471,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         video.addEventListener("ended", function () {
 
-            progress.style.width = "0%";
+            progress.style.width = "100%";
 
         });
 
@@ -491,7 +482,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         video.addEventListener("timeupdate", function () {
 
-            if (!video.duration) {
+            if (!video.duration || !isFinite(video.duration)) {
                 return;
             }
 
@@ -507,6 +498,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
+           VIDEO METADATA LOADED
+        ===================================== */
+
+        video.addEventListener("loadedmetadata", function () {
+
+            progress.style.width = "0%";
+
+        });
+
+
+        /* =====================================
            CLICK TIMELINE TO SEEK
         ===================================== */
 
@@ -515,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation();
 
 
-            if (!video.duration) {
+            if (!video.duration || !isFinite(video.duration)) {
                 return;
             }
 
@@ -528,8 +530,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.clientX - rect.left;
 
 
-            const percentage =
+            let percentage =
                 clickPosition / rect.width;
+
+
+            /* Keep value between 0 and 1 */
+
+            percentage =
+                Math.max(
+                    0,
+                    Math.min(1, percentage)
+                );
 
 
             video.currentTime =
