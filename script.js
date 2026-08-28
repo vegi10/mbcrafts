@@ -62,7 +62,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        /* -----------------------------------------
+           MOUSE ENTER
+        ----------------------------------------- */
+
         video.addEventListener("mouseenter", function () {
+
+            /* Stop every other video */
 
             videos.forEach(function (otherVideo) {
 
@@ -75,10 +81,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
+
+            /* Play current video */
+
             video.play().catch(function () {});
 
         });
 
+
+        /* -----------------------------------------
+           MOUSE LEAVE
+        ----------------------------------------- */
 
         video.addEventListener("mouseleave", function () {
 
@@ -96,17 +109,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*
        DEFAULT:
-       Category = ALL
+
+       Category = NONE
        Orientation = LANDSCAPE
 
-       IMPORTANT:
-       "ALL" category does NOT mean
-       all videos.
+       This means:
 
-       It means all LANDSCAPE videos.
+       When website opens,
+       show ALL LANDSCAPE videos.
+
+       There is NO "all" category anymore.
     */
 
-    let currentCategory = "all";
+    let currentCategory = null;
+
     let currentOrientation = "landscape";
 
 
@@ -125,7 +141,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let visibleCount = 0;
 
 
+        /* =====================================
+           CHECK EVERY PROJECT
+        ===================================== */
+
         projectCards.forEach(function (card) {
+
 
             /* =====================================
                ORIENTATION CHECK
@@ -172,12 +193,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               CATEGORY = ALL
+               NO CATEGORY SELECTED
 
-               Show only LANDSCAPE videos.
+               Show every video that matches
+               the selected orientation.
+
+               Since default orientation is
+               LANDSCAPE, opening the website
+               shows ALL LANDSCAPE videos.
             */
 
-            if (currentCategory === "all") {
+            if (currentCategory === null) {
 
                 matchesCategory = true;
 
@@ -229,6 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.classList.add("is-hidden");
 
 
+                /* Stop hidden video */
+
                 const video =
                     card.querySelector("video");
 
@@ -271,9 +299,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
+            /* Get selected orientation */
+
             currentOrientation =
                 this.dataset.filter;
 
+
+            /* Change active button */
 
             orientationButtons.forEach(function (btn) {
 
@@ -284,6 +316,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
+
+            /* Update projects */
 
             updateProjects();
 
@@ -300,9 +334,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", function () {
 
+            /* Get selected category */
+
             currentCategory =
                 this.dataset.category;
 
+
+            /* Change active category button */
 
             categoryButtons.forEach(function (btn) {
 
@@ -313,6 +351,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.classList.add("active");
 
+
+            /* Update projects */
 
             updateProjects();
 
@@ -332,32 +372,6 @@ document.addEventListener("DOMContentLoaded", function () {
             updateProjects();
 
         });
-
-    }
-
-
-    /* =========================================
-       DEFAULT CATEGORY = ALL
-    ========================================= */
-
-    const allCategoryButton =
-        document.querySelector(
-            '.category-btn[data-category="all"]'
-        );
-
-
-    if (allCategoryButton) {
-
-        categoryButtons.forEach(function (btn) {
-
-            btn.classList.remove("active");
-
-        });
-
-
-        allCategoryButton.classList.add("active");
-
-        currentCategory = "all";
 
     }
 
