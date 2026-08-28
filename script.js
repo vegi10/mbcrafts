@@ -1,52 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       VIDEO HOVER PLAY
-    ========================================= */
-
     const videos =
         document.querySelectorAll(".project-card video");
 
+    videos.forEach(function (video) {
 
-    /* =========================================
-   VIDEO PLAY
-   ONLY ONE VIDEO AT A TIME
-========================================= */
+        video.addEventListener("play", function () {
 
-videos.forEach(function (video) {
+            videos.forEach(function (otherVideo) {
 
-    video.addEventListener("play", function () {
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
 
-        /* Stop every other video */
-
-        videos.forEach(function (otherVideo) {
-
-            if (otherVideo !== video) {
-
-                otherVideo.pause();
-
-            }
+            });
 
         });
 
-    });
+        video.addEventListener("mouseenter", function () {
 
+            video.play().catch(function () {});
 
-    /* Hover play */
+        });
 
-    video.addEventListener("mouseenter", function () {
+        video.addEventListener("mouseleave", function () {
 
-        video.play().catch(function () {});
+            video.pause();
+            video.currentTime = 0;
 
-    });
-
-
-    /* Hover leave */
-
-    video.addEventListener("mouseleave", function () {
-
-        video.pause();
-        video.currentTime = 0;
+        });
 
     });
 
