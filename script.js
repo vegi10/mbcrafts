@@ -24,60 +24,540 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       ONE VIDEO AT A TIME
+       VIDEO VIEWER ELEMENTS
     ========================================= */
 
-    document.addEventListener("play", function (event) {
+    const videoViewer =
+        document.getElementById("videoViewer");
 
-        const currentVideo = event.target;
+    const viewerVideo =
+        document.getElementById("viewerVideo");
 
-        if (!currentVideo.matches(".project-card video")) {
-            return;
-        }
-
-        videos.forEach(function (video) {
-
-            if (video !== currentVideo) {
-
-                video.pause();
-                video.currentTime = 0;
-
-            }
-
-        });
-
-    }, true);
+    const videoViewerClose =
+        document.getElementById("videoViewerClose");
 
 
     /* =========================================
        CURRENT FILTERS
     ========================================= */
 
-    /*
-       DEFAULT:
-
-       Category = ALL
-       Orientation = LANDSCAPE
-
-       Therefore:
-
-       ALL + LANDSCAPE
-       = ALL LANDSCAPE VIDEOS ONLY
-    */
-
     let currentCategory = "all";
     let currentOrientation = "landscape";
 
 
     /* =========================================
-       MAIN FILTER FUNCTION
+       ONE CARD VIDEO AT A TIME
+    ========================================= */
+
+    document.addEventListener(
+        "play",
+        function (event) {
+
+            const currentVideo = event.target;
+
+            if (
+                !currentVideo.matches(
+                    ".project-card video"
+                )
+            ) {
+                return;
+            }
+
+
+            videos.forEach(function (video) {
+
+                if (video !== currentVideo) {
+
+                    video.pause();
+                    video.currentTime = 0;
+
+                }
+
+            });
+
+        },
+        true
+    );
+
+
+    /* =========================================
+       OPEN VIDEO VIEWER
+    ========================================= */
+
+    function openVideoViewer(video) {
+
+        if (
+            !videoViewer ||
+            !viewerVideo ||
+            !video
+        ) {
+            return;
+        }
+
+
+        const source =
+            video.querySelector("source");
+
+
+        if (!source) {
+
+            console.log(
+                "No source found for this video."
+            );
+
+            return;
+        }
+
+
+        /* =====================================
+           GET VIDEO URL
+        ===================================== */
+
+        const videoURL =
+            source.src ||
+            source.getAttribute("src");
+
+
+        if (!videoURL) {
+
+            console.log(
+                "Video source is empty."
+            );
+
+            return;
+        }
+
+
+        /* =====================================
+           STOP ALL CARD VIDEOS
+        ===================================== */
+
+        document
+            .querySelectorAll(
+                ".project-card video"
+            )
+            .forEach(function (otherVideo) {
+
+                otherVideo.pause();
+
+            });
+
+
+        /* =====================================
+           SET VIEWER VIDEO
+        ===================================== */
+
+        viewerVideo.pause();
+
+        viewerVideo.removeAttribute("src");
+
+        viewerVideo.load();
+
+
+        viewerVideo.src = videoURL;
+
+
+        /* =====================================
+           SET POSTER
+        ===================================== */
+
+        const poster =
+            video.getAttribute("poster");
+
+
+        if (poster) {
+
+            viewerVideo.poster = poster;
+
+        }
+
+
+        /* =====================================
+           OPEN VIEWER
+        ===================================== */
+
+        videoViewer.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+
+        /* =====================================
+           LOAD VIDEO
+        ===================================== */
+
+        viewerVideo.load();
+
+
+        /* =====================================
+           PLAY AFTER VIDEO IS READY
+        ===================================== */
+
+        viewerVideo.onloadedmetadata =
+            function () {
+
+                viewerVideo.currentTime = 0;
+
+                viewerVideo.play().catch(
+                    function () {
+                        console.log(
+                            "Autoplay was blocked."
+                        );
+                    }
+                );
+
+            };
+
+    }
+
+
+    /* =========================================
+       CLOSE VIDEO VIEWER
+    ========================================= */
+
+    function closeVideoViewer() {
+
+        if (
+            !videoViewer ||
+            !viewerVideo
+        ) {
+            return;
+        }
+
+
+        /* Stop viewer video */
+
+        viewerVideo.pause();
+
+
+        /* Remove video */
+
+        viewerVideo.removeAttribute("src");
+
+        viewerVideo.removeAttribute("poster");
+
+        viewerVideo.load();
+
+
+        /* Close viewer */
+
+        videoViewer.classList.remove("active");
+
+
+        /* Restore scrolling */
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    /* =========================================
+       CLOSE BUTTON
+    ========================================= */
+
+    if (videoViewerClose) {
+
+        videoViewerClose.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                closeVideoViewer();
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       CLICK OUTSIDE VIDEO
+    ========================================= */
+
+    if (videoViewer) {
+
+        videoViewer.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === videoViewer
+                ) {
+
+                    closeVideoViewer();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       ESCAPE KEY
+    ========================================= */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                videoViewer &&
+                videoViewer.classList.contains("active")
+            ) {
+
+                closeVideoViewer();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       PROJECT MEDIA
+    ========================================= */
+
+    const projectMedia =
+        document.querySelectorAll(".project-media");
+
+
+    projectMedia.forEach(function (media) {
+
+        const video =
+            media.querySelector("video");
+
+        const button =
+            media.querySelector(
+                ".video-play-button"
+            );
+
+
+        if (!video || !button) {
+
+            return;
+
+        }
+
+
+        /* =====================================
+           CREATE TIMELINE
+        ===================================== */
+
+        const timeline =
+            document.createElement("div");
+
+        timeline.className =
+            "video-timeline";
+
+
+        const progress =
+            document.createElement("div");
+
+        progress.className =
+            "video-progress";
+
+
+        timeline.appendChild(progress);
+
+        media.appendChild(timeline);
+
+
+        /* =====================================
+           PLAY BUTTON
+        ===================================== */
+
+        button.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                openVideoViewer(video);
+
+            }
+        );
+
+
+        /* =====================================
+           CLICK VIDEO
+        ===================================== */
+
+        video.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                openVideoViewer(video);
+
+            }
+        );
+
+
+        /* =====================================
+           PLAY STATE
+        ===================================== */
+
+        video.addEventListener(
+            "play",
+            function () {
+
+                button.textContent = "Ⅱ";
+
+                button.classList.add("playing");
+
+                button.setAttribute(
+                    "aria-label",
+                    "Pause video"
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           PAUSE STATE
+        ===================================== */
+
+        video.addEventListener(
+            "pause",
+            function () {
+
+                button.textContent = "▶";
+
+                button.classList.remove("playing");
+
+                button.setAttribute(
+                    "aria-label",
+                    "Play video"
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           VIDEO ENDED
+        ===================================== */
+
+        video.addEventListener(
+            "ended",
+            function () {
+
+                progress.style.width = "100%";
+
+            }
+        );
+
+
+        /* =====================================
+           UPDATE TIMELINE
+        ===================================== */
+
+        video.addEventListener(
+            "timeupdate",
+            function () {
+
+                if (
+                    !video.duration ||
+                    !isFinite(video.duration)
+                ) {
+                    return;
+                }
+
+
+                const percentage =
+                    (
+                        video.currentTime /
+                        video.duration
+                    ) * 100;
+
+
+                progress.style.width =
+                    percentage + "%";
+
+            }
+        );
+
+
+        /* =====================================
+           VIDEO METADATA
+        ===================================== */
+
+        video.addEventListener(
+            "loadedmetadata",
+            function () {
+
+                progress.style.width = "0%";
+
+            }
+        );
+
+
+        /* =====================================
+           CLICK TIMELINE
+        ===================================== */
+
+        timeline.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+
+                if (
+                    !video.duration ||
+                    !isFinite(video.duration)
+                ) {
+                    return;
+                }
+
+
+                const rect =
+                    timeline.getBoundingClientRect();
+
+
+                const clickPosition =
+                    event.clientX - rect.left;
+
+
+                let percentage =
+                    clickPosition / rect.width;
+
+
+                percentage =
+                    Math.max(
+                        0,
+                        Math.min(
+                            1,
+                            percentage
+                        )
+                    );
+
+
+                video.currentTime =
+                    percentage * video.duration;
+
+            }
+        );
+
+    });
+
+
+    /* =========================================
+       FILTER FUNCTION
     ========================================= */
 
     function updateProjects() {
 
         const search =
             searchInput
-                ? searchInput.value.toLowerCase().trim()
+                ? searchInput.value
+                    .toLowerCase()
+                    .trim()
                 : "";
 
 
@@ -87,34 +567,46 @@ document.addEventListener("DOMContentLoaded", function () {
         projectCards.forEach(function (card) {
 
             /* =====================================
-               ORIENTATION CHECK
+               ORIENTATION
             ===================================== */
 
             const isLandscape =
-                card.classList.contains("landscape");
+                card.classList.contains(
+                    "landscape"
+                );
 
             const isVertical =
-                card.classList.contains("vertical");
+                card.classList.contains(
+                    "vertical"
+                );
 
 
             let matchesOrientation = false;
 
 
-            if (currentOrientation === "landscape") {
+            if (
+                currentOrientation ===
+                "landscape"
+            ) {
 
-                matchesOrientation = isLandscape;
+                matchesOrientation =
+                    isLandscape;
 
             }
 
-            else if (currentOrientation === "vertical") {
+            else if (
+                currentOrientation ===
+                "vertical"
+            ) {
 
-                matchesOrientation = isVertical;
+                matchesOrientation =
+                    isVertical;
 
             }
 
 
             /* =====================================
-               CATEGORY CHECK
+               CATEGORY
             ===================================== */
 
             const cardCategory =
@@ -124,7 +616,9 @@ document.addEventListener("DOMContentLoaded", function () {
             let matchesCategory = false;
 
 
-            if (currentCategory === "all") {
+            if (
+                currentCategory === "all"
+            ) {
 
                 matchesCategory = true;
 
@@ -133,20 +627,24 @@ document.addEventListener("DOMContentLoaded", function () {
             else {
 
                 matchesCategory =
-                    cardCategory === currentCategory;
+                    cardCategory ===
+                    currentCategory;
 
             }
 
 
             /* =====================================
-               SEARCH CHECK
+               SEARCH
             ===================================== */
 
             const text =
                 (
                     card.innerText +
                     " " +
-                    (card.dataset.title || "")
+                    (
+                        card.dataset.title ||
+                        ""
+                    )
                 ).toLowerCase();
 
 
@@ -165,7 +663,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 matchesSearch
             ) {
 
-                card.classList.remove("is-hidden");
+                card.classList.remove(
+                    "is-hidden"
+                );
 
                 visibleCount++;
 
@@ -173,15 +673,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             else {
 
-                card.classList.add("is-hidden");
+                card.classList.add(
+                    "is-hidden"
+                );
 
 
                 const video =
-                    card.querySelector("video");
+                    card.querySelector(
+                        "video"
+                    );
+
 
                 if (video) {
 
                     video.pause();
+
                     video.currentTime = 0;
 
                 }
@@ -192,7 +698,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
-           UPDATE PIECES COUNT
+           PIECES COUNT
         ===================================== */
 
         if (piecesCount) {
@@ -214,58 +720,80 @@ document.addEventListener("DOMContentLoaded", function () {
        ORIENTATION BUTTONS
     ========================================= */
 
-    orientationButtons.forEach(function (button) {
+    orientationButtons.forEach(
+        function (button) {
 
-        button.addEventListener("click", function () {
+            button.addEventListener(
+                "click",
+                function () {
 
-            currentOrientation =
-                this.dataset.filter;
-
-
-            orientationButtons.forEach(function (btn) {
-
-                btn.classList.remove("active");
-
-            });
+                    currentOrientation =
+                        this.dataset.filter;
 
 
-            this.classList.add("active");
+                    orientationButtons.forEach(
+                        function (btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
 
 
-            updateProjects();
+                    this.classList.add(
+                        "active"
+                    );
 
-        });
 
-    });
+                    updateProjects();
+
+                }
+            );
+
+        }
+    );
 
 
     /* =========================================
        CATEGORY BUTTONS
     ========================================= */
 
-    categoryButtons.forEach(function (button) {
+    categoryButtons.forEach(
+        function (button) {
 
-        button.addEventListener("click", function () {
+            button.addEventListener(
+                "click",
+                function () {
 
-            currentCategory =
-                this.dataset.category;
-
-
-            categoryButtons.forEach(function (btn) {
-
-                btn.classList.remove("active");
-
-            });
+                    currentCategory =
+                        this.dataset.category;
 
 
-            this.classList.add("active");
+                    categoryButtons.forEach(
+                        function (btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
 
 
-            updateProjects();
+                    this.classList.add(
+                        "active"
+                    );
 
-        });
 
-    });
+                    updateProjects();
+
+                }
+            );
+
+        }
+    );
 
 
     /* =========================================
@@ -274,11 +802,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (searchInput) {
 
-        searchInput.addEventListener("input", function () {
+        searchInput.addEventListener(
+            "input",
+            function () {
 
-            updateProjects();
+                updateProjects();
 
-        });
+            }
+        );
 
     }
 
@@ -288,11 +819,15 @@ document.addEventListener("DOMContentLoaded", function () {
        = ALL
     ========================================= */
 
-    categoryButtons.forEach(function (btn) {
+    categoryButtons.forEach(
+        function (btn) {
 
-        btn.classList.remove("active");
+            btn.classList.remove(
+                "active"
+            );
 
-    });
+        }
+    );
 
 
     const allCategoryButton =
@@ -303,7 +838,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (allCategoryButton) {
 
-        allCategoryButton.classList.add("active");
+        allCategoryButton.classList.add(
+            "active"
+        );
 
     }
 
@@ -316,11 +853,15 @@ document.addEventListener("DOMContentLoaded", function () {
        = LANDSCAPE
     ========================================= */
 
-    orientationButtons.forEach(function (btn) {
+    orientationButtons.forEach(
+        function (btn) {
 
-        btn.classList.remove("active");
+            btn.classList.remove(
+                "active"
+            );
 
-    });
+        }
+    );
 
 
     const landscapeButton =
@@ -331,399 +872,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (landscapeButton) {
 
-        landscapeButton.classList.add("active");
+        landscapeButton.classList.add(
+            "active"
+        );
 
     }
 
 
     currentOrientation = "landscape";
 
-
-   /* =========================================
-   CUSTOM VIDEO CONTROLS
-========================================= */
-
-const projectMedia =
-    document.querySelectorAll(".project-media");
-
-
-/* =========================================
-   VIDEO VIEWER ELEMENTS
-========================================= */
-
-const videoViewer =
-    document.getElementById("videoViewer");
-
-const viewerVideo =
-    document.getElementById("viewerVideo");
-
-const videoViewerClose =
-    document.getElementById("videoViewerClose");
-
-
-/* =========================================
-   PROJECT VIDEOS
-========================================= */
-
-projectMedia.forEach(function (media) {
-
-    const video =
-        media.querySelector("video");
-
-    const button =
-        media.querySelector(".video-play-button");
-
-
-    if (!video || !button) {
-        return;
-    }
-
-
-    /* =====================================
-       CREATE TIMELINE
-    ===================================== */
-
-    const timeline =
-        document.createElement("div");
-
-    timeline.className =
-        "video-timeline";
-
-
-    const progress =
-        document.createElement("div");
-
-    progress.className =
-        "video-progress";
-
-
-    timeline.appendChild(progress);
-
-    media.appendChild(timeline);
-
-
-    /* =====================================
-       PLAY BUTTON
-    ===================================== */
-
-    button.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        openVideoViewer(video);
-
-    });
-
-
-    /* =====================================
-       CLICK VIDEO
-    ===================================== */
-
-    video.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-        openVideoViewer(video);
-
-    });
-
-
-    /* =====================================
-       PLAY STATE
-    ===================================== */
-
-    video.addEventListener("play", function () {
-
-        button.textContent = "Ⅱ";
-
-        button.classList.add("playing");
-
-        button.setAttribute(
-            "aria-label",
-            "Pause video"
-        );
-
-    });
-
-
-    /* =====================================
-       PAUSE STATE
-    ===================================== */
-
-    video.addEventListener("pause", function () {
-
-        button.textContent = "▶";
-
-        button.classList.remove("playing");
-
-        button.setAttribute(
-            "aria-label",
-            "Play video"
-        );
-
-    });
-
-
-    /* =====================================
-       VIDEO ENDED
-    ===================================== */
-
-    video.addEventListener("ended", function () {
-
-        progress.style.width = "100%";
-
-    });
-
-
-    /* =====================================
-       UPDATE TIMELINE
-    ===================================== */
-
-    video.addEventListener("timeupdate", function () {
-
-        if (
-            !video.duration ||
-            !isFinite(video.duration)
-        ) {
-            return;
-        }
-
-
-        const percentage =
-            (video.currentTime / video.duration) * 100;
-
-
-        progress.style.width =
-            percentage + "%";
-
-    });
-
-
-    /* =====================================
-       VIDEO METADATA
-    ===================================== */
-
-    video.addEventListener(
-        "loadedmetadata",
-        function () {
-
-            progress.style.width = "0%";
-
-        }
-    );
-
-
-    /* =====================================
-       CLICK TIMELINE
-    ===================================== */
-
-    timeline.addEventListener("click", function (event) {
-
-        event.stopPropagation();
-
-
-        if (
-            !video.duration ||
-            !isFinite(video.duration)
-        ) {
-            return;
-        }
-
-
-        const rect =
-            timeline.getBoundingClientRect();
-
-
-        const clickPosition =
-            event.clientX - rect.left;
-
-
-        let percentage =
-            clickPosition / rect.width;
-
-
-        percentage =
-            Math.max(
-                0,
-                Math.min(1, percentage)
-            );
-
-
-        video.currentTime =
-            percentage * video.duration;
-
-    });
-
-
-    /* =====================================
-       NO HOVER PLAY
-    ===================================== */
-
-    /*
-       Video will NOT automatically play
-       when cursor enters.
-
-       User must click the play button
-       or video.
-    */
-
-});
-
-
-/* =========================================
-   OPEN VIDEO VIEWER
-========================================= */
-
-function openVideoViewer(video) {
-
-    if (
-        !videoViewer ||
-        !viewerVideo
-    ) {
-        return;
-    }
-
-
-    const source =
-    video.querySelector("source");
-
-
-if (!source) {
-    return;
-}
-
-
-/* Stop all card videos */
-
-document
-    .querySelectorAll(".project-card video")
-    .forEach(function (otherVideo) {
-
-        otherVideo.pause();
-
-    });
-
-
-/* Set viewer video */
-
-viewerVideo.src =
-    source.getAttribute("src");
-
-
-/* Set viewer poster */
-
-viewerVideo.poster =
-    video.getAttribute("poster");
-
-
-/* Load the video */
-
-viewerVideo.load();
-    /* Open viewer */
-
-    videoViewer.classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    /* Start from beginning */
-
-    viewerVideo.currentTime = 0;
-
-
-    viewerVideo.play().catch(function () {});
-
-}
-
-
-/* =========================================
-   CLOSE VIDEO VIEWER
-========================================= */
-
-function closeVideoViewer() {
-
-    if (
-        !videoViewer ||
-        !viewerVideo
-    ) {
-        return;
-    }
-
-
-    viewerVideo.pause();
-
-    viewerVideo.removeAttribute("src");
-
-    viewerVideo.load();
-
-
-    videoViewer.classList.remove("active");
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-/* =========================================
-   CLOSE BUTTON
-========================================= */
-
-if (videoViewerClose) {
-
-    videoViewerClose.addEventListener(
-        "click",
-        function () {
-
-            closeVideoViewer();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   CLICK OUTSIDE VIDEO
-========================================= */
-
-if (videoViewer) {
-
-    videoViewer.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                event.target === videoViewer
-            ) {
-
-                closeVideoViewer();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   ESCAPE KEY
-========================================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            closeVideoViewer();
-
-        }
-
-    }
-);
 
     /* =========================================
        INITIAL DISPLAY
@@ -737,22 +894,30 @@ document.addEventListener(
     ========================================= */
 
     const revealElements =
-        document.querySelectorAll(".project-card");
+        document.querySelectorAll(
+            ".project-card"
+        );
 
 
     const observer =
         new IntersectionObserver(
             function (entries) {
 
-                entries.forEach(function (entry) {
+                entries.forEach(
+                    function (entry) {
 
-                    if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        entry.target.classList.add("visible");
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                        }
 
                     }
-
-                });
+                );
 
             },
             {
@@ -761,10 +926,12 @@ document.addEventListener(
         );
 
 
-    revealElements.forEach(function (element) {
+    revealElements.forEach(
+        function (element) {
 
-        observer.observe(element);
+            observer.observe(element);
 
-    });
+        }
+    );
 
 });
