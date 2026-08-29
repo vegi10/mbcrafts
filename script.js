@@ -608,7 +608,10 @@ function openVideoViewer(video) {
 
     viewerVideo.src =
         source.src;
+/* Set viewer poster */
 
+viewerVideo.poster =
+    video.poster;
 
     /* Open viewer */
 
