@@ -585,34 +585,40 @@ function openVideoViewer(video) {
 
 
     const source =
-        video.querySelector("source");
+    video.querySelector("source");
 
 
-    if (!source) {
-        return;
-    }
+if (!source) {
+    return;
+}
 
 
-    /* Stop all card videos */
+/* Stop all card videos */
 
-    document
-        .querySelectorAll(".project-card video")
-        .forEach(function (otherVideo) {
+document
+    .querySelectorAll(".project-card video")
+    .forEach(function (otherVideo) {
 
-            otherVideo.pause();
+        otherVideo.pause();
 
-        });
+    });
 
 
-    /* Set viewer video */
+/* Set viewer video */
 
-    viewerVideo.src =
-        source.src;
+viewerVideo.src =
+    source.getAttribute("src");
+
+
 /* Set viewer poster */
 
 viewerVideo.poster =
-    video.poster;
+    video.getAttribute("poster");
 
+
+/* Load the video */
+
+viewerVideo.load();
     /* Open viewer */
 
     videoViewer.classList.add("active");
