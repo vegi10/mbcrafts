@@ -1311,6 +1311,29 @@ revealElements.forEach(element => {
 });
 
 </script>
+<!-- =====================================================
+     VIDEO VIEWER
+===================================================== -->
 
+<div class="video-viewer" id="videoViewer">
+
+    <button
+        class="video-viewer-close"
+        id="videoViewerClose"
+        type="button"
+        aria-label="Close video">
+        ×
+    </button>
+
+    <div class="video-viewer-content">
+
+        <video
+            id="viewerVideo"
+            playsinline>
+        </video>
+
+    </div>
+
+</div>
 </body>
 </html>
