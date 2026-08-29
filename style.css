@@ -107,7 +107,9 @@ body::before {
 }
 
 
-/* BRAND */
+/* =====================================================
+   BRAND
+===================================================== */
 
 .brand {
     display: flex;
@@ -126,7 +128,9 @@ body::before {
 }
 
 
-/* NAV LINKS */
+/* =====================================================
+   NAV LINKS
+===================================================== */
 
 .nav-links {
     display: flex;
@@ -158,7 +162,9 @@ body::before {
 }
 
 
-/* NAV BUTTON */
+/* =====================================================
+   NAV BUTTON
+===================================================== */
 
 .nav-button {
     background: white;
@@ -179,7 +185,9 @@ body::before {
 }
 
 
-/* MOBILE MENU */
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
 .menu-button {
     display: none;
@@ -535,32 +543,36 @@ body::before {
    PORTFOLIO GRID
 ===================================================== */
 
-/* =====================================================
-   PORTFOLIO GRID — VERTICAL REELS
-===================================================== */
+/*
+   15-column system
 
-/* =====================================================
-   PORTFOLIO GRID
-===================================================== */
+   LANDSCAPE
+   ------------
+   5 columns each
+   = 3 landscape videos per row
+
+   VERTICAL
+   --------
+   3 columns each
+   = 5 vertical videos per row
+
+   This keeps both layouts perfectly aligned.
+*/
 
 .portfolio-grid {
     display: grid;
 
-    /* 15 columns:
-       Vertical = 3 columns each → 5 per row
-       Landscape = 5 columns each → 3 per row
-    */
-    grid-template-columns: repeat(15, 1fr);
+    grid-template-columns: repeat(15, minmax(0, 1fr));
 
     gap: 26px;
 
     width: 100%;
 
-    max-width: 1260px;
+    max-width: 1500px;
 
     margin: 0 auto;
 
-    padding: 0 20px;
+    padding: 0;
 
     box-sizing: border-box;
 
@@ -569,14 +581,30 @@ body::before {
 
 
 /* =====================================================
-   VERTICAL VIDEO CARDS
-   3 columns each → 5 vertical videos per row
+   LANDSCAPE CARDS
+   5 / 15 COLUMNS
+===================================================== */
+
+.project-card.landscape {
+    grid-column: span 5;
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =====================================================
+   VERTICAL CARDS
+   3 / 15 COLUMNS
 ===================================================== */
 
 .project-card.vertical {
+    grid-column: span 3;
+
     width: 100%;
 
-    grid-column: span 3;
+    min-width: 0;
 
     max-width: 250px;
 
@@ -585,27 +613,10 @@ body::before {
 
 
 /* =====================================================
-   LANDSCAPE VIDEO CARDS
-   5 columns each → 3 landscape videos per row
-===================================================== */
-
-.project-card.landscape {
-    width: 100%;
-
-    grid-column: span 5;
-
-    margin: 0;
-}
-
-/* =====================================================
    PROJECT CARD
 ===================================================== */
 
 .project-card {
-    width: 100%;
-
-    min-width: 0;
-
     background: #080808;
 
     border: 1px solid rgba(255,255,255,0.12);
@@ -627,7 +638,9 @@ body::before {
 }
 
 
-/* HIDDEN CARDS */
+/* =====================================================
+   HIDDEN CARDS
+===================================================== */
 
 .project-card.is-hidden {
     display: none !important;
@@ -649,30 +662,31 @@ body::before {
 }
 
 
-/* LANDSCAPE */
+/* =====================================================
+   LANDSCAPE VIDEO
+===================================================== */
 
 .project-card.landscape .project-media {
+    width: 100%;
+
     aspect-ratio: 16 / 9;
 }
 
 
-/* VERTICAL */
+/* =====================================================
+   VERTICAL VIDEO
+===================================================== */
 
 .project-card.vertical .project-media {
-    width: 250px;
-    max-width: 100%;
+    width: 100%;
+
     aspect-ratio: 9 / 16;
 }
 
 
-/* VERTICAL REEL SIZE */
-
-.project-card.vertical {
-    width: 250px;
-    max-width: 100%;
-}
-
-/* VIDEO */
+/* =====================================================
+   VIDEO
+===================================================== */
 
 .project-media video {
     width: 100%;
@@ -683,6 +697,8 @@ body::before {
     object-fit: cover;
 
     cursor: pointer;
+
+    background: #000;
 
     transition:
         transform 0.4s ease;
@@ -703,8 +719,7 @@ body::before {
     top: 50%;
     left: 50%;
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
     width: 64px;
     height: 64px;
@@ -767,12 +782,13 @@ body::before {
 
 /* SHOW PAUSE WHILE HOVERING */
 
-.project-media:hover
-.video-play-button.playing {
+.project-media:hover .video-play-button.playing {
     opacity: 1;
 
     visibility: visible;
 }
+
+
 /* =====================================================
    VIDEO TIMELINE
 ===================================================== */
@@ -824,6 +840,7 @@ body::before {
 
     pointer-events: none;
 }
+
 
 /* =====================================================
    PROJECT INFO
@@ -1505,7 +1522,58 @@ footer {
    TABLET
 ===================================================== */
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
+
+    .navbar-wrap {
+        width: calc(100% - 40px);
+    }
+
+    .work-section {
+        width: calc(100% - 50px);
+    }
+
+    /*
+       On medium screens:
+       Landscape = 3 columns
+       Vertical = 4 columns
+    */
+
+    .portfolio-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .project-card.landscape {
+        grid-column: span 4;
+    }
+
+    .project-card.vertical {
+        grid-column: span 3;
+        max-width: 240px;
+    }
+
+    .process-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .about-section {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 50px;
+    }
+
+    .values-section {
+        gap: 50px;
+    }
+}
+
+
+/* =====================================================
+   SMALL TABLET
+===================================================== */
+
+@media (max-width: 900px) {
 
     .navbar-wrap {
         width: calc(100% - 30px);
@@ -1526,35 +1594,43 @@ footer {
         font-size: 14px;
     }
 
+
+    /* PORTFOLIO GRID */
+
     .portfolio-grid {
         grid-template-columns:
-            repeat(2, minmax(0,1fr));
+            repeat(2, minmax(0, 1fr));
+
+        gap: 22px;
     }
 
-    .process-grid {
-        grid-template-columns:
-            repeat(2,1fr);
+    .project-card.landscape {
+        grid-column: span 1;
     }
 
-    .about-section {
-        grid-template-columns:
-            1fr 1fr;
+    .project-card.vertical {
+        grid-column: span 1;
 
-        gap: 50px;
+        width: 100%;
+
+        max-width: 260px;
+
+        justify-self: center;
     }
-
-    .values-section {
-        gap: 50px;
-    }
-
 }
 
 
 /* =====================================================
    MOBILE
+   LANDSCAPE = 2 PER ROW
+   VERTICAL   = 3 PER ROW
 ===================================================== */
 
 @media (max-width: 700px) {
+
+    /* =================================================
+       NAVBAR
+    ================================================= */
 
     .navbar {
         height: 65px;
@@ -1570,7 +1646,9 @@ footer {
     }
 
 
-    /* MOBILE NAV */
+    /* =================================================
+       MOBILE NAV
+    ================================================= */
 
     .nav-links {
         display: none;
@@ -1599,7 +1677,6 @@ footer {
 
     .nav-links a {
         width: 100%;
-
         text-align: center;
     }
 
@@ -1612,7 +1689,9 @@ footer {
     }
 
 
-    /* PORTFOLIO HERO */
+    /* =================================================
+       PORTFOLIO HERO
+    ================================================= */
 
     .portfolio-hero {
         padding-top: 135px;
@@ -1630,7 +1709,9 @@ footer {
     }
 
 
-    /* WORK */
+    /* =================================================
+       WORK SECTION
+    ================================================= */
 
     .work-section {
         width: calc(100% - 30px);
@@ -1640,7 +1721,9 @@ footer {
     }
 
 
-    /* LIBRARY */
+    /* =================================================
+       LIBRARY
+    ================================================= */
 
     .library-top {
         flex-direction: column;
@@ -1676,54 +1759,215 @@ footer {
     }
 
 
-    /* CATEGORY */
+    /* =================================================
+       CATEGORY
+    ================================================= */
 
     .category-buttons {
         padding: 12px 14px 15px;
     }
 
 
-    /* GRID */
+    /* =================================================
+       MOBILE PORTFOLIO GRID
+       
+       6 columns internally:
+       
+       LANDSCAPE = span 3 → 2 per row
+       VERTICAL   = span 2 → 3 per row
+    ================================================= */
 
     .portfolio-grid {
-        grid-template-columns: 1fr;
 
-        gap: 22px;
+        display: grid;
+
+        grid-template-columns:
+            repeat(6, minmax(0, 1fr));
+
+        gap: 16px;
+
+        width: 100%;
+
+        max-width: none;
 
         padding: 0;
+
+        margin: 0 auto;
+
+        align-items: start;
     }
 
 
-    /* PROJECT */
+    /* =================================================
+       LANDSCAPE
+       2 PER ROW
+    ================================================= */
+
+    .project-card.landscape {
+
+        grid-column: span 3;
+
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+    }
+
+    .project-card.landscape .project-media {
+
+        width: 100%;
+
+        aspect-ratio: 16 / 9;
+    }
+
+
+    /* =================================================
+       VERTICAL
+       3 PER ROW
+    ================================================= */
+
+    .project-card.vertical {
+
+        grid-column: span 2;
+
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+    }
+
+    .project-card.vertical .project-media {
+
+        width: 100%;
+
+        max-width: none;
+
+        aspect-ratio: 9 / 16;
+    }
+
+
+    /* =================================================
+       PROJECT MEDIA
+    ================================================= */
+
+    .project-media video {
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+
+
+    /* =================================================
+       PLAY BUTTON
+    ================================================= */
+
+    .video-play-button {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 15px;
+    }
+
+
+    /* =================================================
+       TIMELINE
+    ================================================= */
+
+    .video-timeline {
+
+        left: 7px;
+        right: 7px;
+        bottom: 7px;
+
+        height: 3px;
+    }
+
+
+    /* =================================================
+       PROJECT INFO
+    ================================================= */
 
     .project-info {
-        min-height: 76px;
 
-        padding: 16px;
+        min-height: 70px;
+
+        padding: 11px 8px;
+
+        gap: 8px;
+
+        align-items: flex-start;
     }
 
     .project-info h3 {
-        font-size: 17px;
+
+        margin-bottom: 4px;
+
+        font-size: 14px;
+
+        line-height: 1.2;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
     }
 
     .project-info p {
-        font-size: 13px;
+
+        font-size: 11px;
+
+        line-height: 1.3;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    .project-number {
+
+        font-size: 10px;
+
+        flex-shrink: 0;
     }
 
 
-    /* SERVICES */
+    /* =================================================
+       PIECES COUNT
+    ================================================= */
+
+    .pieces-count {
+
+        margin-bottom: 20px;
+
+        font-size: 14px;
+    }
+
+
+    /* =================================================
+       SERVICES
+    ================================================= */
 
     .services-section,
     .process-section,
     .about-section,
     .values-section,
     .contact-section {
+
         width: calc(100% - 40px);
 
         padding: 100px 0;
     }
 
     .section-heading {
+
         flex-direction: column;
 
         align-items: flex-start;
@@ -1733,78 +1977,101 @@ footer {
 
     .section-heading h2,
     .values-title h2 {
+
         font-size: 55px;
     }
 
 
-    /* PROCESS */
+    /* =================================================
+       PROCESS
+    ================================================= */
 
     .process-grid {
+
         grid-template-columns: 1fr;
     }
 
     .process-card {
+
         min-height: 230px;
     }
 
     .process-card h3 {
+
         margin-top: 65px;
     }
 
 
-    /* ABOUT */
+    /* =================================================
+       ABOUT
+    ================================================= */
 
     .about-section {
+
         grid-template-columns: 1fr;
 
         gap: 60px;
     }
 
     .about-image img {
+
         max-width: 100%;
     }
 
     .about-content h2 {
+
         font-size: 65px;
     }
 
     .about-details {
+
         gap: 25px;
 
         flex-wrap: wrap;
     }
 
 
-    /* VALUES */
+    /* =================================================
+       VALUES
+    ================================================= */
 
     .values-section {
+
         grid-template-columns: 1fr;
 
         gap: 60px;
     }
 
 
-    /* CONTACT */
+    /* =================================================
+       CONTACT
+    ================================================= */
 
     .contact-inner h2 {
+
         font-size: 58px;
     }
 
     .social-links {
+
         flex-wrap: wrap;
 
         gap: 20px;
     }
 
 
-    /* FOOTER */
+    /* =================================================
+       FOOTER
+    ================================================= */
 
     footer {
+
         width: calc(100% - 40px);
     }
 
     .footer-top,
     .footer-bottom {
+
         flex-direction: column;
 
         align-items: flex-start;
@@ -1813,10 +2080,12 @@ footer {
     }
 
     .footer-top {
+
         margin-bottom: 35px;
     }
 
 }
+
 /* =====================================================
    VIDEO VIEWER
 ===================================================== */
@@ -1846,7 +2115,9 @@ footer {
 }
 
 
-/* OPEN VIEWER */
+/* =====================================================
+   OPEN VIEWER
+===================================================== */
 
 .video-viewer.active {
     opacity: 1;
@@ -1862,12 +2133,15 @@ footer {
     position: relative;
 
     width: 90%;
+
     max-width: 1400px;
 
     max-height: 90vh;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 }
 
@@ -1880,6 +2154,7 @@ footer {
     display: block;
 
     width: 100%;
+
     max-height: 90vh;
 
     object-fit: contain;
@@ -1912,10 +2187,13 @@ footer {
     color: white;
 
     font-size: 30px;
+
     line-height: 1;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     cursor: pointer;
@@ -1928,10 +2206,40 @@ footer {
 }
 
 
-/* CLOSE BUTTON HOVER */
+/* =====================================================
+   CLOSE BUTTON HOVER
+===================================================== */
 
 .video-viewer-close:hover {
     background: rgba(0,0,0,0.85);
 
     transform: scale(1.08);
+}
+
+
+/* =====================================================
+   EXTRA MOBILE VIEWER
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .video-viewer-content {
+        width: 96%;
+    }
+
+    .video-viewer-content video {
+        max-height: 85vh;
+
+        border-radius: 12px;
+    }
+
+    .video-viewer-close {
+        top: 15px;
+        right: 15px;
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 25px;
+    }
 }
