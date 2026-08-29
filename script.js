@@ -339,239 +339,382 @@ document.addEventListener("DOMContentLoaded", function () {
     currentOrientation = "landscape";
 
 
-    /* =========================================
-       CUSTOM VIDEO CONTROLS
-    ========================================= */
+   /* =========================================
+   CUSTOM VIDEO CONTROLS
+========================================= */
 
-    const projectMedia =
-        document.querySelectorAll(".project-media");
-
-
-    projectMedia.forEach(function (media) {
-
-        const video =
-            media.querySelector("video");
-
-        const button =
-            media.querySelector(".video-play-button");
+const projectMedia =
+    document.querySelectorAll(".project-media");
 
 
-        if (!video || !button) {
+/* =========================================
+   VIDEO VIEWER ELEMENTS
+========================================= */
+
+const videoViewer =
+    document.getElementById("videoViewer");
+
+const viewerVideo =
+    document.getElementById("viewerVideo");
+
+const videoViewerClose =
+    document.getElementById("videoViewerClose");
+
+
+/* =========================================
+   PROJECT VIDEOS
+========================================= */
+
+projectMedia.forEach(function (media) {
+
+    const video =
+        media.querySelector("video");
+
+    const button =
+        media.querySelector(".video-play-button");
+
+
+    if (!video || !button) {
+        return;
+    }
+
+
+    /* =====================================
+       CREATE TIMELINE
+    ===================================== */
+
+    const timeline =
+        document.createElement("div");
+
+    timeline.className =
+        "video-timeline";
+
+
+    const progress =
+        document.createElement("div");
+
+    progress.className =
+        "video-progress";
+
+
+    timeline.appendChild(progress);
+
+    media.appendChild(timeline);
+
+
+    /* =====================================
+       PLAY BUTTON
+    ===================================== */
+
+    button.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        openVideoViewer(video);
+
+    });
+
+
+    /* =====================================
+       CLICK VIDEO
+    ===================================== */
+
+    video.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        openVideoViewer(video);
+
+    });
+
+
+    /* =====================================
+       PLAY STATE
+    ===================================== */
+
+    video.addEventListener("play", function () {
+
+        button.textContent = "Ⅱ";
+
+        button.classList.add("playing");
+
+        button.setAttribute(
+            "aria-label",
+            "Pause video"
+        );
+
+    });
+
+
+    /* =====================================
+       PAUSE STATE
+    ===================================== */
+
+    video.addEventListener("pause", function () {
+
+        button.textContent = "▶";
+
+        button.classList.remove("playing");
+
+        button.setAttribute(
+            "aria-label",
+            "Play video"
+        );
+
+    });
+
+
+    /* =====================================
+       VIDEO ENDED
+    ===================================== */
+
+    video.addEventListener("ended", function () {
+
+        progress.style.width = "100%";
+
+    });
+
+
+    /* =====================================
+       UPDATE TIMELINE
+    ===================================== */
+
+    video.addEventListener("timeupdate", function () {
+
+        if (
+            !video.duration ||
+            !isFinite(video.duration)
+        ) {
             return;
         }
 
 
-        /* =====================================
-           CREATE TIMELINE
-        ===================================== */
+        const percentage =
+            (video.currentTime / video.duration) * 100;
 
-        const timeline =
-            document.createElement("div");
 
-        timeline.className =
-            "video-timeline";
-
-
-        const progress =
-            document.createElement("div");
-
-        progress.className =
-            "video-progress";
-
-
-        timeline.appendChild(progress);
-
-        media.appendChild(timeline);
-
-
-        /* =====================================
-           BUTTON CLICK
-        ===================================== */
-
-        button.addEventListener("click", function (event) {
-
-            event.stopPropagation();
-
-
-            if (video.paused) {
-
-                video.play().catch(function () {});
-
-            }
-
-            else {
-
-                video.pause();
-
-            }
-
-        });
-
-
-        /* =====================================
-           CLICK ANYWHERE ON VIDEO
-        ===================================== */
-
-        video.addEventListener("click", function () {
-
-            if (video.paused) {
-
-                video.play().catch(function () {});
-
-            }
-
-            else {
-
-                video.pause();
-
-            }
-
-        });
-
-
-        /* =====================================
-           PLAY STATE
-        ===================================== */
-
-        video.addEventListener("play", function () {
-
-            button.textContent = "Ⅱ";
-
-            button.classList.add("playing");
-
-            button.setAttribute(
-                "aria-label",
-                "Pause video"
-            );
-
-        });
-
-
-        /* =====================================
-           PAUSE STATE
-        ===================================== */
-
-        video.addEventListener("pause", function () {
-
-            button.textContent = "▶";
-
-            button.classList.remove("playing");
-
-            button.setAttribute(
-                "aria-label",
-                "Play video"
-            );
-
-        });
-
-
-        /* =====================================
-           VIDEO ENDED
-        ===================================== */
-
-        video.addEventListener("ended", function () {
-
-            progress.style.width = "100%";
-
-        });
-
-
-        /* =====================================
-           UPDATE TIMELINE
-        ===================================== */
-
-        video.addEventListener("timeupdate", function () {
-
-            if (!video.duration || !isFinite(video.duration)) {
-                return;
-            }
-
-
-            const percentage =
-                (video.currentTime / video.duration) * 100;
-
-
-            progress.style.width =
-                percentage + "%";
-
-        });
-
-
-        /* =====================================
-           VIDEO METADATA LOADED
-        ===================================== */
-
-        video.addEventListener("loadedmetadata", function () {
-
-            progress.style.width = "0%";
-
-        });
-
-
-        /* =====================================
-           CLICK TIMELINE TO SEEK
-        ===================================== */
-
-        timeline.addEventListener("click", function (event) {
-
-            event.stopPropagation();
-
-
-            if (!video.duration || !isFinite(video.duration)) {
-                return;
-            }
-
-
-            const rect =
-                timeline.getBoundingClientRect();
-
-
-            const clickPosition =
-                event.clientX - rect.left;
-
-
-            let percentage =
-                clickPosition / rect.width;
-
-
-            /* Keep value between 0 and 1 */
-
-            percentage =
-                Math.max(
-                    0,
-                    Math.min(1, percentage)
-                );
-
-
-            video.currentTime =
-                percentage * video.duration;
-
-        });
-
-
-        /* =====================================
-           HOVER PLAY
-        ===================================== */
-
-        media.addEventListener("mouseenter", function () {
-
-            video.play().catch(function () {});
-
-        });
-
-
-        /* =====================================
-           HOVER PAUSE
-        ===================================== */
-
-        media.addEventListener("mouseleave", function () {
-
-            video.pause();
-
-        });
+        progress.style.width =
+            percentage + "%";
 
     });
 
+
+    /* =====================================
+       VIDEO METADATA
+    ===================================== */
+
+    video.addEventListener(
+        "loadedmetadata",
+        function () {
+
+            progress.style.width = "0%";
+
+        }
+    );
+
+
+    /* =====================================
+       CLICK TIMELINE
+    ===================================== */
+
+    timeline.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+
+        if (
+            !video.duration ||
+            !isFinite(video.duration)
+        ) {
+            return;
+        }
+
+
+        const rect =
+            timeline.getBoundingClientRect();
+
+
+        const clickPosition =
+            event.clientX - rect.left;
+
+
+        let percentage =
+            clickPosition / rect.width;
+
+
+        percentage =
+            Math.max(
+                0,
+                Math.min(1, percentage)
+            );
+
+
+        video.currentTime =
+            percentage * video.duration;
+
+    });
+
+
+    /* =====================================
+       NO HOVER PLAY
+    ===================================== */
+
+    /*
+       Video will NOT automatically play
+       when cursor enters.
+
+       User must click the play button
+       or video.
+    */
+
+});
+
+
+/* =========================================
+   OPEN VIDEO VIEWER
+========================================= */
+
+function openVideoViewer(video) {
+
+    if (
+        !videoViewer ||
+        !viewerVideo
+    ) {
+        return;
+    }
+
+
+    const source =
+        video.querySelector("source");
+
+
+    if (!source) {
+        return;
+    }
+
+
+    /* Stop all card videos */
+
+    document
+        .querySelectorAll(".project-card video")
+        .forEach(function (otherVideo) {
+
+            otherVideo.pause();
+
+        });
+
+
+    /* Set viewer video */
+
+    viewerVideo.src =
+        source.src;
+
+
+    /* Open viewer */
+
+    videoViewer.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    /* Start from beginning */
+
+    viewerVideo.currentTime = 0;
+
+
+    viewerVideo.play().catch(function () {});
+
+}
+
+
+/* =========================================
+   CLOSE VIDEO VIEWER
+========================================= */
+
+function closeVideoViewer() {
+
+    if (
+        !videoViewer ||
+        !viewerVideo
+    ) {
+        return;
+    }
+
+
+    viewerVideo.pause();
+
+    viewerVideo.removeAttribute("src");
+
+    viewerVideo.load();
+
+
+    videoViewer.classList.remove("active");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+if (videoViewerClose) {
+
+    videoViewerClose.addEventListener(
+        "click",
+        function () {
+
+            closeVideoViewer();
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CLICK OUTSIDE VIDEO
+========================================= */
+
+if (videoViewer) {
+
+    videoViewer.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === videoViewer
+            ) {
+
+                closeVideoViewer();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   ESCAPE KEY
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            closeVideoViewer();
+
+        }
+
+    }
+);
 
     /* =========================================
        INITIAL DISPLAY
