@@ -44,41 +44,49 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentCategory = "all";
     let currentOrientation = "landscape";
 
+/* =========================================
+   ONE CARD VIDEO AT A TIME
+========================================= */
 
-    /* =========================================
-       ONE CARD VIDEO AT A TIME
-    ========================================= */
+document.addEventListener(
+    "play",
+    function (event) {
 
-    document.addEventListener(
-        "play",
-        function (event) {
+        const currentVideo = event.target;
 
-            const currentVideo = event.target;
+        if (!currentVideo.matches(".project-card video")) {
+            return;
+        }
 
-            if (
-                !currentVideo.matches(
-                    ".project-card video"
-                )
-            ) {
-                return;
+        videos.forEach(function (video) {
+
+            if (video !== currentVideo) {
+
+                video.pause();
+                video.currentTime = 0;
+
             }
 
+        });
 
-            videos.forEach(function (video) {
+    },
+    true
+);
+    /* =========================================
+   RESET VIDEOS WHEN RETURNING TO PAGE
+========================================= */
 
-                if (video !== currentVideo) {
+window.addEventListener("pageshow", function () {
 
-                    video.pause();
-                    video.currentTime = 0;
+    videos.forEach(function (video) {
 
-                }
+        video.pause();
+        video.currentTime = 0;
+        video.load();
 
-            });
+    });
 
-        },
-        true
-    );
-
+});
 
     /* =========================================
        OPEN VIDEO VIEWER
