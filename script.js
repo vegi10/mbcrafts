@@ -44,49 +44,226 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentCategory = "all";
     let currentOrientation = "landscape";
 
-/* =========================================
-   ONE CARD VIDEO AT A TIME
-========================================= */
 
-document.addEventListener(
-    "play",
-    function (event) {
+    /* =========================================
+       RESET ONE CARD VIDEO
+       Restores the poster image
+    ========================================= */
 
-        const currentVideo = event.target;
+    function resetCardVideo(video) {
 
-        if (!currentVideo.matches(".project-card video")) {
+        if (!video) {
             return;
         }
 
-        videos.forEach(function (video) {
+        /* Stop video */
 
-            if (video !== currentVideo) {
+        video.pause();
 
-                video.pause();
-                video.currentTime = 0;
 
+        /* Reset time */
+
+        try {
+            video.currentTime = 0;
+        }
+
+        catch (error) {
+            /* Ignore */
+        }
+
+
+        /* Reset timeline */
+
+        const media =
+            video.closest(".project-media");
+
+        if (media) {
+
+            const progress =
+                media.querySelector(".video-progress");
+
+            if (progress) {
+                progress.style.width = "0%";
             }
+
+        }
+
+
+        /* =====================================
+           FORCE POSTER REPAINT
+        ===================================== */
+
+        const originalVisibility =
+            video.style.visibility;
+
+
+        video.style.visibility = "hidden";
+
+
+        /*
+           Reload the video element.
+           This makes the poster available again.
+        */
+
+        video.load();
+
+
+        /*
+           Force browser to repaint the
+           poster after returning to the page.
+        */
+
+        requestAnimationFrame(function () {
+
+            requestAnimationFrame(function () {
+
+                video.style.visibility =
+                    originalVisibility || "visible";
+
+            });
 
         });
 
-    },
-    true
-);
+    }
+
+
     /* =========================================
-   RESET VIDEOS WHEN RETURNING TO PAGE
-========================================= */
+       RESET ALL CARD VIDEOS
+    ========================================= */
 
-window.addEventListener("pageshow", function () {
+    function resetAllCardVideos() {
 
-    videos.forEach(function (video) {
+        videos.forEach(function (video) {
 
-        video.pause();
-        video.currentTime = 0;
-        video.load();
+            resetCardVideo(video);
 
-    });
+        });
 
-});
+    }
+
+
+    /* =========================================
+       ONE CARD VIDEO AT A TIME
+    ========================================= */
+
+    document.addEventListener(
+        "play",
+        function (event) {
+
+            const currentVideo =
+                event.target;
+
+
+            if (
+                !currentVideo.matches(
+                    ".project-card video"
+                )
+            ) {
+                return;
+            }
+
+
+            videos.forEach(function (video) {
+
+                if (video !== currentVideo) {
+
+                    resetCardVideo(video);
+
+                }
+
+            });
+
+        },
+        true
+    );
+
+
+    /* =========================================
+       PAGE RETURN / BROWSER BACK
+       
+       Important:
+       Handles normal navigation,
+       browser Back button and bfcache.
+    ========================================= */
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            resetAllCardVideos();
+
+        }
+    );
+
+
+    /* =========================================
+       PAGE LEAVE
+    ========================================= */
+
+    window.addEventListener(
+        "pagehide",
+        function () {
+
+            videos.forEach(function (video) {
+
+                video.pause();
+
+                try {
+                    video.currentTime = 0;
+                }
+
+                catch (error) {
+                    /* Ignore */
+                }
+
+                const media =
+                    video.closest(".project-media");
+
+                if (media) {
+
+                    const progress =
+                        media.querySelector(
+                            ".video-progress"
+                        );
+
+                    if (progress) {
+                        progress.style.width = "0%";
+                    }
+
+                }
+
+            });
+
+        }
+    );
+
+
+    /* =========================================
+       TAB / PAGE VISIBILITY
+    ========================================= */
+
+    document.addEventListener(
+        "visibilitychange",
+        function () {
+
+            if (
+                document.visibilityState ===
+                "hidden"
+            ) {
+
+                videos.forEach(
+                    function (video) {
+
+                        video.pause();
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
 
     /* =========================================
        OPEN VIDEO VIEWER
@@ -140,15 +317,19 @@ window.addEventListener("pageshow", function () {
            STOP ALL CARD VIDEOS
         ===================================== */
 
-        document
-            .querySelectorAll(
-                ".project-card video"
-            )
-            .forEach(function (otherVideo) {
+        videos.forEach(function (otherVideo) {
 
-                otherVideo.pause();
+            otherVideo.pause();
 
-            });
+            try {
+                otherVideo.currentTime = 0;
+            }
+
+            catch (error) {
+                /* Ignore */
+            }
+
+        });
 
 
         /* =====================================
@@ -162,7 +343,8 @@ window.addEventListener("pageshow", function () {
         viewerVideo.load();
 
 
-        viewerVideo.src = videoURL;
+        viewerVideo.src =
+            videoURL;
 
 
         /* =====================================
@@ -175,7 +357,8 @@ window.addEventListener("pageshow", function () {
 
         if (poster) {
 
-            viewerVideo.poster = poster;
+            viewerVideo.poster =
+                poster;
 
         }
 
@@ -184,9 +367,12 @@ window.addEventListener("pageshow", function () {
            OPEN VIEWER
         ===================================== */
 
-        videoViewer.classList.add("active");
+        videoViewer.classList.add(
+            "active"
+        );
 
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow =
+            "hidden";
 
 
         /* =====================================
@@ -203,13 +389,17 @@ window.addEventListener("pageshow", function () {
         viewerVideo.onloadedmetadata =
             function () {
 
-                viewerVideo.currentTime = 0;
+                viewerVideo.currentTime =
+                    0;
+
 
                 viewerVideo.play().catch(
                     function () {
+
                         console.log(
                             "Autoplay was blocked."
                         );
+
                     }
                 );
 
@@ -232,28 +422,47 @@ window.addEventListener("pageshow", function () {
         }
 
 
-        /* Stop viewer video */
+        /* Stop viewer */
 
         viewerVideo.pause();
 
 
+        try {
+
+            viewerVideo.currentTime =
+                0;
+
+        }
+
+        catch (error) {
+            /* Ignore */
+        }
+
+
         /* Remove video */
 
-        viewerVideo.removeAttribute("src");
+        viewerVideo.removeAttribute(
+            "src"
+        );
 
-        viewerVideo.removeAttribute("poster");
+        viewerVideo.removeAttribute(
+            "poster"
+        );
 
         viewerVideo.load();
 
 
         /* Close viewer */
 
-        videoViewer.classList.remove("active");
+        videoViewer.classList.remove(
+            "active"
+        );
 
 
         /* Restore scrolling */
 
-        document.body.style.overflow = "";
+        document.body.style.overflow =
+            "";
 
     }
 
@@ -289,7 +498,8 @@ window.addEventListener("pageshow", function () {
             function (event) {
 
                 if (
-                    event.target === videoViewer
+                    event.target ===
+                    videoViewer
                 ) {
 
                     closeVideoViewer();
@@ -313,7 +523,9 @@ window.addEventListener("pageshow", function () {
             if (
                 event.key === "Escape" &&
                 videoViewer &&
-                videoViewer.classList.contains("active")
+                videoViewer.classList.contains(
+                    "active"
+                )
             ) {
 
                 closeVideoViewer();
@@ -329,7 +541,9 @@ window.addEventListener("pageshow", function () {
     ========================================= */
 
     const projectMedia =
-        document.querySelectorAll(".project-media");
+        document.querySelectorAll(
+            ".project-media"
+        );
 
 
     projectMedia.forEach(function (media) {
@@ -344,9 +558,7 @@ window.addEventListener("pageshow", function () {
 
 
         if (!video || !button) {
-
             return;
-
         }
 
 
@@ -357,6 +569,7 @@ window.addEventListener("pageshow", function () {
         const timeline =
             document.createElement("div");
 
+
         timeline.className =
             "video-timeline";
 
@@ -364,13 +577,19 @@ window.addEventListener("pageshow", function () {
         const progress =
             document.createElement("div");
 
+
         progress.className =
             "video-progress";
 
 
-        timeline.appendChild(progress);
+        timeline.appendChild(
+            progress
+        );
 
-        media.appendChild(timeline);
+
+        media.appendChild(
+            timeline
+        );
 
 
         /* =====================================
@@ -413,9 +632,14 @@ window.addEventListener("pageshow", function () {
             "play",
             function () {
 
-                button.textContent = "Ⅱ";
+                button.textContent =
+                    "Ⅱ";
 
-                button.classList.add("playing");
+
+                button.classList.add(
+                    "playing"
+                );
+
 
                 button.setAttribute(
                     "aria-label",
@@ -434,9 +658,14 @@ window.addEventListener("pageshow", function () {
             "pause",
             function () {
 
-                button.textContent = "▶";
+                button.textContent =
+                    "▶";
 
-                button.classList.remove("playing");
+
+                button.classList.remove(
+                    "playing"
+                );
+
 
                 button.setAttribute(
                     "aria-label",
@@ -455,7 +684,20 @@ window.addEventListener("pageshow", function () {
             "ended",
             function () {
 
-                progress.style.width = "100%";
+                /*
+                   Return to poster when video
+                   finishes.
+                */
+
+                video.currentTime =
+                    0;
+
+
+                progress.style.width =
+                    "0%";
+
+
+                video.load();
 
             }
         );
@@ -499,7 +741,8 @@ window.addEventListener("pageshow", function () {
             "loadedmetadata",
             function () {
 
-                progress.style.width = "0%";
+                progress.style.width =
+                    "0%";
 
             }
         );
@@ -529,11 +772,13 @@ window.addEventListener("pageshow", function () {
 
 
                 const clickPosition =
-                    event.clientX - rect.left;
+                    event.clientX -
+                    rect.left;
 
 
                 let percentage =
-                    clickPosition / rect.width;
+                    clickPosition /
+                    rect.width;
 
 
                 percentage =
@@ -547,7 +792,8 @@ window.addEventListener("pageshow", function () {
 
 
                 video.currentTime =
-                    percentage * video.duration;
+                    percentage *
+                    video.duration;
 
             }
         );
@@ -574,14 +820,15 @@ window.addEventListener("pageshow", function () {
 
         projectCards.forEach(function (card) {
 
-            /* =====================================
+            /* =================================
                ORIENTATION
-            ===================================== */
+            ================================= */
 
             const isLandscape =
                 card.classList.contains(
                     "landscape"
                 );
+
 
             const isVertical =
                 card.classList.contains(
@@ -589,7 +836,8 @@ window.addEventListener("pageshow", function () {
                 );
 
 
-            let matchesOrientation = false;
+            let matchesOrientation =
+                false;
 
 
             if (
@@ -613,22 +861,25 @@ window.addEventListener("pageshow", function () {
             }
 
 
-            /* =====================================
+            /* =================================
                CATEGORY
-            ===================================== */
+            ================================= */
 
             const cardCategory =
                 card.dataset.category;
 
 
-            let matchesCategory = false;
+            let matchesCategory =
+                false;
 
 
             if (
-                currentCategory === "all"
+                currentCategory ===
+                "all"
             ) {
 
-                matchesCategory = true;
+                matchesCategory =
+                    true;
 
             }
 
@@ -641,9 +892,9 @@ window.addEventListener("pageshow", function () {
             }
 
 
-            /* =====================================
+            /* =================================
                SEARCH
-            ===================================== */
+            ================================= */
 
             const text =
                 (
@@ -661,9 +912,9 @@ window.addEventListener("pageshow", function () {
                 text.includes(search);
 
 
-            /* =====================================
+            /* =================================
                FINAL RESULT
-            ===================================== */
+            ================================= */
 
             if (
                 matchesOrientation &&
@@ -674,6 +925,7 @@ window.addEventListener("pageshow", function () {
                 card.classList.remove(
                     "is-hidden"
                 );
+
 
                 visibleCount++;
 
@@ -694,9 +946,9 @@ window.addEventListener("pageshow", function () {
 
                 if (video) {
 
-                    video.pause();
-
-                    video.currentTime = 0;
+                    resetCardVideo(
+                        video
+                    );
 
                 }
 
@@ -705,9 +957,9 @@ window.addEventListener("pageshow", function () {
         });
 
 
-        /* =====================================
+        /* =================================
            PIECES COUNT
-        ===================================== */
+        ================================= */
 
         if (piecesCount) {
 
@@ -853,7 +1105,8 @@ window.addEventListener("pageshow", function () {
     }
 
 
-    currentCategory = "all";
+    currentCategory =
+        "all";
 
 
     /* =========================================
@@ -887,7 +1140,8 @@ window.addEventListener("pageshow", function () {
     }
 
 
-    currentOrientation = "landscape";
+    currentOrientation =
+        "landscape";
 
 
     /* =========================================
@@ -895,6 +1149,25 @@ window.addEventListener("pageshow", function () {
     ========================================= */
 
     updateProjects();
+
+
+    /* =========================================
+       INITIAL POSTER RESET
+    ========================================= */
+
+    /*
+       Wait until the initial page has rendered,
+       then make sure every video starts with
+       its poster.
+    */
+
+    requestAnimationFrame(
+        function () {
+
+            resetAllCardVideos();
+
+        }
+    );
 
 
     /* =========================================
@@ -937,7 +1210,9 @@ window.addEventListener("pageshow", function () {
     revealElements.forEach(
         function (element) {
 
-            observer.observe(element);
+            observer.observe(
+                element
+            );
 
         }
     );
