@@ -468,11 +468,11 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(280px, 420px));
+        repeat(2, 300px);
 
     gap: 30px;
 
-    max-width: 900px;
+    max-width: 630px;
 
     margin: 0 auto;
 
