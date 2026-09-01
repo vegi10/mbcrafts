@@ -1,3 +1,7 @@
+/* =====================================================
+   CONTACT PAGE
+===================================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -6,6 +10,11 @@ body {
     background: #050505;
     color: #ffffff;
 }
+
+
+/* =====================================================
+   CONTACT PAGE
+===================================================== */
 
 .contact-page {
     min-height: 100vh;
@@ -16,6 +25,11 @@ body {
     max-width: 1400px;
     margin: auto;
 }
+
+
+/* =====================================================
+   CONTACT INTRO
+===================================================== */
 
 .contact-intro {
     max-width: 900px;
@@ -49,58 +63,142 @@ body {
     line-height: 1.7;
 }
 
+
+/* =====================================================
+   CONTACT OPTIONS
+===================================================== */
+
 .contact-options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
+
+/* =====================================================
+   CONTACT CARD
+===================================================== */
+
 .contact-card {
     min-height: 300px;
+
     padding: 30px;
+
     background: #0a0a0a;
+
     border: 1px solid #252525;
+
     border-radius: 20px;
 
     color: white;
+
     text-decoration: none;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     transition: 0.35s ease;
 }
 
 .contact-card:hover {
     transform: translateY(-8px);
+
     border-color: #555;
+
     background: #101010;
 }
 
+
+/* =====================================================
+   CARD TOP
+   01 / 02 / 03
+===================================================== */
+
 .card-top {
     display: flex;
+
     justify-content: space-between;
 
     color: #666;
+
     font-size: 14px;
+}
+
+
+/* =====================================================
+   CONTACT ICON
+   01
+   [IMAGE]
+   EMAIL
+===================================================== */
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+
+    margin-top: 28px;
+    margin-bottom: 26px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.02);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon img {
+    width: 22px;
+    height: 22px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   CONTACT CARD CONTENT
+===================================================== */
+
+.contact-card-content {
+    display: block;
 }
 
 .contact-card p {
     color: #777;
+
     font-size: 13px;
+
     letter-spacing: 2px;
-    margin-bottom: 15px;
+
+    margin: 0 0 15px;
 }
 
 .contact-card h2 {
     font-size: 24px;
+
     font-weight: 500;
+
     margin: 0;
+
+    overflow-wrap: anywhere;
 }
 
+
+/* =====================================================
+   CARD LINK
+===================================================== */
+
 .card-link {
+    margin-top: auto;
+
     color: #888;
+
     font-size: 14px;
 }
 
@@ -108,6 +206,19 @@ body {
     color: white;
 }
 
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 900px) {
 
@@ -122,23 +233,211 @@ body {
 }
 
 
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media (max-width: 768px) {
+
+    /* ---------------------------------------------
+       CONTACT PAGE
+    --------------------------------------------- */
 
     .contact-page {
         padding: 150px 6% 70px;
     }
 
+
     .contact-intro {
         margin-bottom: 60px;
     }
 
+
     .contact-intro h1 {
         font-size: 52px;
+
         letter-spacing: -3px;
     }
 
+
     .contact-description {
         font-size: 17px;
+    }
+
+
+    /* ---------------------------------------------
+       CONTACT CARDS
+    --------------------------------------------- */
+
+    .contact-card {
+        min-height: 300px;
+
+        padding: 26px;
+
+        border-radius: 18px;
+    }
+
+
+    .contact-icon {
+        width: 44px;
+        height: 44px;
+
+        margin-top: 24px;
+        margin-bottom: 22px;
+
+        border-radius: 11px;
+    }
+
+
+    .contact-icon img {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    .contact-card h2 {
+        font-size: 22px;
+    }
+
+
+    /* ---------------------------------------------
+       TWO-LINE HAMBURGER
+    --------------------------------------------- */
+
+    .menu-button {
+        width: 58px;
+        height: 48px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+
+        padding: 0;
+
+        background: transparent;
+
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        border-radius: 14px;
+
+        cursor: pointer;
+    }
+
+
+    .menu-button span {
+        display: block;
+
+        width: 22px;
+        height: 2px;
+
+        background: #ffffff;
+
+        border-radius: 2px;
+
+        transition:
+            transform 0.25s ease,
+            opacity 0.25s ease;
+    }
+
+
+    /* ---------------------------------------------
+       HAMBURGER → X
+    --------------------------------------------- */
+
+    .menu-button.active span:first-child {
+        transform:
+            translateY(4.5px)
+            rotate(45deg);
+    }
+
+
+    .menu-button.active span:last-child {
+        transform:
+            translateY(-4.5px)
+            rotate(-45deg);
+    }
+
+
+    /* ---------------------------------------------
+       MOBILE MENU
+    --------------------------------------------- */
+
+    .mobile-menu {
+        position: fixed;
+
+        top: 90px;
+
+        left: 20px;
+        right: 20px;
+
+        z-index: 9999;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        padding: 16px;
+
+        background: rgba(5, 5, 5, 0.96);
+
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        border-radius: 20px;
+
+        backdrop-filter: blur(18px);
+
+        -webkit-backdrop-filter: blur(18px);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+
+    .mobile-menu.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: translateY(0);
+    }
+
+
+    .mobile-menu a {
+        display: block;
+
+        padding: 15px;
+
+        color: #ffffff;
+
+        text-decoration: none;
+
+        text-align: center;
+
+        font-size: 17px;
+
+        font-weight: 500;
+
+        border-radius: 12px;
+    }
+
+
+    .mobile-menu a.active {
+        background: rgba(255, 255, 255, 0.08);
     }
 
 }
