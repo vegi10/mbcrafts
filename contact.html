@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,16 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="contact.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
 
     <nav class="navbar">
 
@@ -25,31 +30,69 @@
             <span>MB Crafts</span>
         </a>
 
+
         <div class="nav-links">
+
             <a href="index.html">Work</a>
+
             <a href="process.html">Process</a>
+
             <a href="about.html">About</a>
+
             <a href="contact.html" class="active">Contact</a>
+
         </div>
+
 
         <a href="contact.html" class="nav-button">
             Let's Work
         </a>
 
-        <button class="menu-button" aria-label="Open menu">
+
+        <!-- MOBILE HAMBURGER
+             2 LINES
+        -->
+
+        <button
+            class="menu-button"
+            aria-label="Open menu"
+            aria-expanded="false">
+
             <span></span>
             <span></span>
-            <span></span>
+
         </button>
 
     </nav>
 
 
-    <!-- CONTACT PAGE -->
+    <!-- =================================================
+         MOBILE MENU
+    ================================================== -->
+
+    <div class="mobile-menu">
+
+        <a href="index.html">Work</a>
+
+        <a href="process.html">Process</a>
+
+        <a href="about.html">About</a>
+
+        <a href="contact.html" class="active">Contact</a>
+
+    </div>
+
+
+    <!-- =================================================
+         CONTACT PAGE
+    ================================================== -->
 
     <main class="contact-page">
 
         <section class="contact-hero">
+
+
+            <!-- INTRO -->
 
             <div class="contact-intro">
 
@@ -70,22 +113,51 @@
             </div>
 
 
+            <!-- =================================================
+                 CONTACT OPTIONS
+            ================================================== -->
+
             <div class="contact-options">
 
-                <!-- EMAIL -->
 
-                <a href="mailto:manoharbbau@gmail.com"
-                   class="contact-card">
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
+
+                <a
+                    href="mailto:manoharbbau@gmail.com"
+                    class="contact-card">
 
                     <div class="card-top">
+
                         <span>01</span>
+
                         <span>↗</span>
+
                     </div>
 
-                    <div>
-                        <p>EMAIL</p>
-                        <h2>manoharbbau@gmail.com</h2>
+
+                    <!-- SMALL IMAGE -->
+
+                    <div class="contact-icon">
+
+                        <img
+                            src="images/email.png"
+                            alt="Email">
+
                     </div>
+
+
+                    <div class="contact-card-content">
+
+                        <p>EMAIL</p>
+
+                        <h2>
+                            manoharbbau@gmail.com
+                        </h2>
+
+                    </div>
+
 
                     <span class="card-link">
                         Send an email
@@ -94,21 +166,46 @@
                 </a>
 
 
-                <!-- WHATSAPP -->
+                <!-- =================================================
+                     WHATSAPP
+                ================================================== -->
 
-                <a href="https://wa.me/919059176032"
-                   target="_blank"
-                   class="contact-card">
+                <a
+                    href="https://wa.me/919059176032"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-card">
 
                     <div class="card-top">
+
                         <span>02</span>
+
                         <span>↗</span>
+
                     </div>
 
-                    <div>
-                        <p>WHATSAPP</p>
-                        <h2>Let's Chat</h2>
+
+                    <!-- SMALL IMAGE -->
+
+                    <div class="contact-icon">
+
+                        <img
+                            src="images/whatsapp.png"
+                            alt="WhatsApp">
+
                     </div>
+
+
+                    <div class="contact-card-content">
+
+                        <p>WHATSAPP</p>
+
+                        <h2>
+                            Let's Chat
+                        </h2>
+
+                    </div>
+
 
                     <span class="card-link">
                         Message me on WhatsApp
@@ -117,21 +214,46 @@
                 </a>
 
 
-                <!-- INSTAGRAM -->
+                <!-- =================================================
+                     INSTAGRAM
+                ================================================== -->
 
-                <a href="https://instagram.com/manohar_vegi"
-                   target="_blank"
-                   class="contact-card">
+                <a
+                    href="https://instagram.com/manohar_vegi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-card">
 
                     <div class="card-top">
+
                         <span>03</span>
+
                         <span>↗</span>
+
                     </div>
 
-                    <div>
-                        <p>INSTAGRAM</p>
-                        <h2>@manohar_vegi</h2>
+
+                    <!-- SMALL IMAGE -->
+
+                    <div class="contact-icon">
+
+                        <img
+                            src="images/instagram.png"
+                            alt="Instagram">
+
                     </div>
+
+
+                    <div class="contact-card-content">
+
+                        <p>INSTAGRAM</p>
+
+                        <h2>
+                            @manohar_vegi
+                        </h2>
+
+                    </div>
+
 
                     <span class="card-link">
                         Connect on Instagram
@@ -146,7 +268,115 @@
     </main>
 
 
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
     <script src="script.js"></script>
 
+
+    <!-- MOBILE MENU FALLBACK / TOGGLE -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const menuButton =
+                    document.querySelector(".menu-button");
+
+                const mobileMenu =
+                    document.querySelector(".mobile-menu");
+
+
+                if (
+                    !menuButton ||
+                    !mobileMenu
+                ) {
+                    return;
+                }
+
+
+                menuButton.addEventListener(
+                    "click",
+                    function () {
+
+                        const isOpen =
+                            mobileMenu.classList.contains("active");
+
+
+                        if (isOpen) {
+
+                            mobileMenu.classList.remove(
+                                "active"
+                            );
+
+                            menuButton.classList.remove(
+                                "active"
+                            );
+
+                            menuButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+
+                        else {
+
+                            mobileMenu.classList.add(
+                                "active"
+                            );
+
+                            menuButton.classList.add(
+                                "active"
+                            );
+
+                            menuButton.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /* CLOSE MENU AFTER CLICKING A LINK */
+
+                mobileMenu
+                    .querySelectorAll("a")
+                    .forEach(function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                mobileMenu.classList.remove(
+                                    "active"
+                                );
+
+                                menuButton.classList.remove(
+                                    "active"
+                                );
+
+                                menuButton.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+                            }
+                        );
+
+                    });
+
+            }
+        );
+
+    </script>
+
 </body>
+
 </html>
