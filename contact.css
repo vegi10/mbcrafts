@@ -127,9 +127,6 @@ body {
 
 /* =====================================================
    CONTACT ICON
-   01
-   [IMAGE]
-   EMAIL
 ===================================================== */
 
 .contact-icon {
@@ -149,11 +146,19 @@ body {
 
     align-items: center;
     justify-content: center;
+
+    flex-shrink: 0;
 }
 
+
+/* Small actual image inside the box */
+
 .contact-icon img {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
+
+    max-width: 24px;
+    max-height: 24px;
 
     display: block;
 
@@ -278,6 +283,10 @@ body {
     }
 
 
+    /* ---------------------------------------------
+       SMALL CONTACT ICON
+    --------------------------------------------- */
+
     .contact-icon {
         width: 44px;
         height: 44px;
@@ -292,6 +301,9 @@ body {
     .contact-icon img {
         width: 20px;
         height: 20px;
+
+        max-width: 20px;
+        max-height: 20px;
     }
 
 
@@ -300,9 +312,9 @@ body {
     }
 
 
-    /* ---------------------------------------------
+    /* =================================================
        TWO-LINE HAMBURGER
-    --------------------------------------------- */
+    ================================================= */
 
     .menu-button {
         width: 58px;
@@ -315,7 +327,7 @@ body {
         align-items: center;
         justify-content: center;
 
-        gap: 7px;
+        gap: 0;
 
         padding: 0;
 
@@ -326,10 +338,19 @@ body {
         border-radius: 14px;
 
         cursor: pointer;
+
+        position: relative;
     }
 
 
+    /* ---------------------------------------------
+       HAMBURGER LINES
+       Only first + last are visible
+    --------------------------------------------- */
+
     .menu-button span {
+        position: absolute;
+
         display: block;
 
         width: 22px;
@@ -345,20 +366,41 @@ body {
     }
 
 
+    /* TOP LINE */
+
+    .menu-button span:first-child {
+        transform: translateY(-4px);
+    }
+
+
+    /* HIDE THIRD / MIDDLE LINE */
+
+    .menu-button span:nth-child(2) {
+        display: none;
+    }
+
+
+    /* BOTTOM LINE */
+
+    .menu-button span:last-child {
+        transform: translateY(4px);
+    }
+
+
     /* ---------------------------------------------
        HAMBURGER → X
     --------------------------------------------- */
 
     .menu-button.active span:first-child {
         transform:
-            translateY(4.5px)
+            translateY(0)
             rotate(45deg);
     }
 
 
     .menu-button.active span:last-child {
         transform:
-            translateY(-4.5px)
+            translateY(0)
             rotate(-45deg);
     }
 
