@@ -97,7 +97,10 @@ body {
     display: flex;
     flex-direction: column;
 
-    transition: 0.35s ease;
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
 }
 
 .contact-card:hover {
@@ -127,6 +130,9 @@ body {
 
 /* =====================================================
    CONTACT ICON
+   01
+   IMAGE
+   EMAIL
 ===================================================== */
 
 .contact-icon {
@@ -151,7 +157,7 @@ body {
 }
 
 
-/* Small actual image inside the box */
+/* Small actual image */
 
 .contact-icon img {
     width: 24px;
@@ -205,16 +211,20 @@ body {
     color: #888;
 
     font-size: 14px;
+
+    transition: color 0.25s ease;
 }
 
 .contact-card:hover .card-link {
-    color: white;
+    color: #ffffff;
 }
 
 
 /* =====================================================
    MOBILE MENU
 ===================================================== */
+
+/* Hidden by default on desktop */
 
 .mobile-menu {
     display: none;
@@ -244,9 +254,10 @@ body {
 
 @media (max-width: 768px) {
 
-    /* ---------------------------------------------
+
+    /* -------------------------------------------------
        CONTACT PAGE
-    --------------------------------------------- */
+    ------------------------------------------------- */
 
     .contact-page {
         padding: 150px 6% 70px;
@@ -270,9 +281,9 @@ body {
     }
 
 
-    /* ---------------------------------------------
+    /* -------------------------------------------------
        CONTACT CARDS
-    --------------------------------------------- */
+    ------------------------------------------------- */
 
     .contact-card {
         min-height: 300px;
@@ -283,9 +294,9 @@ body {
     }
 
 
-    /* ---------------------------------------------
-       SMALL CONTACT ICON
-    --------------------------------------------- */
+    /* -------------------------------------------------
+       SMALL CONTACT IMAGE
+    ------------------------------------------------- */
 
     .contact-icon {
         width: 44px;
@@ -313,7 +324,8 @@ body {
 
 
     /* =================================================
-       TWO-LINE HAMBURGER
+       HAMBURGER
+       EXACTLY 2 LINES
     ================================================= */
 
     .menu-button {
@@ -322,12 +334,10 @@ body {
 
         display: flex;
 
-        flex-direction: column;
-
         align-items: center;
         justify-content: center;
 
-        gap: 0;
+        position: relative;
 
         padding: 0;
 
@@ -339,14 +349,13 @@ body {
 
         cursor: pointer;
 
-        position: relative;
+        z-index: 10001;
     }
 
 
-    /* ---------------------------------------------
+    /* -------------------------------------------------
        HAMBURGER LINES
-       Only first + last are visible
-    --------------------------------------------- */
+    ------------------------------------------------- */
 
     .menu-button span {
         position: absolute;
@@ -373,13 +382,6 @@ body {
     }
 
 
-    /* HIDE THIRD / MIDDLE LINE */
-
-    .menu-button span:nth-child(2) {
-        display: none;
-    }
-
-
     /* BOTTOM LINE */
 
     .menu-button span:last-child {
@@ -387,9 +389,9 @@ body {
     }
 
 
-    /* ---------------------------------------------
+    /* =================================================
        HAMBURGER → X
-    --------------------------------------------- */
+    ================================================= */
 
     .menu-button.active span:first-child {
         transform:
@@ -405,9 +407,9 @@ body {
     }
 
 
-    /* ---------------------------------------------
+    /* =================================================
        MOBILE MENU
-    --------------------------------------------- */
+    ================================================= */
 
     .mobile-menu {
         position: fixed;
@@ -417,7 +419,7 @@ body {
         left: 20px;
         right: 20px;
 
-        z-index: 9999;
+        z-index: 10000;
 
         display: flex;
 
@@ -450,6 +452,10 @@ body {
     }
 
 
+    /* -------------------------------------------------
+       OPEN MOBILE MENU
+    ------------------------------------------------- */
+
     .mobile-menu.active {
         opacity: 1;
 
@@ -458,6 +464,10 @@ body {
         transform: translateY(0);
     }
 
+
+    /* -------------------------------------------------
+       MOBILE MENU LINKS
+    ------------------------------------------------- */
 
     .mobile-menu a {
         display: block;
@@ -477,6 +487,8 @@ body {
         border-radius: 12px;
     }
 
+
+    /* Active page */
 
     .mobile-menu a.active {
         background: rgba(255, 255, 255, 0.08);
