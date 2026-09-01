@@ -8,9 +8,11 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
+
 
 body {
     background: #050505;
@@ -54,7 +56,9 @@ body {
 }
 
 
-/* BRAND */
+/* =====================================================
+   BRAND
+===================================================== */
 
 .brand {
     display: flex;
@@ -70,15 +74,20 @@ body {
     font-weight: 600;
 }
 
+
 .brand img {
     width: 48px;
     height: 30px;
 
     object-fit: contain;
+
+    display: block;
 }
 
 
-/* NAV LINKS */
+/* =====================================================
+   NAV LINKS
+===================================================== */
 
 .nav-links {
     display: flex;
@@ -86,6 +95,7 @@ body {
 
     gap: 6px;
 }
+
 
 .nav-links a {
     color: #999;
@@ -102,6 +112,7 @@ body {
     transition: 0.3s ease;
 }
 
+
 .nav-links a:hover,
 .nav-links a.active {
     color: #ffffff;
@@ -112,7 +123,9 @@ body {
 }
 
 
-/* NAV BUTTON */
+/* =====================================================
+   NAV BUTTON
+===================================================== */
 
 .nav-button {
     background: #ffffff;
@@ -130,6 +143,7 @@ body {
 
     transition: 0.3s ease;
 }
+
 
 .nav-button:hover {
     transform: translateY(-2px);
@@ -155,13 +169,17 @@ body {
 
 
 /* =====================================================
-   ABOUT HERO
+   ABOUT PAGE
 ===================================================== */
 
 .about-page {
     padding-top: 96px;
 }
 
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .about-hero {
     min-height: 560px;
@@ -190,6 +208,7 @@ body {
 
 .about-hero-inner {
     width: 100%;
+
     max-width: 1500px;
 
     margin: 0 auto;
@@ -243,7 +262,7 @@ body {
 
 
 /* =====================================================
-   ABOUT STORY
+   STORY
 ===================================================== */
 
 .about-story {
@@ -409,7 +428,7 @@ body {
 
     gap: 50px;
 
-    max-width: 1500px;
+    max-width: 1200px;
 
     margin: 0 auto 70px;
 }
@@ -441,34 +460,43 @@ body {
 
 /* =====================================================
    PEOPLE GRID
+   IMPORTANT:
+   KEEPING IMAGES NARROWER
 ===================================================== */
 
 .people-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, minmax(280px, 420px));
 
-    gap: 28px;
+    gap: 30px;
 
-    max-width: 1500px;
+    max-width: 900px;
 
-    margin: auto;
+    margin: 0 auto;
+
+    justify-content: start;
 }
 
 
-/* PERSON CARD */
+/* =====================================================
+   PERSON CARD
+===================================================== */
 
 .person-card {
     min-width: 0;
 }
 
 
-/* PERSON IMAGE */
+/* =====================================================
+   PERSON IMAGE
+===================================================== */
 
 .person-image {
     width: 100%;
 
-    aspect-ratio: 1 / 0.92;
+    aspect-ratio: 0.92 / 1;
 
     overflow: hidden;
 
@@ -505,7 +533,9 @@ body {
 }
 
 
-/* PERSON INFO */
+/* =====================================================
+   PERSON INFO
+===================================================== */
 
 .person-info {
     padding-top: 25px;
@@ -763,6 +793,14 @@ footer p {
     }
 
 
+    .people-grid {
+        max-width: 850px;
+
+        grid-template-columns:
+            repeat(2, minmax(260px, 390px));
+    }
+
+
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -777,7 +815,9 @@ footer p {
 @media (max-width: 768px) {
 
 
-    /* NAVBAR */
+    /* =================================================
+       NAVBAR
+    ================================================== */
 
     .navbar {
         top: 12px;
@@ -803,6 +843,7 @@ footer p {
 
     .brand img {
         width: 42px;
+
         height: 27px;
     }
 
@@ -813,15 +854,19 @@ footer p {
     }
 
 
-    /* HAMBURGER */
+    /* =================================================
+       HAMBURGER
+    ================================================== */
 
     .menu-button {
         width: 52px;
+
         height: 44px;
 
         display: flex;
 
         align-items: center;
+
         justify-content: center;
 
         position: relative;
@@ -842,6 +887,7 @@ footer p {
         position: absolute;
 
         width: 21px;
+
         height: 2px;
 
         background: #ffffff;
@@ -872,7 +918,9 @@ footer p {
     }
 
 
-    /* MOBILE MENU */
+    /* =================================================
+       MOBILE MENU
+    ================================================== */
 
     .mobile-menu {
         position: fixed;
@@ -880,6 +928,7 @@ footer p {
         top: 84px;
 
         left: 20px;
+
         right: 20px;
 
         z-index: 9999;
@@ -946,14 +995,18 @@ footer p {
     }
 
 
-    /* PAGE */
+    /* =================================================
+       PAGE
+    ================================================== */
 
     .about-page {
         padding-top: 75px;
     }
 
 
-    /* HERO */
+    /* =================================================
+       HERO
+    ================================================== */
 
     .about-hero {
         min-height: 520px;
@@ -989,7 +1042,9 @@ footer p {
     }
 
 
-    /* STORY */
+    /* =================================================
+       STORY
+    ================================================== */
 
     .about-story {
         grid-template-columns: 1fr;
@@ -1017,7 +1072,9 @@ footer p {
     }
 
 
-    /* STATS */
+    /* =================================================
+       STATS
+    ================================================== */
 
     .about-stats {
         grid-template-columns: 1fr 1fr;
@@ -1038,10 +1095,12 @@ footer p {
     }
 
 
-    /* PEOPLE */
+    /* =================================================
+       PEOPLE
+    ================================================== */
 
     .people-section {
-        padding: 85px 6% 90px;
+        padding: 85px 7% 90px;
     }
 
 
@@ -1066,15 +1125,21 @@ footer p {
     }
 
 
+    /* ONE COLUMN ON MOBILE */
+
     .people-grid {
         grid-template-columns: 1fr;
 
+        max-width: 430px;
+
         gap: 55px;
+
+        margin: 0;
     }
 
 
     .person-image {
-        aspect-ratio: 1 / 1.05;
+        aspect-ratio: 0.92 / 1;
 
         border-radius: 18px;
     }
@@ -1090,7 +1155,9 @@ footer p {
     }
 
 
-    /* SERVICES */
+    /* =================================================
+       SERVICES
+    ================================================== */
 
     .services-section {
         padding: 85px 7%;
@@ -1121,7 +1188,9 @@ footer p {
     }
 
 
-    /* CTA */
+    /* =================================================
+       CTA
+    ================================================== */
 
     .about-cta {
         padding: 100px 7%;
@@ -1135,10 +1204,45 @@ footer p {
     }
 
 
-    /* FOOTER */
+    /* =================================================
+       FOOTER
+    ================================================== */
 
     footer {
         padding: 30px 7%;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+    .brand span {
+        display: none;
+    }
+
+
+    .about-hero h1 {
+        font-size: 50px;
+    }
+
+
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .people-grid {
+        max-width: 100%;
+    }
+
+
+    .person-image {
+        aspect-ratio: 0.9 / 1;
     }
 
 }
