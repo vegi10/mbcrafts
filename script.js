@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        RESET ONE CARD VIDEO
-       Restores the poster image
+       Restores poster image
     ========================================= */
 
     function resetCardVideo(video) {
@@ -56,12 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        /* Stop video */
-
         video.pause();
-
-
-        /* Reset time */
 
         try {
             video.currentTime = 0;
@@ -71,8 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
             /* Ignore */
         }
 
-
-        /* Reset timeline */
 
         const media =
             video.closest(".project-media");
@@ -89,29 +82,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* =====================================
-           FORCE POSTER REPAINT
-        ===================================== */
-
         const originalVisibility =
             video.style.visibility;
 
-
         video.style.visibility = "hidden";
-
-
-        /*
-           Reload the video element.
-           This makes the poster available again.
-        */
 
         video.load();
 
-
-        /*
-           Force browser to repaint the
-           poster after returning to the page.
-        */
 
         requestAnimationFrame(function () {
 
@@ -153,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const currentVideo =
                 event.target;
 
-
             if (
                 !currentVideo.matches(
                     ".project-card video"
@@ -180,10 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        PAGE RETURN / BROWSER BACK
-       
-       Important:
-       Handles normal navigation,
-       browser Back button and bfcache.
     ========================================= */
 
     window.addEventListener(
@@ -215,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 catch (error) {
                     /* Ignore */
                 }
+
 
                 const media =
                     video.closest(".project-media");
@@ -392,7 +365,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 viewerVideo.currentTime =
                     0;
 
-
                 viewerVideo.play().catch(
                     function () {
 
@@ -422,8 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* Stop viewer */
-
         viewerVideo.pause();
 
 
@@ -439,8 +409,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* Remove video */
-
         viewerVideo.removeAttribute(
             "src"
         );
@@ -452,14 +420,10 @@ document.addEventListener("DOMContentLoaded", function () {
         viewerVideo.load();
 
 
-        /* Close viewer */
-
         videoViewer.classList.remove(
             "active"
         );
 
-
-        /* Restore scrolling */
 
         document.body.style.overflow =
             "";
@@ -635,11 +599,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.textContent =
                     "Ⅱ";
 
-
                 button.classList.add(
                     "playing"
                 );
-
 
                 button.setAttribute(
                     "aria-label",
@@ -661,11 +623,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.textContent =
                     "▶";
 
-
                 button.classList.remove(
                     "playing"
                 );
-
 
                 button.setAttribute(
                     "aria-label",
@@ -684,18 +644,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "ended",
             function () {
 
-                /*
-                   Return to poster when video
-                   finishes.
-                */
-
                 video.currentTime =
                     0;
 
-
                 progress.style.width =
                     "0%";
-
 
                 video.load();
 
@@ -803,6 +756,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        FILTER FUNCTION
+       
+       Includes:
+       - Orientation
+       - Category
+       - Search
+       - Animation reset
     ========================================= */
 
     function updateProjects() {
@@ -816,6 +775,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         let visibleCount = 0;
+
+        let animationIndex = 0;
 
 
         projectCards.forEach(function (card) {
@@ -922,19 +883,85 @@ document.addEventListener("DOMContentLoaded", function () {
                 matchesSearch
             ) {
 
+                /* =============================
+                   SHOW CARD
+                ============================= */
+
                 card.classList.remove(
                     "is-hidden"
                 );
 
 
+                /*
+                   Remove old animation state
+                   so the animation can replay.
+                */
+
+                card.classList.remove(
+                    "visible"
+                );
+
+
+                /*
+                   Set stagger delay.
+                   
+                   0.05s between each card.
+                */
+
+                card.style.setProperty(
+                    "--card-delay",
+                    (animationIndex * 0.05) + "s"
+                );
+
+
+                animationIndex++;
+
                 visibleCount++;
+
+
+                /*
+                   Force browser reflow.
+                   This is important because it
+                   allows the animation to restart.
+                */
+
+                void card.offsetWidth;
+
+
+                /*
+                   Start animation.
+                */
+
+                requestAnimationFrame(
+                    function () {
+
+                        card.classList.add(
+                            "visible"
+                        );
+
+                    }
+                );
 
             }
 
             else {
 
+                /* =============================
+                   HIDE CARD
+                ============================= */
+
                 card.classList.add(
                     "is-hidden"
+                );
+
+
+                card.classList.remove(
+                    "visible"
+                );
+
+
+                card.style.removeProperty(
+                    "--card-delay"
                 );
 
 
@@ -1005,6 +1032,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.classList.add(
                         "active"
                     );
+
+
+                    /*
+                       Reset videos before changing
+                       orientation.
+                    */
+
+                    resetAllCardVideos();
 
 
                     updateProjects();
@@ -1155,12 +1190,6 @@ document.addEventListener("DOMContentLoaded", function () {
        INITIAL POSTER RESET
     ========================================= */
 
-    /*
-       Wait until the initial page has rendered,
-       then make sure every video starts with
-       its poster.
-    */
-
     requestAnimationFrame(
         function () {
 
@@ -1171,50 +1200,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       REVEAL ANIMATION
+       INTERSECTION OBSERVER
+       
+       Keeps the same reveal animation when
+       cards enter the viewport while scrolling.
     ========================================= */
 
-    const revealElements =
-        document.querySelectorAll(
-            ".project-card"
-        );
+    if (
+        "IntersectionObserver" in window
+    ) {
 
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
 
-    const observer =
-        new IntersectionObserver(
-            function (entries) {
+                    entries.forEach(
+                        function (entry) {
 
-                entries.forEach(
-                    function (entry) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                                entry.target.classList.add(
+                                    "visible"
+                                );
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
 
                         }
+                    );
 
-                    }
-                );
+                },
+                {
+                    threshold: 0.08
+                }
+            );
 
-            },
-            {
-                threshold: 0.08
+
+        projectCards.forEach(
+            function (card) {
+
+                observer.observe(card);
+
             }
         );
 
+    }
 
-    revealElements.forEach(
-        function (element) {
+    else {
 
-            observer.observe(
-                element
-            );
+        projectCards.forEach(
+            function (card) {
 
-        }
-    );
+                card.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+    }
 
 });
