@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       VIDEO VIEWER ELEMENTS
+       VIDEO VIEWER
     ========================================= */
 
     const videoViewer =
@@ -46,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       RESET ONE CARD VIDEO
-       Restores poster image
+       RESET CARD VIDEO
     ========================================= */
 
     function resetCardVideo(video) {
@@ -66,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
             /* Ignore */
         }
 
-
         const media =
             video.closest(".project-media");
 
@@ -78,29 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (progress) {
                 progress.style.width = "0%";
             }
-
         }
 
-
-        const originalVisibility =
-            video.style.visibility;
-
-        video.style.visibility = "hidden";
-
         video.load();
-
-
-        requestAnimationFrame(function () {
-
-            requestAnimationFrame(function () {
-
-                video.style.visibility =
-                    originalVisibility || "visible";
-
-            });
-
-        });
-
     }
 
 
@@ -120,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       ONE CARD VIDEO AT A TIME
+       ONLY ONE CARD VIDEO AT A TIME
     ========================================= */
 
     document.addEventListener(
@@ -138,13 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             videos.forEach(function (video) {
 
                 if (video !== currentVideo) {
-
                     resetCardVideo(video);
-
                 }
 
             });
@@ -155,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       PAGE RETURN / BROWSER BACK
+       PAGE RETURN
     ========================================= */
 
     window.addEventListener(
@@ -188,23 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     /* Ignore */
                 }
 
-
-                const media =
-                    video.closest(".project-media");
-
-                if (media) {
-
-                    const progress =
-                        media.querySelector(
-                            ".video-progress"
-                        );
-
-                    if (progress) {
-                        progress.style.width = "0%";
-                    }
-
-                }
-
             });
 
         }
@@ -212,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       TAB / PAGE VISIBILITY
+       TAB VISIBILITY
     ========================================= */
 
     document.addEventListener(
@@ -224,13 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "hidden"
             ) {
 
-                videos.forEach(
-                    function (video) {
+                videos.forEach(function (video) {
 
-                        video.pause();
+                    video.pause();
 
-                    }
-                );
+                });
 
             }
 
@@ -252,10 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         const source =
             video.querySelector("source");
-
 
         if (!source) {
 
@@ -266,15 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
-        /* =====================================
-           GET VIDEO URL
-        ===================================== */
-
         const videoURL =
             source.src ||
             source.getAttribute("src");
-
 
         if (!videoURL) {
 
@@ -286,9 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* =====================================
-           STOP ALL CARD VIDEOS
-        ===================================== */
+        /* STOP CARD VIDEOS */
 
         videos.forEach(function (otherVideo) {
 
@@ -305,28 +251,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        /* =====================================
-           SET VIEWER VIDEO
-        ===================================== */
+        /* RESET VIEWER */
 
         viewerVideo.pause();
 
         viewerVideo.removeAttribute("src");
 
+        viewerVideo.removeAttribute("poster");
+
         viewerVideo.load();
 
+
+        /* SET SOURCE */
 
         viewerVideo.src =
             videoURL;
 
 
-        /* =====================================
-           SET POSTER
-        ===================================== */
+        /* SET POSTER */
 
         const poster =
             video.getAttribute("poster");
-
 
         if (poster) {
 
@@ -336,9 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* =====================================
-           OPEN VIEWER
-        ===================================== */
+        /* OPEN MODAL */
 
         videoViewer.classList.add(
             "active"
@@ -348,16 +291,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "hidden";
 
 
-        /* =====================================
-           LOAD VIDEO
-        ===================================== */
-
-        viewerVideo.load();
-
-
-        /* =====================================
-           PLAY AFTER VIDEO IS READY
-        ===================================== */
+        /*
+           Set event BEFORE load().
+           This avoids missing the metadata event.
+        */
 
         viewerVideo.onloadedmetadata =
             function () {
@@ -377,6 +314,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             };
 
+
+        viewerVideo.load();
+
     }
 
 
@@ -393,21 +333,18 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         viewerVideo.pause();
 
-
         try {
-
-            viewerVideo.currentTime =
-                0;
-
+            viewerVideo.currentTime = 0;
         }
 
         catch (error) {
             /* Ignore */
         }
 
+        viewerVideo.onloadedmetadata =
+            null;
 
         viewerVideo.removeAttribute(
             "src"
@@ -419,11 +356,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         viewerVideo.load();
 
-
         videoViewer.classList.remove(
             "active"
         );
-
 
         document.body.style.overflow =
             "";
@@ -452,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       CLICK OUTSIDE VIDEO
+       CLICK OUTSIDE VIEWER
     ========================================= */
 
     if (videoViewer) {
@@ -477,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       ESCAPE KEY
+       ESCAPE
     ========================================= */
 
     document.addEventListener(
@@ -527,33 +462,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
-           CREATE TIMELINE
+           USE EXISTING TIMELINE
+           Do NOT create another one.
         ===================================== */
 
         const timeline =
-            document.createElement("div");
-
-
-        timeline.className =
-            "video-timeline";
-
+            media.querySelector(
+                ".video-timeline"
+            );
 
         const progress =
-            document.createElement("div");
-
-
-        progress.className =
-            "video-progress";
-
-
-        timeline.appendChild(
-            progress
-        );
-
-
-        media.appendChild(
             timeline
-        );
+                ? timeline.querySelector(
+                    ".video-progress"
+                )
+                : null;
 
 
         /* =====================================
@@ -573,7 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
-           CLICK VIDEO
+           VIDEO CLICK
         ===================================== */
 
         video.addEventListener(
@@ -644,11 +567,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "ended",
             function () {
 
-                video.currentTime =
-                    0;
+                video.currentTime = 0;
 
-                progress.style.width =
-                    "0%";
+                if (progress) {
+                    progress.style.width =
+                        "0%";
+                }
 
                 video.load();
 
@@ -657,7 +581,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =====================================
-           UPDATE TIMELINE
+           TIMELINE UPDATE
         ===================================== */
 
         video.addEventListener(
@@ -665,19 +589,18 @@ document.addEventListener("DOMContentLoaded", function () {
             function () {
 
                 if (
+                    !progress ||
                     !video.duration ||
                     !isFinite(video.duration)
                 ) {
                     return;
                 }
 
-
                 const percentage =
                     (
                         video.currentTime /
                         video.duration
                     ) * 100;
-
 
                 progress.style.width =
                     percentage + "%";
@@ -694,74 +617,70 @@ document.addEventListener("DOMContentLoaded", function () {
             "loadedmetadata",
             function () {
 
-                progress.style.width =
-                    "0%";
+                if (progress) {
+
+                    progress.style.width =
+                        "0%";
+
+                }
 
             }
         );
 
 
         /* =====================================
-           CLICK TIMELINE
+           TIMELINE CLICK
         ===================================== */
 
-        timeline.addEventListener(
-            "click",
-            function (event) {
+        if (timeline) {
 
-                event.stopPropagation();
+            timeline.addEventListener(
+                "click",
+                function (event) {
 
+                    event.stopPropagation();
 
-                if (
-                    !video.duration ||
-                    !isFinite(video.duration)
-                ) {
-                    return;
+                    if (
+                        !video.duration ||
+                        !isFinite(video.duration)
+                    ) {
+                        return;
+                    }
+
+                    const rect =
+                        timeline.getBoundingClientRect();
+
+                    const clickPosition =
+                        event.clientX -
+                        rect.left;
+
+                    let percentage =
+                        clickPosition /
+                        rect.width;
+
+                    percentage =
+                        Math.max(
+                            0,
+                            Math.min(
+                                1,
+                                percentage
+                            )
+                        );
+
+                    video.currentTime =
+                        percentage *
+                        video.duration;
+
                 }
+            );
 
-
-                const rect =
-                    timeline.getBoundingClientRect();
-
-
-                const clickPosition =
-                    event.clientX -
-                    rect.left;
-
-
-                let percentage =
-                    clickPosition /
-                    rect.width;
-
-
-                percentage =
-                    Math.max(
-                        0,
-                        Math.min(
-                            1,
-                            percentage
-                        )
-                    );
-
-
-                video.currentTime =
-                    percentage *
-                    video.duration;
-
-            }
-        );
+        }
 
     });
 
 
     /* =========================================
-       FILTER FUNCTION
-       
-       Includes:
-       - Orientation
-       - Category
-       - Search
-       - Animation reset
+       FILTER + ANIMATION
     ========================================= */
 
     function updateProjects() {
@@ -775,21 +694,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         let visibleCount = 0;
-
         let animationIndex = 0;
 
 
         projectCards.forEach(function (card) {
 
-            /* =================================
-               ORIENTATION
-            ================================= */
-
             const isLandscape =
                 card.classList.contains(
                     "landscape"
                 );
-
 
             const isVertical =
                 card.classList.contains(
@@ -797,29 +710,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-            let matchesOrientation =
-                false;
+            /* =================================
+               ORIENTATION
+            ================================= */
 
-
-            if (
-                currentOrientation ===
-                "landscape"
-            ) {
-
-                matchesOrientation =
-                    isLandscape;
-
-            }
-
-            else if (
-                currentOrientation ===
-                "vertical"
-            ) {
-
-                matchesOrientation =
-                    isVertical;
-
-            }
+            const matchesOrientation =
+                currentOrientation === "landscape"
+                    ? isLandscape
+                    : currentOrientation === "vertical"
+                        ? isVertical
+                        : false;
 
 
             /* =================================
@@ -827,30 +727,12 @@ document.addEventListener("DOMContentLoaded", function () {
             ================================= */
 
             const cardCategory =
-                card.dataset.category;
+                card.dataset.category || "";
 
 
-            let matchesCategory =
-                false;
-
-
-            if (
-                currentCategory ===
-                "all"
-            ) {
-
-                matchesCategory =
-                    true;
-
-            }
-
-            else {
-
-                matchesCategory =
-                    cardCategory ===
-                    currentCategory;
-
-            }
+            const matchesCategory =
+                currentCategory === "all" ||
+                cardCategory === currentCategory;
 
 
             /* =================================
@@ -874,18 +756,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* =================================
-               FINAL RESULT
+               FINAL MATCH
             ================================= */
 
-            if (
+            const shouldShow =
                 matchesOrientation &&
                 matchesCategory &&
-                matchesSearch
-            ) {
+                matchesSearch;
 
-                /* =============================
-                   SHOW CARD
-                ============================= */
+
+            if (shouldShow) {
+
+                /* SHOW CARD */
 
                 card.classList.remove(
                     "is-hidden"
@@ -893,8 +775,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 /*
-                   Remove old animation state
-                   so the animation can replay.
+                   Remove visible first.
+                   This resets the animation.
                 */
 
                 card.classList.remove(
@@ -904,8 +786,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 /*
                    Set stagger delay.
-                   
-                   0.05s between each card.
                 */
 
                 card.style.setProperty(
@@ -915,21 +795,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 animationIndex++;
-
                 visibleCount++;
 
 
                 /*
                    Force browser reflow.
-                   This is important because it
-                   allows the animation to restart.
                 */
 
                 void card.offsetWidth;
 
 
                 /*
-                   Start animation.
+                   Add visible on next frame.
                 */
 
                 requestAnimationFrame(
@@ -946,19 +823,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             else {
 
-                /* =============================
-                   HIDE CARD
-                ============================= */
-
-                card.classList.add(
-                    "is-hidden"
-                );
-
+                /* HIDE CARD */
 
                 card.classList.remove(
                     "visible"
                 );
 
+                card.classList.add(
+                    "is-hidden"
+                );
 
                 card.style.removeProperty(
                     "--card-delay"
@@ -969,7 +842,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     card.querySelector(
                         "video"
                     );
-
 
                 if (video) {
 
@@ -985,7 +857,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         /* =================================
-           PIECES COUNT
+           COUNT
         ================================= */
 
         if (piecesCount) {
@@ -1035,12 +907,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     /*
-                       Reset videos before changing
-                       orientation.
+                       Reset videos first.
                     */
 
                     resetAllCardVideos();
 
+
+                    /*
+                       Re-run filter and animation.
+                    */
 
                     updateProjects();
 
@@ -1092,7 +967,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       LIVE SEARCH
+       SEARCH
     ========================================= */
 
     if (searchInput) {
@@ -1111,7 +986,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        DEFAULT CATEGORY
-       = ALL
     ========================================= */
 
     categoryButtons.forEach(
@@ -1146,7 +1020,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================================
        DEFAULT ORIENTATION
-       = LANDSCAPE
     ========================================= */
 
     orientationButtons.forEach(
@@ -1187,7 +1060,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       INITIAL POSTER RESET
+       INITIAL VIDEO RESET
     ========================================= */
 
     requestAnimationFrame(
@@ -1197,72 +1070,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
-
-
-    /* =========================================
-       INTERSECTION OBSERVER
-       
-       Keeps the same reveal animation when
-       cards enter the viewport while scrolling.
-    ========================================= */
-
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
-
-                    entries.forEach(
-                        function (entry) {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.08
-                }
-            );
-
-
-        projectCards.forEach(
-            function (card) {
-
-                observer.observe(card);
-
-            }
-        );
-
-    }
-
-    else {
-
-        projectCards.forEach(
-            function (card) {
-
-                card.classList.add(
-                    "visible"
-                );
-
-            }
-        );
-
-    }
 
 });
