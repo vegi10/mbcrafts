@@ -597,89 +597,52 @@ body::before {
 }
 
 
-/* =====================================================
-   PROJECT CARD
-       
-   REVEAL ANIMATION
-       
-   Both Landscape and Vertical use the
-   exact same animation.
-===================================================== */
+/* =========================
+   CARD REVEAL ANIMATION
+========================= */
 
 .project-card {
-
-    background: #080808;
-
-    border: 1px solid rgba(255,255,255,0.12);
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    /*
-       Initial animation state
-    */
-
-    opacity: 0;
-
-    transform:
-        translateY(35px);
-
-    /*
-       Animation transition
-    */
-
-    transition:
-        opacity 0.65s ease,
-        transform 0.65s ease,
-        border-color 0.3s ease;
-
-    /*
-       JavaScript controls the stagger.
-    */
-
-    transition-delay:
-        var(--card-delay, 0s);
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
 }
 
-
-/* =====================================================
-   PROJECT CARD VISIBLE
-===================================================== */
-
+/* This class triggers the animation */
 .project-card.visible {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
+  animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1)
+    var(--card-delay, 0s) both;
 }
 
-
-/* =====================================================
-   PROJECT CARD HOVER
-===================================================== */
-
+/* Keep hover separate from the reveal animation */
 .project-card.visible:hover {
-
-    transform:
-        translateY(-4px);
-
-    border-color:
-        rgba(255,255,255,0.3);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
 
-/* =====================================================
-   HIDDEN CARDS
-===================================================== */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .project-card.is-hidden {
-
-    display: none !important;
+  display: none !important;
 }
 
-
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
 /* =====================================================
    VIDEO MEDIA
 ===================================================== */
