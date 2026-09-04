@@ -635,14 +635,6 @@ body::before {
   display: none !important;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .project-card {
-    opacity: 1;
-    transform: none;
-    animation: none !important;
-  }
-}
 /* =====================================================
    VIDEO MEDIA
 ===================================================== */
