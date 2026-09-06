@@ -334,12 +334,12 @@ body {
 
 .section-label {
     display: block;
-    font-size: clamp(48px, 7vw, 110px);
-    font-weight: 500;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
-    color: #fff;
-    margin-bottom: 40px;
+    font-size: clamp(42px, 6vw, 90px);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin: 0 0 24px;
 }
 
 
