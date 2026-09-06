@@ -333,13 +333,13 @@ body {
 ===================================================== */
 
 .section-label {
-    color: #777;
-
-    font-size: 12px;
-
-    letter-spacing: 3px;
-
+    display: block;
+    font-size: clamp(48px, 7vw, 110px);
     font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: #fff;
+    margin-bottom: 40px;
 }
 
 
