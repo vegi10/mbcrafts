@@ -582,7 +582,26 @@ body {
 
     border-left: 1px solid #292929;
 }
+/* =====================================================
+   DIFFERENCE TOP
+===================================================== */
 
+.difference-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.difference-icon {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    display: block;
+}
 
 
 /* =====================================================
