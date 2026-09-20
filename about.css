@@ -33,16 +33,16 @@ body {
     position: fixed;
 
     top: 18px;
-    left: 1%;
+    left: 2%;
 
-    width: 98%;
+    width: 96%;
     height: 78px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 26px;
+    padding: 0 28px;
 
     background: rgba(8, 8, 8, 0.88);
 
@@ -51,7 +51,7 @@ body {
 
     border: 1px solid #292929;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     z-index: 1000;
 }
