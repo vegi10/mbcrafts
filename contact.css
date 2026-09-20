@@ -13,6 +13,171 @@ body {
 
 
 /* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 18px;
+    left: 2%;
+
+    width: 96%;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    background: rgba(8, 8, 8, 0.88);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid #292929;
+
+    border-radius: 20px;
+
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   NAVBAR BRAND
+===================================================== */
+
+.nav-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+}
+
+.nav-brand img {
+    width: 64px;
+    height: 36px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.nav-brand span {
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* =====================================================
+   NAVIGATION LINKS
+===================================================== */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.nav-links a {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 92px;
+    height: 54px;
+
+    padding: 0 22px;
+
+    color: #999999;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    border-radius: 17px;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.nav-links a.active {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+
+/* =====================================================
+   LET'S WORK BUTTON
+===================================================== */
+
+.nav-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 170px;
+    height: 54px;
+
+    padding: 0 28px;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    text-decoration: none;
+
+    border-radius: 17px;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+
+    background: #eeeeee;
+}
+
+
+/* =====================================================
    CONTACT PAGE
 ===================================================== */
 
@@ -230,6 +395,10 @@ body {
     display: none;
 }
 
+.menu-button {
+    display: none;
+}
+
 
 /* =====================================================
    TABLET
@@ -253,6 +422,52 @@ body {
 ===================================================== */
 
 @media (max-width: 768px) {
+
+
+    /* -------------------------------------------------
+       NAVBAR
+    ------------------------------------------------- */
+
+    .navbar {
+        top: 18px;
+
+        left: 20px;
+        right: 20px;
+
+        width: auto;
+
+        height: 64px;
+
+        padding: 0 14px;
+
+        border-radius: 18px;
+    }
+
+
+    .nav-brand {
+        gap: 10px;
+    }
+
+
+    .nav-brand img {
+        width: 54px;
+        height: 32px;
+    }
+
+
+    .nav-brand span {
+        font-size: 20px;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .nav-button {
+        display: none;
+    }
 
 
     /* -------------------------------------------------
