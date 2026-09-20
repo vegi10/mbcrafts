@@ -3247,3 +3247,33 @@ body.page-leaving {
         line-height: 1;
     }
 }
+/* =====================================================
+   TYPOGRAPHY CONSISTENCY
+===================================================== */
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: "DM Sans", sans-serif;
+}
+
+/* Main headings */
+h1,
+h2,
+h3 {
+    font-family: "Manrope", sans-serif;
+    color: var(--white);
+}
+
+/* Normal supporting text */
+p {
+    font-family: "DM Sans", sans-serif;
+}
+
+/* Navigation */
+.nav-links a,
+.nav-button {
+    font-family: "DM Sans", sans-serif;
+}
