@@ -77,11 +77,11 @@ body::before {
 
 .navbar-wrap {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
 
-    width: min(1530px, calc(100% - 70px));
+    top: 18px;
+    left: 2%;
+
+    width: 96%;
 
     z-index: 1000;
 }
@@ -93,17 +93,17 @@ body::before {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 22px;
+    padding: 0 28px;
 
-    background: rgba(5,5,5,0.84);
+    background: rgba(8, 8, 8, 0.88);
 
-    border: 1px solid var(--border);
-    border-radius: 18px;
+    border: 1px solid #292929;
+    border-radius: 20px;
 
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.35);
+    box-shadow: none;
 }
 
 
@@ -115,15 +115,16 @@ body::before {
     display: flex;
     align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .brand img {
-    width: 42px;
+    width: 52px;
     height: 42px;
+
     object-fit: contain;
 }
 
@@ -135,30 +136,40 @@ body::before {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 8px;
+
+    gap: 12px;
 }
 
 .nav-links a {
-    padding: 12px 20px;
+    padding: 14px 24px;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
-    color: #bcbcbc;
+    color: #bdbdbd;
 
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 500;
+
+    border: 1px solid transparent;
 
     transition: 0.3s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: white;
+.nav-links a:hover {
+    color: #ffffff;
 
-    background: rgba(255,255,255,0.06);
+    background: #151515;
+}
+
+.nav-links a.active {
+    color: #ffffff;
+
+    background: #171717;
+
+    border: 1px solid #303030;
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.08),
-        0 0 25px rgba(255,255,255,0.04);
+        0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 
@@ -167,13 +178,15 @@ body::before {
 ===================================================== */
 
 .nav-button {
-    background: white;
-    color: black;
+    background: #ffffff;
 
-    padding: 13px 24px;
+    color: #111111;
 
-    border-radius: 12px;
+    padding: 15px 27px;
 
+    border-radius: 14px;
+
+    font-size: 16px;
     font-weight: 600;
 
     transition: 0.3s ease;
@@ -181,6 +194,7 @@ body::before {
 
 .nav-button:hover {
     transform: translateY(-2px);
+
     background: #e9e9e9;
 }
 
