@@ -3256,24 +3256,24 @@ button,
 input,
 textarea,
 select {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Main headings */
 h1,
 h2,
 h3 {
-    font-family: "Manrope", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: var(--white);
 }
 
 /* Normal supporting text */
 p {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Navigation */
 .nav-links a,
 .nav-button {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
