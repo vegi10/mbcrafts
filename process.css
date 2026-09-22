@@ -85,6 +85,8 @@ nav{
     -webkit-backdrop-filter:blur(18px);
 
     z-index:1000;
+
+    font-family:"DM Sans", sans-serif;
 }
 
 
@@ -100,6 +102,8 @@ nav{
 
     font-size:20px;
     font-weight:600;
+
+    font-family:"DM Sans", sans-serif;
 }
 
 .logo img{
@@ -130,6 +134,8 @@ nav{
     font-weight:500;
 
     border:1px solid transparent;
+
+    font-family:"DM Sans", sans-serif;
 
     transition:0.3s ease;
 }
@@ -166,6 +172,8 @@ nav{
     font-size:16px;
     font-weight:600;
 
+    font-family:"DM Sans", sans-serif;
+
     transition:0.3s ease;
 }
 
@@ -173,7 +181,6 @@ nav{
     transform:translateY(-2px);
     background:#e9e9e9;
 }
-
 /* =========================
    HERO
 ========================= */
