@@ -82,6 +82,7 @@ nav{
     border-radius:20px;
 
     backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
     z-index:1000;
 }
@@ -94,7 +95,7 @@ nav{
     align-items:center;
     gap:14px;
 
-    color:white;
+    color:#ffffff;
     text-decoration:none;
 
     font-size:20px;
@@ -118,6 +119,7 @@ nav{
 
 .nav-links a{
     text-decoration:none;
+
     color:#bdbdbd;
 
     padding:14px 24px;
@@ -127,16 +129,18 @@ nav{
     font-size:17px;
     font-weight:500;
 
+    border:1px solid transparent;
+
     transition:0.3s ease;
 }
 
 .nav-links a:hover{
-    color:white;
+    color:#ffffff;
     background:#151515;
 }
 
 .nav-links a.active{
-    color:white;
+    color:#ffffff;
     background:#171717;
 
     border:1px solid #303030;
@@ -151,7 +155,7 @@ nav{
 .work-button{
     text-decoration:none;
 
-    color:#111;
+    color:#111111;
 
     background:#ffffff;
 
@@ -159,6 +163,7 @@ nav{
 
     border-radius:14px;
 
+    font-size:16px;
     font-weight:600;
 
     transition:0.3s ease;
@@ -168,7 +173,6 @@ nav{
     transform:translateY(-2px);
     background:#e9e9e9;
 }
-
 
 /* =========================
    HERO
