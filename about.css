@@ -624,21 +624,20 @@ body {
 
 
 .difference-header h2 {
-    margin-top: 28px;
+    margin-top: 24px;
 
     font-family: 'Poppins', sans-serif;
 
-    font-size: clamp(50px, 6vw, 86px);
+    font-size: clamp(48px, 5vw, 76px);
 
-    line-height: 0.98;
+    line-height: 1;
 
     letter-spacing: -4px;
 
-    font-weight: 400;
+    font-weight: 500;
 
     color: #ffffff;
 }
-
 
 
 /* =====================================================
